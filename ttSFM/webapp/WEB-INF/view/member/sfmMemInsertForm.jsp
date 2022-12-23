@@ -21,23 +21,21 @@
 	function kakaopost(){
 		   new daum.Postcode({
 		      oncomplete: function(data) {
-		          document.querySelector("#zonecode").value = data.zonecode;
-		          document.querySelector("#address").value =  data.address
+		          document.querySelector("#memzonecode").value = data.zonecode;
+		          document.querySelector("#memjibunaddress").value =  data.address
 		        }
 	  	 }).open();
 	};	
-
+	
 	$(document).ready(function(){
 		alert("ready 함수 진입");
 		
 		$('#logingo').on('click', function(){
 			alert("logingo 보내기 버튼 블럭 진입 >>> : ");			
 			console.log("logingo 보내기 >>> : ");	
-
 			$('#memform').attr({
 				'action':'sfmMemInsert.sfm',
-				'method':'POST',
-				'enctype':'multipart/form-data'
+				'method':'GET'
 			}).submit();
 		});
 	});
@@ -73,7 +71,6 @@
     }
   </style>
 </head>
-
 <body>
   <div class="container">
     <div class="input-form-backgroud row">
@@ -81,10 +78,10 @@
         <br>
         <h4 class="mb-3"><b>회원가입</b></h4>
         <br>
-        <form class="validation-form" id="memform" novalidate>
+        <form class="validation-form" id="memform" name="memform" novalidate>
             <div class="mb-3">
               <label for="name"><b>이름</b></label>
-              <input type="text" class="form-control" id="memname" placeholder="" value="" required>
+              <input type="text" class="form-control" id="memname" name="memname" placeholder="" value="" required>
               <div class="invalid-feedback">
                 이름을 입력해주세요.
               </div>
@@ -105,7 +102,7 @@
          <!-- 아이디 -->
           <div class="mb-3">
               <label for="id"><b>아이디</b></label>
-              <input type="text" class="form-control" id="memid" placeholder="" value="" required>
+              <input type="text" class="form-control" id="memid" name="memid" placeholder="" value="" required>
               <div class="invalid-feedback">
                 아이디를 입력해주세요.
               </div>
@@ -117,7 +114,7 @@
          <!-- 비밀번호 -->
           <div class="mb-3">
             <label for="pw"><b>비밀번호</b></label>
-            <input type="text" class="form-control" id="mempw" placeholder="****" required>
+            <input type="text" class="form-control" id="mempw" name="mempw" placeholder="****" required>
              <input type="text" class="form-control" id="mempw_r" name="mempw_r" placeholder="****" required>
              <input type="button" class="btn btn-primary" value="비밀번호확인" id="pwCheck"/>            
              <div class="invalid-feedback">
@@ -127,16 +124,47 @@
             
            <div class="mb-3">
            <label for="email"><b>이메일</b></label>
-           <input type="email" class="form-control" id="mememail" placeholder="tikitaka@example.com" required>
+           <input type="email" class="form-control" id="mememail" name="mememail" placeholder="tikitaka@example.com" required>
            <div class="invalid-feedback">
                  이메일을 입력해주세요.
           </div>
           </div> 
+          
+          <div class="row">
+          <div class="col-md-3 mb-3">
+              <label for="root"><b>전화번호</b></label>
+              <select class="custom-select d-block w-100" id="memhp" name="memhp">
+                <option value=""></option>
+                <option value="010" selected>010</option>
+                <option value="011">011</option>
+                <option value="016">016</option>
+                <option value="017">017</option>
+              </select>
+              <div class="invalid-feedback">
+                포지션을 선택해주세요.
+              </div>
+            </div>
+          <div class="col-md-3 mb-3">
+          <label for="root"><b>&nbsp;</b></label>
+           <input type="text" class="form-control" id="memhp1" name="memhp1" placeholder="1111" maxlangth="4" required>
+           <div class="invalid-feedback">
+                 전화번호를 입력해주세요.
+          </div>
+          </div>
+          <div class="col-md-3 mb-3">
+          <label for="root"><b>&nbsp;</b></label>
+           <input type="text" class="form-control" id="memhp2" name="memhp2" placeholder="2222" required>
+           <div class="invalid-feedback">
+                 전화번호를 입력해주세요.
+          </div>
+          </div> 
+           
+          </div>
             
           <div class="row">  
           <div class="col-md-6 mb-3">
             <label for="zonecode"><b>우편번호</b></label>
-            <input type="email" class="form-control" id="memzonecode" placeholder="우편번호" required>
+            <input type="text" class="form-control" id="memzonecode" name="memzonecode" placeholder="우편번호" required>
 			<div class="invalid-feedback">
                   우편번호를 입력해주세요.
             </div>
@@ -150,7 +178,7 @@
 
           <div class="mb-3">
             <label for="address"><b>주소</b></label>
-            <input type="text" class="form-control" id="memjibunaddress" placeholder="서울특별시 강남구" required>
+            <input type="text" class="form-control" id="memjibunaddress" name="memjibunaddress" placeholder="서울특별시 강남구" required>
             <div class="invalid-feedback">
               주소를 입력해주세요.
             </div>
@@ -158,19 +186,19 @@
 
           <div class="mb-3">
             <label for="address2"><b>상세 주소</b><span class="text-muted">&nbsp;(필수 아님)</span></label>
-            <input type="text" class="form-control" id="memjibunaddressdetail" placeholder="상세주소를 입력해주세요.">
+            <input type="text" class="form-control" id="memjibunaddressdetail" name="memjibunaddressdetail" placeholder="상세주소를 입력해주세요.">
           </div>
 
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="root"><b>포지션</b></label>
-              <select class="custom-select d-block w-100" id="memposotion">
+              <select class="custom-select d-block w-100" id="memposotion" name="memposotion">
                 <option value=""></option>
-                <option>공격수</option>
-                <option>미드필더</option>
-                <option>수비수</option>
-                <option>골키퍼</option>
-                <option selected>상관없음</option>
+                <option value="공격수">공격수</option>
+                <option value="미드필더">미드필더</option>
+                <option value="수비수">수비수</option>
+                <option value="골키퍼">골키퍼</option>
+                <option value="상관없음" selected>상관없음</option>
               </select>
               <div class="invalid-feedback">
                 포지션을 선택해주세요.
@@ -178,11 +206,11 @@
             </div>
             <div class="col-md-6 mb-3">
               <label for="root"><b>선호 지역</b></label>
-              <select class="custom-select d-block w-100" id="memarea">
+              <select class="custom-select d-block w-100" id="memarea" name="memarea">
                 <option value=""></option>
-                <option selected>서울</option>
-                <option>경기</option>
-                <option>인천</option>
+                <option value="서울" selected>서울</option>
+                <option value="경기">경기</option>
+                <option value="인천">인천</option>
               </select>
               <div class="invalid-feedback">
                 선호지역을 선택해주세요.
@@ -196,7 +224,7 @@
             <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
           </div>
           <div class="mb-4"></div>
-          <button class="btn btn-primary btn-lg btn-block" type="submit" id="logingo" onclick="">가입 완료</button>
+          <button class="btn btn-primary btn-lg btn-block" type="submit" id="logingo" name="logingo" onclick="">가입 완료</button>
         </form>
       </div>
     </div>

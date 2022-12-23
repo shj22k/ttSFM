@@ -4,6 +4,6 @@ import main.sfm.member.vo.SfmMemVO;
 
 public interface SfmMemService {
 	
-	public int sfmMemInsert(SfmMemVO smvo);
+	public int sfmMemInsert(SfmMemVO mvo);
 
 }

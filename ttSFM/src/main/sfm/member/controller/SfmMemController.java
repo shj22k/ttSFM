@@ -6,7 +6,6 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -30,20 +29,56 @@ public class SfmMemController {
 		return "member/sfmMemInsertForm";
 	}
 	
-	@RequestMapping(value="sfmMemInsert", method=RequestMethod.POST)
+	@RequestMapping(value="sfmMemInsert", method=RequestMethod.GET)
 	public String sfmMemInsert(HttpServletRequest req) {
-		logger.info("memberinsertform 함수 진입 >>> : ");
+		logger.info("sfmMemInsert 함수 진입 >>> : ");
 		
-		String memnum = ChabunUtil.getSFMmemChabun("D", sfmChabunService.getSFMmemChabun().getMemnum());
-		logger.info("채번으로 생성된 memnum >>> : " + sfmChabunService.getSFMmemChabun().getMemnum());
+//		String memnum = ChabunUtil.getSFMmemChabun("D", sfmChabunService.getSFMmemChabun().getMemnum());
+//		logger.info("채번으로 생성된 memnum >>> : " + sfmChabunService.getSFMmemChabun().getMemnum());
 		
 		SfmMemVO mvo = null;
 		mvo = new SfmMemVO();
 		
-		mvo.setMemnum(memnum);
+		// 전화번호
+		String memhp = req.getParameter("memhp");
+		String memhp1 = req.getParameter("memhp1");
+		String memhp2 = req.getParameter("memhp2");
+		memhp = memhp.concat("-" + memhp1).concat("-" + memhp2);
+		logger.info("mvo.getMemhp() >>> : " + mvo.getMemhp());
+
+		mvo.setMemnum("M202212230001");
 		mvo.setMemname(req.getParameter("memname"));
+		logger.info("mvo.getMemname() >>> : " + mvo.getMemname());
 		mvo.setMemgender(req.getParameter("memgender"));
-		
+		logger.info("mvo.getMemgender() >>> : " + mvo.getMemgender());
+		mvo.setMemid(req.getParameter("memid"));
+		logger.info("mvo.getMemid() >>> : " + mvo.getMemid());
+		mvo.setMempw(req.getParameter("mempw"));
+		logger.info("mvo.getMempw() >>> : " + mvo.getMempw());
+		mvo.setMemzonecode(req.getParameter("memzonecode"));
+		mvo.setMemjibunaddress(req.getParameter("memjibunaddress"));
+		mvo.setMemjibunaddressdetail(req.getParameter("memjibunaddressdetail"));
+		mvo.setMememail(req.getParameter("mememail"));
+		logger.info("mvo.getMememail() >>> : " + mvo.getMememail());
+		mvo.setMemposition(req.getParameter("memposition"));
+		mvo.setMempreferredarea(req.getParameter("mempreferredarea"));
+		mvo.setMemhp(memhp);
+		logger.info("mvo.getMemhp() >>> : " + mvo.getMemhp());
+		mvo.setIsmanager("0");
+		logger.info("mvo.getMemid() >>> : " + mvo.getMemid());
+		logger.info("mvo.getMempw() >>> : " + mvo.getMempw());
+		logger.info("mvo.getMemzonecode() >>> : " + mvo.getMemzonecode());
+		logger.info("mvo.getMemjibunaddress() >>> : " + mvo.getMemjibunaddress());
+		logger.info("mvo.getMemjibunaddressdetail() >>> : " + mvo.getMemjibunaddressdetail());
+		logger.info("mvo.getMememail() >>> : " + mvo.getMememail());
+		logger.info("mvo.getMemposition() >>> : " + mvo.getMemposition());
+		logger.info("mvo.getMempreferredarea() >>> : " + mvo.getMempreferredarea());
+
+		int insertCnt = sfmMemService.sfmMemInsert(mvo);
+		if(insertCnt > 0) {
+			logger.info("sfmMemService insertCnt >>> : " + insertCnt);
+			return "member/sfmMemInsertForm";
+		}
 		return "member/sfmMemInsertForm";
 	}
 

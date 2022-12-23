@@ -22,7 +22,7 @@ public abstract class ChabunUtil {
 		// TODO Auto-generated method stub
 
 		String c = "1";
-		System.out.println(">>> : " + ChabunUtil.getSFMmemChabun("N", c));		
+		System.out.println(">>> : " + ChabunUtil.getSFMmemChabun("D", c));		
 
 	}
 

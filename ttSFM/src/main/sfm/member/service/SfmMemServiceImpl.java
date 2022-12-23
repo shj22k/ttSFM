@@ -18,10 +18,10 @@ public class SfmMemServiceImpl implements SfmMemService{
 	private SfmMemDAO sfmMemDAO;
 	
 	@Override
-	public int sfmMemInsert(SfmMemVO smvo) {
+	public int sfmMemInsert(SfmMemVO mvo) {
 		logger.info("sfmMemInsert() 함수 진입 >>> : ");
 		
-		return sfmMemDAO.sfmMemInsert(smvo);
+		return sfmMemDAO.sfmMemInsert(mvo);
 	}
 	
 

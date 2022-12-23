@@ -13,7 +13,7 @@ public class SfmMemVO {
 	private String memjibunaddress;
 	private String memjibunaddressdetail;
 	private String mememail;
-	private String memposotion;
+	private String memposition;
 	private String mempreferredarea;
 	private String memlv;
 	private String ismanager;
@@ -21,14 +21,13 @@ public class SfmMemVO {
 	private String insertdate;
 	private String updatedate;
 	
-	
 	public SfmMemVO() {
 		
 	}
 	
 	public SfmMemVO(String memnum, String memname, String memid, String mempw, String memgender, String memphoto,
 			String memhp, String memzonecode, String memjibunaddress, String memjibunaddressdetail, String mememail,
-			String memposotion, String mempreferredarea, String memlv, String ismanager, String deleteyn,
+			String memposition, String mempreferredarea, String memlv, String ismanager, String deleteyn,
 			String insertdate, String updatedate) {
 		
 		this.memnum = memnum;
@@ -42,7 +41,7 @@ public class SfmMemVO {
 		this.memjibunaddress = memjibunaddress;
 		this.memjibunaddressdetail = memjibunaddressdetail;
 		this.mememail = mememail;
-		this.memposotion = memposotion;
+		this.memposition = memposition;
 		this.mempreferredarea = mempreferredarea;
 		this.memlv = memlv;
 		this.ismanager = ismanager;
@@ -117,11 +116,11 @@ public class SfmMemVO {
 	public void setMememail(String mememail) {
 		this.mememail = mememail;
 	}
-	public String getMemposotion() {
-		return memposotion;
+	public String getMemposition() {
+		return memposition;
 	}
-	public void setMemposotion(String memposotion) {
-		this.memposotion = memposotion;
+	public void setMemposition(String memposotion) {
+		this.memposition = memposotion;
 	}
 	public String getMempreferredarea() {
 		return mempreferredarea;
