@@ -18,25 +18,28 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-function kakaopost(){
-	   new daum.Postcode({
-	      oncomplete: function(data) {
-	          document.querySelector("#zonecode").value = data.zonecode;
-	          document.querySelector("#address").value =  data.address
-	        }
-  	 }).open();
-	
-};	
+	function kakaopost(){
+		   new daum.Postcode({
+		      oncomplete: function(data) {
+		          document.querySelector("#zonecode").value = data.zonecode;
+		          document.querySelector("#address").value =  data.address
+		        }
+	  	 }).open();
+	};	
 
 	$(document).ready(function(){
 		alert("ready 함수 진입");
 		
-		$('#memform').attr({
-			'action':'sfmMemInsert.sfm',
-			'method':'POST',
-			'enctype':'multipart/form-data'
-		}).submit();
+		$('#logingo').on('click', function(){
+			alert("logingo 보내기 버튼 블럭 진입 >>> : ");			
+			console.log("logingo 보내기 >>> : ");	
 
+			$('#memform').attr({
+				'action':'sfmMemInsert.sfm',
+				'method':'POST',
+				'enctype':'multipart/form-data'
+			}).submit();
+		});
 	});
 	
 </script>
@@ -81,28 +84,28 @@ function kakaopost(){
         <form class="validation-form" id="memform" novalidate>
             <div class="mb-3">
               <label for="name"><b>이름</b></label>
-              <input type="text" class="form-control" id="name" placeholder="" value="" required>
+              <input type="text" class="form-control" id="memname" placeholder="" value="" required>
               <div class="invalid-feedback">
                 이름을 입력해주세요.
               </div>
-          </div>
+            </div>
           
            <!-- 성별  --> 
-          <div class="mb-3">
+        <div class="mb-3">
 		  <div class="custom-control custom-radio custom-control-inline">
-		  <input type="radio" id="M" name="mgender" class="custom-control-input" checked>
+		  <input type="radio" id="memgender" name="memgender" class="custom-control-input" value="M" checked>
 		  <label class="custom-control-label" for="M">남자</label>
 		</div>
 		<div class="custom-control custom-radio custom-control-inline">
-		  <input type="radio" id="F" name="mgender" class="custom-control-input">
+		  <input type="radio" id="memgender" name="memgender" class="custom-control-input" value="F">
 		  <label class="custom-control-label" for="F">여자</label>
 		</div>
-         </div>
+        </div>
          
          <!-- 아이디 -->
           <div class="mb-3">
               <label for="id"><b>아이디</b></label>
-              <input type="text" class="form-control" id="nickname" placeholder="" value="" required>
+              <input type="text" class="form-control" id="memid" placeholder="" value="" required>
               <div class="invalid-feedback">
                 아이디를 입력해주세요.
               </div>
@@ -114,8 +117,8 @@ function kakaopost(){
          <!-- 비밀번호 -->
           <div class="mb-3">
             <label for="pw"><b>비밀번호</b></label>
-            <input type="text" class="form-control" id="pw" placeholder="****" required>
-             <input type="text" class="form-control" id="pw_r" name="pw_r" placeholder="****" required>
+            <input type="text" class="form-control" id="mempw" placeholder="****" required>
+             <input type="text" class="form-control" id="mempw_r" name="mempw_r" placeholder="****" required>
              <input type="button" class="btn btn-primary" value="비밀번호확인" id="pwCheck"/>            
              <div class="invalid-feedback">
                  비밀번호를 입력해주세요.
@@ -124,7 +127,7 @@ function kakaopost(){
             
            <div class="mb-3">
            <label for="email"><b>이메일</b></label>
-           <input type="email" class="form-control" id="email" placeholder="tikitaka@example.com" required>
+           <input type="email" class="form-control" id="mememail" placeholder="tikitaka@example.com" required>
            <div class="invalid-feedback">
                  이메일을 입력해주세요.
           </div>
@@ -133,7 +136,7 @@ function kakaopost(){
           <div class="row">  
           <div class="col-md-6 mb-3">
             <label for="zonecode"><b>우편번호</b></label>
-            <input type="email" class="form-control" id="zonecode" placeholder="우편번호" required>
+            <input type="email" class="form-control" id="memzonecode" placeholder="우편번호" required>
 			<div class="invalid-feedback">
                   우편번호를 입력해주세요.
             </div>
@@ -144,11 +147,10 @@ function kakaopost(){
             </div>
             
             </div>
-          
 
           <div class="mb-3">
             <label for="address"><b>주소</b></label>
-            <input type="text" class="form-control" id="address" placeholder="서울특별시 강남구" required>
+            <input type="text" class="form-control" id="memjibunaddress" placeholder="서울특별시 강남구" required>
             <div class="invalid-feedback">
               주소를 입력해주세요.
             </div>
@@ -156,13 +158,13 @@ function kakaopost(){
 
           <div class="mb-3">
             <label for="address2"><b>상세 주소</b><span class="text-muted">&nbsp;(필수 아님)</span></label>
-            <input type="text" class="form-control" id="address2" placeholder="상세주소를 입력해주세요.">
+            <input type="text" class="form-control" id="memjibunaddressdetail" placeholder="상세주소를 입력해주세요.">
           </div>
 
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="root"><b>포지션</b></label>
-              <select class="custom-select d-block w-100" id="root">
+              <select class="custom-select d-block w-100" id="memposotion">
                 <option value=""></option>
                 <option>공격수</option>
                 <option>미드필더</option>
@@ -176,7 +178,7 @@ function kakaopost(){
             </div>
             <div class="col-md-6 mb-3">
               <label for="root"><b>선호 지역</b></label>
-              <select class="custom-select d-block w-100" id="root">
+              <select class="custom-select d-block w-100" id="memarea">
                 <option value=""></option>
                 <option selected>서울</option>
                 <option>경기</option>

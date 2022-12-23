@@ -16,7 +16,6 @@ public class SfmMemDAOImpl implements SfmMemDAO{
 	@Override
 	public int sfmMemInsert(SfmMemVO smvo) {
 		logger.info("sfmMemInsert 함수 진입 >>> : ");
-		
 		return (Integer)sqlSession.insert("sfmMemInsert",smvo);
 	}
 

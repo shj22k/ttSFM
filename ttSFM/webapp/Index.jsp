@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="memberinsertform.sfm">111</a>
+<a href="sfmMemInsertForm.sfm">111</a>
 </body>
 </html>
