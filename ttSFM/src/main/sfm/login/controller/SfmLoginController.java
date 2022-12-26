@@ -45,6 +45,12 @@ public class SfmLoginController {
 			if(mID !=null && mID.equals(listLogin.get(0).getMemid())) {
 				logger.info("SfmLoginController login >>> : 로그인 중 >>> : 다른 페이지로 이동 하기 >>> : " + mID);
 				
+				// 관리자 로그인
+				if(mID.equals("admin1234")) {
+					model.addAttribute("listLogin", listLogin);
+					return "admin/sfmStadiumInsert";
+				}
+				
 				model.addAttribute("listLogin", listLogin);
 				return "main/mainPage";
 			}else {
