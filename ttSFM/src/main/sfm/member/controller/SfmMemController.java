@@ -1,13 +1,17 @@
 package main.sfm.member.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import main.sfm.common.ChabunUtil;
 import main.sfm.common.chabun.service.SfmChabunService;
@@ -29,12 +33,12 @@ public class SfmMemController {
 		return "member/sfmMemInsertForm";
 	}
 	
-	@RequestMapping(value="sfmMemInsert", method=RequestMethod.GET)
+	@RequestMapping(value="sfmMemInsert", method=RequestMethod.POST)
 	public String sfmMemInsert(HttpServletRequest req) {
 		logger.info("sfmMemInsert 함수 진입 >>> : ");
 		
-//		String memnum = ChabunUtil.getSFMmemChabun("D", sfmChabunService.getSFMmemChabun().getMemnum());
-//		logger.info("채번으로 생성된 memnum >>> : " + sfmChabunService.getSFMmemChabun().getMemnum());
+		String memnum = ChabunUtil.getSFMmemChabun("D", sfmChabunService.getSFMmemChabun().getMemnum());
+		logger.info("채번으로 생성된 memnum >>> : " + sfmChabunService.getSFMmemChabun().getMemnum());
 		
 		SfmMemVO mvo = null;
 		mvo = new SfmMemVO();
@@ -44,9 +48,8 @@ public class SfmMemController {
 		String memhp1 = req.getParameter("memhp1");
 		String memhp2 = req.getParameter("memhp2");
 		memhp = memhp.concat("-" + memhp1).concat("-" + memhp2);
-		logger.info("mvo.getMemhp() >>> : " + mvo.getMemhp());
 
-		mvo.setMemnum("M202212230001");
+		mvo.setMemnum(memnum);
 		mvo.setMemname(req.getParameter("memname"));
 		logger.info("mvo.getMemname() >>> : " + mvo.getMemname());
 		mvo.setMemgender(req.getParameter("memgender"));
@@ -80,6 +83,22 @@ public class SfmMemController {
 			return "member/sfmMemInsertForm";
 		}
 		return "member/sfmMemInsertForm";
+	}
+	
+	@PostMapping("sfmIdCheck")
+	@ResponseBody
+	public Object sfmIdCheck(SfmMemVO mvo) {
+		logger.info("---sfmIdCheck 함수 진입---");
+		logger.info("sfmIdCheck mvo.getMemid()() >>> : " + mvo.getMemid());	
+		
+		List<SfmMemVO> list = sfmMemService.sfmIdCheck(mvo);
+		logger.info("sfmIdCheck list >>> : " + list.size());
+
+		String msg ="";
+		if(list.size() == 0) {msg = "ID_YES";}
+		else {msg = "ID_NO";}
+		
+		return msg;
 	}
 
 }

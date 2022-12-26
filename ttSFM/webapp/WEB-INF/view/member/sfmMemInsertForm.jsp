@@ -18,6 +18,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+
 	function kakaopost(){
 		   new daum.Postcode({
 		      oncomplete: function(data) {
@@ -30,46 +31,117 @@
 	$(document).ready(function(){
 		alert("ready 함수 진입");
 		
+		$(document).on("click", "#idCheck", function(){
+			alert("idCheck 버튼 클릭 >>> : ");
+			
+			// idCheck.sfm 은 따로 jsp파일이 존재하지 않고, @ResponseBody로서 컨트롤러에 존재한다.
+			// memid: $("#memid").val() -> input text의 memid에 값이 들어온 것이 전달된다.
+			let idCheckURL = "sfmIdCheck.sfm";
+			let reqType = "POST";
+			let dataParam = { memid: $("#memid").val(), };
+			
+			$.ajax({
+				url: idCheckURL,
+				type: reqType,								
+				data: dataParam,	            
+				success: whenSuccess,
+				error: whenError
+			});
+			
+			function whenSuccess(resData){	
+				alert("resData >>> : " + resData);
+				
+				var id = $("#memid").val();
+				if ("ID_YES" == resData){
+					if(id == ''){
+						alert("아이디를 입력해 주세요.");
+						$("#memid").focus();
+						return false;
+					}
+					alert("사용가능한 아이디 입니다.");														
+					$("#memid").css('background-color','gray');	
+					$("#memid").focus();	
+				}else if ("ID_NO" == resData){
+					alert("아이디가 사용중입니다. 다른 아이디를 입력해 주세요.");
+					$("#memid").val('');
+					$("#memid").focus();
+				};				
+			}
+			function whenError(e){
+				alert("e >>> : " + e.responseText);
+			}
+		});
+			
+		// 비밀번호 체크
+		$("#pwCheck").click(function(){
+			alert("pwCheck 버튼 클릭 >>> : ");
+			console.log("pwCheck >>> : ");
+
+			var pw = $("#mempw").val();
+			var pw_r = $("#mempw_r").val();
+			if(pw == pw_r) {
+				if(pw == '' || pw_r == ''){
+					alert("빈칸에 비밀번호를 입력해 주세요.");
+					$("#mempw").val('');
+					$("#mempw_r").val('');			
+					$("#mempw").focus();	
+					return false;
+				}
+				alert("비밀번호가 같습니다.");
+				$("#mememail").focus();						
+				return true;
+			}else {
+				alert("비밀번호가 다릅니다.");
+				$("#mempw").val('');
+				$("#mempw_r").val('');			
+				$("#mempw").focus();							
+				return false;
+			}
+		});
+		
 		$('#logingo').on('click', function(){
 			alert("logingo 보내기 버튼 블럭 진입 >>> : ");			
 			console.log("logingo 보내기 >>> : ");	
+			
+			var memposition = $("#memposition").val();
+			var memhp = $("#memhp").val();
+			var mempreferredarea = $("#mempreferredarea").val();
+
 			$('#memform').attr({
 				'action':'sfmMemInsert.sfm',
-				'method':'GET'
+				'method':'POST'
 			}).submit();
 		});
 	});
 	
 </script>
-	
-  <style>
-  -->
-  
-    body {
-      min-height: 100vh;
+<style>
 
-      background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
-      background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-      background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-      background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-      background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
-    }
+  body {
+    min-height: 100vh;
 
-    .input-form {
-      max-width: 680px;
+    background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
+    background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+    background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+    background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+    background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
+  }
 
-      margin-top: 80px;
-      padding: 32px;
+  .input-form {
+    max-width: 680px;
 
-      background: #fff;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      border-radius: 10px;
-      -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-      -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-      box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
-    }
-  </style>
+    margin-top: 80px;
+    padding: 32px;
+
+    background: #fff;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+  }
+</style>
 </head>
 <body>
   <div class="container">
@@ -107,7 +179,7 @@
                 아이디를 입력해주세요.
               </div>
                <div class="mb-3">
-			    <button type="submit" class="btn btn-primary mb-3">아이디 중복체크</button>
+			    <button type="submit" class="btn btn-primary mb-3" id="idCheck">아이디 중복체크</button>
 			  </div>
             </div>
             
@@ -192,7 +264,7 @@
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="root"><b>포지션</b></label>
-              <select class="custom-select d-block w-100" id="memposotion" name="memposotion">
+              <select class="custom-select d-block w-100" id="memposition" name="memposition">
                 <option value=""></option>
                 <option value="공격수">공격수</option>
                 <option value="미드필더">미드필더</option>
@@ -206,7 +278,7 @@
             </div>
             <div class="col-md-6 mb-3">
               <label for="root"><b>선호 지역</b></label>
-              <select class="custom-select d-block w-100" id="memarea" name="memarea">
+              <select class="custom-select d-block w-100" id="mempreferredarea" name="mempreferredarea">
                 <option value=""></option>
                 <option value="서울" selected>서울</option>
                 <option value="경기">경기</option>

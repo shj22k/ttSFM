@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="main.sfm.login.dao.SfmLoginDAO">
+
+<select id="loginCheck" parameterType="sfmmemvo" resultType="sfmmemvo">
+
+	SELECT
+			A.MEMID		MEMID
+		   ,A.MEMPW		MEMPW
+	FROM	SFM_MEMBER A
+	WHERE	A.DELETEYN = 'Y'
+	AND		A.MEMID = #{memid, jdbcType=VARCHAR}
+	AND		A.MEMPW = #{mempw, jdbcType=VARCHAR}
+</select>
+
+</mapper>

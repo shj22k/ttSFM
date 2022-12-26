@@ -30,4 +30,15 @@
 				   			SYSDATE)
 </insert>
 
+<select id="sfmIdCheck" parameterType="sfmmemvo" resultType="sfmmemvo">	
+	
+	SELECT  
+       		A.MEMID	MEMID	
+	FROM    SFM_MEMBER A
+	WHERE   A.DELETEYN = 'Y'		
+	AND     A.MEMID = #{memid } 
+	
+</select>
+
+
 </mapper>

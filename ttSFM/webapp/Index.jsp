@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="sfmMemInsertForm.sfm">회원가입</a>
-<a href="sfmLoginForm.sfm">로그인 폼</a>
+<a href="sfmMemInsertForm.sfm">회원가입</a><br>
+<a href="sfmLoginForm.sfm">로그인</a><br>
+
 </body>
 </html>
