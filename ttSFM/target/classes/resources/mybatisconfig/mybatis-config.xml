@@ -5,6 +5,10 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="main.sfm.member.vo.SfmMemVO" alias="sfmmemvo"/> 
-		<typeAlias type="main.sfm.match.vo.SfmMatchVO" alias="sfmmatchvo"/> 
+		<typeAlias type="main.sfm.match.vo.SfmMatchVO" alias="sfmmatchvo"/>
+		
+		<!-- ID,PW 찾기  -->	
+		<typeAlias type="main.sfm.login.vo.SfmTempAuthVO" alias="sfmtempauthvo"/>
+		<typeAlias type="main.sfm.login.vo.SfmTempPwVO" alias="sfmtemppwvo"/>
 	</typeAliases>
 </configuration>

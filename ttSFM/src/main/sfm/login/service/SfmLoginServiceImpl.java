@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import main.sfm.login.dao.SfmLoginDAO;
+import main.sfm.login.vo.SfmTempAuthVO;
 import main.sfm.member.vo.SfmMemVO;
 
 @Service
@@ -25,4 +26,31 @@ public class SfmLoginServiceImpl implements SfmLoginService {
 		return sfmLoginDAO.loginCheck(mvo);
 	}
 	
+	@Override
+	public List<SfmMemVO> emailCntCheck(SfmMemVO mvo) {
+		// TODO Auto-generated method stub
+		logger.info("sfmLoginCheck 함수 진입 >>> : ");
+		return sfmLoginDAO.emailCntCheck(mvo);
+	}
+	
+	@Override
+	public int tempAuthInsert(SfmTempAuthVO stvo) {
+		// TODO Auto-generated method stub
+		logger.info("tempAuthInsert 함수 진입 >>> : ");
+		return sfmLoginDAO.tempAuthInsert(stvo);
+	}
+
+	@Override
+	public List<SfmMemVO> idFind(SfmMemVO mvo) {
+		// TODO Auto-generated method stub
+		logger.info("idFind 함수 진입 >>> : ");
+		return sfmLoginDAO.idFind(mvo);
+	}
+
+	@Override
+	public List<SfmMemVO> idFindAuthnum(SfmTempAuthVO stvo) {
+		// TODO Auto-generated method stub
+		logger.info("idFindAuthnum 함수 진입 >>> : ");
+		return sfmLoginDAO.idFindAuthnum(stvo);
+	}
 }

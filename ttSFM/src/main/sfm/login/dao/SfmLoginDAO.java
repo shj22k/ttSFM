@@ -2,10 +2,19 @@ package main.sfm.login.dao;
 
 import java.util.List;
 
+import main.sfm.login.vo.SfmTempAuthVO;
 import main.sfm.member.vo.SfmMemVO;
 
 public interface SfmLoginDAO {
 
 	public List<SfmMemVO> loginCheck(SfmMemVO mvo);
 
+	// 인증번호 이메일 확인
+	public List<SfmMemVO> emailCntCheck(SfmMemVO mvo);
+	// 인증번호 입력
+	public int tempAuthInsert(SfmTempAuthVO stvo);
+	// 아이디 받기
+	public List<SfmMemVO> idFind(SfmMemVO mvo);
+	// 아이디 받기전 인증번호 확인
+	public List<SfmMemVO> idFindAuthnum(SfmTempAuthVO stvo);
 }
