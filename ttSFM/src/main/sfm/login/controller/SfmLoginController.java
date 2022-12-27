@@ -48,7 +48,7 @@ public class SfmLoginController {
 				// 관리자 로그인
 				if(mID.equals("admin1234")) {
 					model.addAttribute("listLogin", listLogin);
-					return "admin/sfmStadiumInsert";
+					return "admin/sfmAdminPage";
 				}
 				
 				model.addAttribute("listLogin", listLogin);

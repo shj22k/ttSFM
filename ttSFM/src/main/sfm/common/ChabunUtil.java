@@ -3,6 +3,7 @@ package main.sfm.common;
 public abstract class ChabunUtil {
 	
 	public static final String BIZ_GUBUN_M = "M"; // 멤버 
+	public static final String BIZ_GUBUN_P = "P"; // 매치 
 
 	public static String numPad(String t, String c){
 		
@@ -16,6 +17,10 @@ public abstract class ChabunUtil {
 	
 	public static String getSFMmemChabun(String type, String memNum) {
 		return BIZ_GUBUN_M.concat(ChabunUtil.numPad(type, memNum));
+	}
+	
+	public static String getSFMmatchChabun(String type, String memNum) {
+		return BIZ_GUBUN_P.concat(ChabunUtil.numPad(type, memNum));
 	}
 
 	public static void main(String[] args) {

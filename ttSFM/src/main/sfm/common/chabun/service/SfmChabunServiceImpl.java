@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import main.sfm.common.chabun.dao.SfmChabunDAO;
+import main.sfm.match.vo.SfmMatchVO;
 import main.sfm.member.vo.SfmMemVO;
 
 @Service
@@ -22,5 +23,9 @@ public class SfmChabunServiceImpl implements SfmChabunService {
 		return sfmChabunDAO.getSFMmemChabun();
 	}
 	
-	
+	@Override
+	public SfmMatchVO getSFMmatchChabun() {
+		return sfmChabunDAO.getSFMmatchChabun();
+	}
+
 }

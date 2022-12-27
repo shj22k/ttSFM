@@ -12,6 +12,7 @@
   <!--------------------달력 ---------------- -->
   <link rel="stylesheet" href="//mugifly.github.io/jquery-simple-datetimepicker/jquery.simple-dtpicker.css">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="//mugifly.github.io/jquery-simple-datetimepicker/jquery.simple-dtpicker.js"></script>
 <script>
 
@@ -89,6 +90,7 @@
 </head>
 <!-- 달력 자바스크립트 -->
 <script type="text/javascript">
+
 	$(document).ready(function(){
 	
 		$('.datepicker').datepicker({
@@ -100,6 +102,25 @@
 		$('.cell').click(function(){
 		    $('.cell').removeClass('select');
 		    $(this).addClass('select');
+		});
+		
+		$('#btn').on('click', function(){
+			alert("btn 버튼 클릭");
+			console.log("btn 보내기 >>> : ");	
+
+			var memnum = request.getSession("memnum");
+			
+			var matchlv = $("#matchlv").val();
+			var matchgender = $("#matchgender").val();
+			var matchsuit = $("#matchsuit").val();
+			var matchshose = $("#matchshose").val();
+			var matchshower = $("#matchshower").val();
+
+			$('#stadiuminsertform').attr({
+				'action':'sfmMatchInsert.sfm',
+				'method':'POST',
+				'enctype':'multipart/form-data'
+			}).submit();
 		});
 
 	});
@@ -281,9 +302,6 @@
 			  <input class="form-control" type="file" id="matchfile" name="matchfile" multiple>
 			</div>
         
-        
-        
-        
            <!-- 동의 체크 -->
           <hr class="mb-4">
           <div class="custom-control custom-checkbox">
@@ -291,7 +309,7 @@
             <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
           </div>
           <div class="mb-4"></div>
-          <button class="btn btn-primary btn-lg btn-block" type="submit">가입 완료</button>
+          <button class="btn btn-primary btn-lg btn-block" type="submit" id="btn">가입 완료</button>
         </form>
       </div>
     </div>

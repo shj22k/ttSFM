@@ -8,4 +8,9 @@
 	SELECT  /*+ INDEX_DESC(A SYS_C0011066) */ NVL(MAX(SUBSTR(MEMNUM, -4)), 0) + 1 MEMNUM FROM SFM_MEMBER
 </select>
 
+<select id="getSFMmatchChabun" resultType="sfmmatchvo">
+	SELECT  /*+ INDEX_DESC(A SYS_C0011066) */ NVL(MAX(SUBSTR(MATCHNUM, -4)), 0) + 1 MATCHNUM FROM SFM_MATCH
+</select>
+
+
 </mapper>

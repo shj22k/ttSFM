@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="main.sfm.match.dao.SfmMatchDAO">
+
+<insert id="sfmMatchInsert" parameterType="sfmmatchvo">
+
+	INSERT INTO SFM_MATCH  (MATCHNUM, MATCHGENDER, MATCHPERSONNEL, MATCHPLACE, 
+							MATCHLV, MATCHKICKOFF, MATCHTIME, MATCHSTADIUM,
+							MATCHPARKING, MATCHSUIT, MATCHSHOSE, MATCHSHOWER, 
+							MEMNUM, MEMPREFERREDAREA,
+							DELETEYN, INSERTDATE, UPDATEDATE)
+				    VALUES (#{matchnum, jdbcType=VARCHAR},
+				   			#{matchgender, jdbcType=VARCHAR},
+				   			#{matchpersonnel, jdbcType=VARCHAR},
+				   			#{matchplace, jdbcType=VARCHAR},
+				   			#{matchlv, jdbcType=VARCHAR},
+				   			#{matchkickoff, jdbcType=VARCHAR},
+				   			#{matchtime, jdbcType=VARCHAR},
+				   			#{matchstadium, jdbcType=VARCHAR},
+				   			#{matchparking, jdbcType=VARCHAR},
+				   			#{matchsuit, jdbcType=VARCHAR},
+				   			#{matchshose, jdbcType=VARCHAR},
+				   			#{matchshower, jdbcType=VARCHAR},
+				   			#{memnum, jdbcType=VARCHAR},
+				   			#{mempreferredarea, jdbcType=VARCHAR},
+				   			'Y',
+				   			SYSDATE,
+				   			SYSDATE)
+</insert>
+
+</mapper>

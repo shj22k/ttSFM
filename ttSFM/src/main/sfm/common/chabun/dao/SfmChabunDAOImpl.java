@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import main.sfm.match.vo.SfmMatchVO;
 import main.sfm.member.vo.SfmMemVO;
 
 @Repository
@@ -20,5 +21,9 @@ public class SfmChabunDAOImpl implements SfmChabunDAO {
 		return sqlSession.selectOne("getSFMmemChabun");
 	}
 	
+	@Override
+	public SfmMatchVO getSFMmatchChabun() {
+		return sqlSession.selectOne("getSFMmatchChabun");
+	}
 	
 }
