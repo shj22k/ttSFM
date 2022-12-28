@@ -6,7 +6,8 @@
 
 <insert id="sfmMatchInsert" parameterType="sfmmatchvo">
 
-	INSERT INTO SFM_MATCH  (MATCHNUM, MATCHGENDER, MATCHPERSONNEL, MATCHPLACE, 
+	INSERT INTO SFM_MATCH  (MATCHNUM, MATCHGENDER, MATCHPERSONNEL, MATCHZONECODE,
+							MATCHJIBUNADDRESS,
 							MATCHLV, MATCHKICKOFF, MATCHTIME, MATCHSTADIUM,
 							MATCHPARKING, MATCHSUIT, MATCHSHOSE, MATCHSHOWER, 
 							MEMNUM, MEMPREFERREDAREA,
@@ -14,7 +15,8 @@
 				    VALUES (#{matchnum, jdbcType=VARCHAR},
 				   			#{matchgender, jdbcType=VARCHAR},
 				   			#{matchpersonnel, jdbcType=VARCHAR},
-				   			#{matchplace, jdbcType=VARCHAR},
+				   			#{matchzonecode, jdbcType=VARCHAR},
+				   			#{matchjibunaddress, jdbcType=VARCHAR},
 				   			#{matchlv, jdbcType=VARCHAR},
 				   			#{matchkickoff, jdbcType=VARCHAR},
 				   			#{matchtime, jdbcType=VARCHAR},
@@ -29,5 +31,85 @@
 				   			SYSDATE,
 				   			SYSDATE)
 </insert>
+
+<select id="sfmMatchSelectAll" resultType="sfmmatchvo">
+
+	SELECT	A.MATCHNUM				MATCHNUM
+		   ,A.MATCHGENDER			MATCHGENDER
+		   ,A.MATCHPERSONNEL		MATCHPERSONNEL
+		   ,A.MATCHZONECODE			MATCHZONECODE
+		   ,A.MATCHJIBUNADDRESS		MATCHJIBUNADDRESS
+		   ,A.MATCHKICKOFF			MATCHKICKOFF
+		   ,A.MATCHTIME				MATCHTIME
+   		   ,A.MATCHSTADIUM			MATCHSTADIUM
+   		   ,A.MATCHPARKING			MATCHPARKING
+   		   ,A.MATCHSHOSE			MATCHSHOSE
+   		   ,A.MATCHSHOWER			MATCHSHOWER
+   		   ,A.MEMNUM				MEMNUM
+   		   ,A.MEMPREFERREDAREA		MEMPREFERREDAREA
+		   ,A.DELETEYN				DELETEYN
+		   ,TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD') INSERTDATE
+		   ,TO_CHAR(TO_DATE(A.UPDATEDATE), 'YYYY-MM-DD') UPDATEDATE
+	FROM	SFM_MATCH A
+	WHERE	A.DELETEYN = 'Y'
+	ORDER BY 1 DESC  
+
+</select>
+
+<select id="sfmMatchSelect" resultType="sfmmatchvo">
+
+	SELECT	A.MATCHNUM				MATCHNUM
+		   ,A.MATCHGENDER			MATCHGENDER
+		   ,A.MATCHPERSONNEL		MATCHPERSONNEL
+		   ,A.MATCHZONECODE			MATCHZONECODE
+		   ,A.MATCHJIBUNADDRESS		MATCHJIBUNADDRESS
+		   ,A.MATCHKICKOFF			MATCHKICKOFF
+		   ,A.MATCHTIME				MATCHTIME
+   		   ,A.MATCHSTADIUM			MATCHSTADIUM
+   		   ,A.MATCHPARKING			MATCHPARKING
+   		   ,A.MATCHSHOSE			MATCHSHOSE
+   		   ,A.MATCHSHOWER			MATCHSHOWER
+   		   ,A.MEMNUM				MEMNUM
+   		   ,A.MEMPREFERREDAREA		MEMPREFERREDAREA
+		   ,A.DELETEYN				DELETEYN
+		   ,TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD') INSERTDATE
+		   ,TO_CHAR(TO_DATE(A.UPDATEDATE), 'YYYY-MM-DD') UPDATEDATE
+	FROM	SFM_MATCH A
+	WHERE	A.DELETEYN = 'Y'
+	AND 	A.MATCHNUM = #{matchnum, jdbcType=VARCHAR}
+
+</select>
+
+<update id="sfmMatchUpdate" parameterType="sfmmatchvo">
+
+	UPDATE 	SFM_MATCH 
+			SET MATCHNUM   			= #{matchnum, jdbcType=VARCHAR}, 
+            	MATCHGENDER    		= #{matchgender, jdbcType=VARCHAR}, 
+            	MATCHPERSONNEL	 	= #{matchpersonnel, jdbcType=VARCHAR}, 
+            	MATCHZONECODE 		= #{matchzonecode, jdbcType=VARCHAR}, 
+            	MATCHJIBUNADDRESS  	= #{matchjibunaddress, jdbcType=VARCHAR},
+            	MATCHKICKOFF  		= #{matchkickoff, jdbcType=VARCHAR},
+            	MATCHTIME  			= #{matchtime, jdbcType=VARCHAR},
+            	MATCHSTADIUM  		= #{matchstadium, jdbcType=VARCHAR},
+            	MATCHPARKING  		= #{matchparking, jdbcType=VARCHAR},
+            	MATCHSHOSE  		= #{matchshose, jdbcType=VARCHAR},
+            	MATCHSHOWER  		= #{matchshower, jdbcType=VARCHAR},
+            	MEMNUM  			= #{matchnum, jdbcType=VARCHAR},
+            	MEMPREFERREDAREA  	= #{matchpreferredarea, jdbcType=VARCHAR},
+            	INSERTDATE  		= SYSDATE,
+            	UPDATEDATE 	= SYSDATE 
+	WHERE  DELETEYN = 'Y'
+	AND    MATCHNUM = #{matchnum, jdbcType=VARCHAR}
+</update>
+
+<update id="sfmMatchUpdate" parameterType="sfmmatchvo">
+
+	UPDATE	SFM_MATCH
+			SET DELETEYN = 'N'
+		   ,UPDATEDATE = SYSDATE	
+	WHERE	DELETEYN = 'Y'
+	AND		MATCHNUM = #{ matchnum, jdbcType=VARCHAR }
+
+</update>
 
 </mapper>

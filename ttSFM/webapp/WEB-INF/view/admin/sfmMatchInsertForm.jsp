@@ -65,11 +65,9 @@
     body {
 	      min-height: 100vh;
 	
-	      background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
-	      background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-	      background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-	      background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-	      background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
+  background:url("/testServlet/img/img/fb/jandigu.jpg") no-repeat;
+  background-repeat: no-repeat;
+  background-size: cover;
     }
 
     .input-form {
@@ -93,11 +91,13 @@
 
 	$(document).ready(function(){
 	
-		$('.datepicker').datepicker({
-		    format: 'dd-mm-yyyy',
-		    autoclose: true,
-		    startDate: '0d'
-		});
+     	$(function() {
+    		$('#matchtime').datepicker({
+    		    format: 'yyyy-mm-dd',
+    		    autoclose: true,
+    		    startDate: '0d'
+    		});
+    	});
 	
 		$('.cell').click(function(){
 		    $('.cell').removeClass('select');
@@ -108,13 +108,13 @@
 			alert("btn 버튼 클릭");
 			console.log("btn 보내기 >>> : ");	
 
-			var memnum = request.getSession("memnum");
-			
 			var matchlv = $("#matchlv").val();
 			var matchgender = $("#matchgender").val();
 			var matchsuit = $("#matchsuit").val();
 			var matchshose = $("#matchshose").val();
 			var matchshower = $("#matchshower").val();
+			var matchpersonnel = $("#matchpersonnel").val();
+			var matchtime = $("#matchtime").val();
 
 			$('#stadiuminsertform').attr({
 				'action':'sfmMatchInsert.sfm',
@@ -124,6 +124,7 @@
 		});
 
 	});
+	
 </script>
 <!-- 달력 자바스크립트 -->
 <body>
@@ -138,19 +139,23 @@
         <!-- 매치제목 -->
             <div class="mb-3">
               <label for="name"><b>매치 제목</b></label>
-              <input type="text" class="form-control" id="matchstadium" placeholder="" value="" required>
+              <input type="text" class="form-control" id="matchstadium" name="matchstadium" placeholder="" value="" required>
               <div class="invalid-feedback">
                 이름을 입력해주세요.
               </div>
           </div>
           
-           <!-- 매치정보 -->
-           <div class="mb-3">
-			  <label for="matchinfo" class="form-label" id=><b>매치정보</b></label>
-			  <textarea class="form-control" id="matchinfo" name="matchinfo" rows="5"></textarea>
-		   </div>
-          
             <!-- 우편번호 -->
+          <div class="row">  
+          <div class="col-md-6 mb-3">
+            <label for="email"><b>우편번호</b></label>
+            <input type="email" class="form-control" id="matchzonecode" name="matchzonecode" placeholder="우편번호" required>
+			<div class="invalid-feedback">
+                  우편번호를 입력해주세요.
+            </div>
+          </div>
+          
+           <!-- 우편번호 -->
           <div class="row">  
           <div class="col-md-6 mb-3">
             <label for="email"><b>우편번호</b></label>
@@ -164,9 +169,8 @@
             <label for="text"> &nbsp;</label><br>
             <button type="button" class="btn btn-primary" id="matchzonecodebtn" onclick="kakaopost()">우편번호 찾기</button>
             </div>
+           </div>
             
-            </div>
-          
 			<!-- 구장주소 -->
          <div class="row">
           <div class="col-md-6 mb-3">
@@ -195,22 +199,12 @@
           <div class="row">
              <!---------------------- 달력 --------------------> 
            <div class="col-md-6 mb-3">
-            <label for="root"><b>매치 시간 </b></label>
-          	 <input type="text" name="matchtime" id="matchtime" value="matchtime" class="datetimepicker form-control" />
+            <label for="root"><b>매치 시작 시간 </b></label>
+          	 <input type="text" name="matchkickoff" id="matchkickoff" value="matchkickoff" class="datetimepicker form-control" />
            </div>
              <!---------------------- 달력 --------------------> 
             
-            <div class="col-md-6 mb-3">
-              <label for="root"><b>빼야할듯</b></label>
-               <select class="form-select" id="matchlv" name="matchlv" aria-label="Default select example" >
-                <option value="10000"></option>
-                <option selected>10000</option>
-              </select>
-              <div class="invalid-feedback">
-                포지션을 선택해주세요.
-              </div>
-            </div>
-            </div>
+           </div>
           <br>
           <!--  매치 포인트  -->
           <h4 class="mb-3"><b>매치 포인트</b></h4>
@@ -240,7 +234,29 @@
                 포지션을 선택해주세요.
               </div>
             </div>
-            </div>
+           
+              <div class="col-md-6 mb-3">
+              <label for="root"><b>매치인원</b></label>
+               <select class="form-select" id="matchpersonnel " name="matchpersonnel" aria-label="Default select example" >
+       			<option selected>6vs6</option>
+       			<option selected>7vs7</option>
+       			<option selected>8vs8</option>
+              </select>
+              <div class="invalid-feedback">
+              </div>
+              </div>
+              
+            <div class="col-md-6 mb-3">
+              <label for="root"><b>매치시간</b></label>
+               <select class="form-select" id="matchtime" name="matchtime " aria-label="Default select example" >
+       			<option selected>1시간 30분 매치</option>
+       			<option selected>2시간 매치</option>
+       			<option selected>3시간 매치</option>
+              </select>
+              <div class="invalid-feedback">
+              </div>
+              </div>
+              </div>
           <!--  매치 포인트 끝  -------------------------->
           <br>
            <!------------------  경기장 정보  ----------------->
@@ -309,7 +325,7 @@
             <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
           </div>
           <div class="mb-4"></div>
-          <button class="btn btn-primary btn-lg btn-block" type="submit" id="btn">가입 완료</button>
+          <button class="btn btn-primary btn-lg btn-block" type="submit" id="btn">등록 완료</button>
         </form>
       </div>
     </div>

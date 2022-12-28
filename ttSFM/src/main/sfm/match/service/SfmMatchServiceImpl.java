@@ -1,5 +1,7 @@
 package main.sfm.match.service;
 
+import java.util.List;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,4 +25,28 @@ public class SfmMatchServiceImpl implements SfmMatchService {
 		return sfmMatchDAO.sfmMatchInsert(mtvo);
 	}
 	
+	@Override
+	public List<SfmMatchVO> sfmMatchSelectAll(SfmMatchVO mtvo) {
+		logger.info("SfmMatchServiceImpl sfmMatchSelectAll 진입");
+		return sfmMatchDAO.sfmMatchSelectAll(mtvo);
+	}
+
+	@Override
+	public List<SfmMatchVO> sfmMatchSelect(SfmMatchVO mtvo) {
+		logger.info("SfmMatchServiceImpl sfmMatchSelectAll 진입");
+		return sfmMatchDAO.sfmMatchSelectAll(mtvo);
+	}
+
+	@Override
+	public int sfmMatchUpdate(SfmMatchVO mtvo) {
+		logger.info("SfmMatchServiceImpl sfmMatchUpdate 진입");
+		return sfmMatchDAO.sfmMatchUpdate(mtvo);
+	}
+
+	@Override
+	public int sfmMatchDelete(SfmMatchVO mtvo) {
+		logger.info("SfmMatchServiceImpl sfmMatchUpdate 진입");
+		return sfmMatchDAO.sfmMatchDelete(mtvo);
+	}
+
 }

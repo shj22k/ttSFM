@@ -1,6 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<%@page import="java.util.List"%> 
+<%@page import="main.sfm.member.vo.SfmMemVO" %>
+<%@ page import="org.apache.log4j.LogManager" %>
+<%@ page import="org.apache.log4j.Logger" %>
+    
+<% request.setCharacterEncoding("UTF-8"); %>
+<%
+	Logger logger = LogManager.getLogger(this.getClass());
+	logger.info("kosmoMainPage.jsp 진입 >>> : ");	
+	
+	String mid = "";
+	String memnum = "";
+	Object obj = request.getAttribute("listLogin");
+
+	List<SfmMemVO> list = (List<SfmMemVO>)obj;
+
+	memnum = list.get(0).getMemnum();
+%> 
+  
+ 
 <!DOCTYPE html>
 <html lang="en">
 

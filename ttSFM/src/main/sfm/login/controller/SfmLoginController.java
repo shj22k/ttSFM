@@ -3,6 +3,7 @@ package main.sfm.login.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -40,14 +41,15 @@ public class SfmLoginController {
 		
 		List<SfmMemVO> listLogin = sfmLoginService.loginCheck(mvo);
 		logger.info("login listLogin.size() >>> : " + listLogin.size());
-
+		
 		if(listLogin.size() == 1) {
 			K_Session ks = K_Session.getInstance();
 			String mID = ks.getSession(req);
-			
+
 			if(mID !=null && mID.equals(listLogin.get(0).getMemid())) {
 				logger.info("SfmLoginController login >>> : 로그인 중 >>> : 다른 페이지로 이동 하기 >>> : " + mID);
-				
+				ks.setSession(req, mvo.getMemnum());
+
 				// 관리자 로그인
 				if(mID.equals("admin1234")) {
 					model.addAttribute("listLogin", listLogin);
