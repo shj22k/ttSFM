@@ -3,6 +3,7 @@ package main.sfm.match.dao;
 import java.util.List;
 
 import main.sfm.match.vo.SfmMatchVO;
+import main.sfm.member.vo.SfmMemVO;
 
 public interface SfmMatchDAO {
 
@@ -11,5 +12,5 @@ public interface SfmMatchDAO {
 	public List<SfmMatchVO> sfmMatchSelect(SfmMatchVO mtvo);
 	public int sfmMatchUpdate(SfmMatchVO mtvo);
 	public int sfmMatchDelete(SfmMatchVO mtvo);
-
+	
 }

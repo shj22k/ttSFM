@@ -1,17 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%@page import="java.util.List"%> 
-<%@page import="main.sfm.member.vo.SfmMemVO" %>
-<%@ page import="org.apache.log4j.LogManager" %>
-<%@ page import="org.apache.log4j.Logger" %>
-    
+<%@ page import="org.apache.log4j.LogManager" %>  
+<%@ page import="org.apache.log4j.Logger" %>   
+<%@ page import="main.sfm.member.vo.SfmMemVO" %>
+<%@ page import="java.util.List" %>
+
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
 	Logger logger = LogManager.getLogger(this.getClass());
 	logger.info("kosmoMainPage.jsp 진입 >>> : ");	
 	
-	String mid = "";
 	String memnum = "";
 	Object obj = request.getAttribute("listLogin");
 
@@ -19,8 +17,7 @@
 
 	memnum = list.get(0).getMemnum();
 %> 
-  
- 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +29,36 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
  <!-- ------------------css 선언 시작 -------------------------------------------- -->
+  <!--  케러셀 컨테이너 색상정하기  -->
+  <!-- 맨위는 검색ㅂ -->
   <style>
+ 
+ <!------------------------------------ 
+   .section {
+    display: block;
+    width: 400px;
+    height: 160px;
+    background: #f7f7f7;
+    position: absolute;
+    left: 0px;
+    top: 175px;
+    width: 400px;
+    height: 501px;
+
+}
+
+   .section2 {
+    display: block;
+    width: 544px;
+    height: 160px;
+    background: #f7f7f7;
+    position: absolute;
+    left: 1503px;
+    top: 175px;
+    width: 400px;
+    height: 501px;
+}
+ 
     .carousel-inner > .carousel-item > img{
        width: 700px;
       height: 500px;
@@ -81,7 +107,7 @@
 	width: 100%;
 	text-align: center;
 	padding: 10px 0;
-	padding: 0.625rem 0;
+	padding: 1.2rem 0;
 	font-size: 125%;
 }
 
@@ -125,13 +151,13 @@
       background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
       background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
       background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-      background: linear-gradient(to top right, #bcebbe 0%, #458cd3 100%);
+      background: linear-gradient(to top right, #ffffff 0%, #ffffff 100%);
     }
 
-    .input-form {
-      max-width: 1300px;
+     .input-form {
+      max-width: 1100px;
 
-      margin-top: -22px;
+      margin-top: -15px;
       padding: 32px;
 
       background: #fff;
@@ -139,7 +165,7 @@
       -webkit-border-radius: 10px;
       
       -moz-border-radius: 10px;
-      border-radius: 10px;
+      border-radius: 1px;
       -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
       -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
       box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
@@ -160,7 +186,6 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
   <script>
-  
     $('.carousel').carousel({
       interval: 2000 //기본 5초
     })
@@ -168,59 +193,12 @@
   </script>
 
 <!-- ---------------------------시작-------------------------------------------------------------- -->
-
-<div style="padding:0px 400px 0px 400px;"> <!-- 전체 양 옆 여백 조절하기 -->
- 
- <!--------------  슬라이드 ---------------------------------------------------------------- -->		
+<!-- 전체 양 옆 여백 조절하기 -->
+<div style="padding:0px 400px 0px 400px;">
+<!-- 상단 로고 -->
 <div class="container"><img src="/ttSFM/img/fb/tikilogo.png" width="100px"><h2>Tiki Taka</h2></div>
-  <div id="demo" class="carousel slide" data-ride="carousel">
-
-    <div class="carousel-inner">
-      <!-- 슬라이드 쇼 -->
-      <div class="carousel-item active">
-        <!--가로-->
-        <img class="d-block w-100" 
-          src="/ttSFM/img/fb/fb1.jpg"
-          alt="First slide">
-          <div class="carousel-caption d-none d-md-block">
-              <h5>TEST</h5>
-              <p>testtesttest</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100"
-          src="/ttSFM/img/fb/fb2.jpg"
-          alt="Second slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100"
-          src="/ttSFM/img/fb/fb3.jpg"
-          alt="Third slide">
-      </div>
-
-    <!-- 왼쪽 오른쪽 화살표 버튼 -->
-    <a class="carousel-control-prev" href="#demo" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <!-- <span>Previous</span> -->
-    </a>
-    <a class="carousel-control-next" href="#demo" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <!-- <span>Next</span> -->
-    </a>
-    <!-- / 화살표 버튼 끝 -->
-    
-    <!-- 인디케이터 -->
-    <ul class="carousel-indicators">
-      <li data-target="#demo" data-slide-to="0" class="active"></li> <!--0번부터시작-->
-      <li data-target="#demo" data-slide-to="1"></li>
-      <li data-target="#demo" data-slide-to="2"></li>
-    </ul>
-    <!-- 인디케이터 끝 -->
-  </div>
-</div>
-<!--------------  슬라이드 끝 ---------------------------------------------------------------- -->	
-<!-- -------------------------- 메뉴--------------------------------------------------------- --> 
-  <div id="naviarea">
+<!------------------------------ 메뉴 2 ----------------------------->
+<div id="naviarea">
 		<header id="topbar">
 			<ul class="wrapper">
 				<!-- 메뉴버튼들 ----------------------->
@@ -255,38 +233,107 @@
 			</ul>
 			</header>
 		</div>
+<!------------------------------ 메뉴 2 ------------->
+
+ <!--------------  슬라이드 ---------------------------------------------------------------- -->		
+ <div class="carousel--container">
+ <div id="demo" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <!-- 슬라이드 쇼 -->
+      <div class="carousel-item active">
+        <!--가로-->
+        <img class="d-block w-100" 
+          src="/ttSFM/img/fb/fb1.jpg"
+          alt="First slide">
+          <div class="carousel-caption d-none d-md-block">
+              <h5>TEST</h5>
+              <p>구장 사진</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100"
+          src="/ttSFM/img/fb/fb2.jpg"
+          alt="Second slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100"
+          src="/ttSFM/img/fb/fb3.jpg"
+          alt="Third slide">
+      </div>
+
+    <!-- 왼쪽 오른쪽 화살표 버튼 -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <!-- <span>Previous</span> -->
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <!-- <span>Next</span> -->
+    </a>
+    <!-- / 화살표 버튼 끝 -->
+    
+    <!-- 인디케이터 -->
+    <ul class="carousel-indicators">
+      <li data-target="#demo" data-slide-to="0" class="active"></li> <!--0번부터시작-->
+      <li data-target="#demo" data-slide-to="1"></li>
+      <li data-target="#demo" data-slide-to="2"></li>
+    </ul>
+    <!-- 인디케이터 끝 -->
+  </div>
+</div>
+
+</div>
+<!--------------  슬라이드 끝 ---------------------------------------------------------------- -->	
+<!-- -------------------------- 메뉴--------------------------------------------------------- --> 
+  <div id="naviarea">
+		<header id="topbar">
+			<ul class="wrapper">
+				<!-- 메뉴버튼들 ----------------------->
+				<li>
+					<a href="boardSelectAll.k" onfocus="this.blur()">
+						<div class="nav_btn">
+							소개
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:alert('준비중입니다.');" onfocus="this.blur()">
+						<div class="nav_btn">
+							이벤트
+						</div>
+					</a>
+				</li>
+				<li>
+	               <a href="sfmNoticeInsertForm.sfm" onfocus="this.blur()">
+	                  <div class="nav_btn">
+	                     	공지사항
+	                  </div>
+	               </a>
+            	</li>
+				<li>
+					<a href="javascript:alert('준비중입니다.');" onfocus="this.blur()">
+						<div class="nav_btn">
+							커뮤니티
+						</div>
+					</a>
+				</li>
+			</ul>
+			</header>
+			
+		</div>
  <!-- ------------ 메뉴 끝--------------------------------------------------------- -->
  <div class="container">
     <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
         <br>
-        <h4 class="mb-3"><b>매치등록</b></h4>
+        <h4 class="mb-3"><b>풋살장 목록</b></h4>
         <br>
         <form class="validation-form" novalidate>
         
-        <!-- 매치제목 -->
-            <div class="mb-3">
-              <label for="name"><b>매치 제목</b></label>
-              <input type="text" class="form-control" id="name" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                이름을 입력해주세요.
-              </div>
-          </div>
-          
-           <!-- 구장설명 -->
-           <div class="mb-3">
-			  <label for="minfo" class="form-label"><b>구장설명</b></label>
-			  <textarea class="form-control" id="minfo" rows="5"></textarea>
-		   </div>
-        
-           <!-- 동의 체크 -->
-          <hr class="mb-4">
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="aggrement" required>
-            <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
-          </div>
-          <div class="mb-4"></div>
-          <button class="btn btn-primary btn-lg btn-block" type="submit">가입 완료</button>
+       <jsp:include page="/WEB-INF/view/match/sfmMatchSelectAll.jsp">
+    	<jsp:param name="category" value="product1" />
+		</jsp:include>
+		
         </form>
       </div>
     </div>
@@ -294,6 +341,7 @@
       <p class="mb-1">&copy; 2022 YD</p>
     </footer>
   </div>
-</div>				
+</div>	
+		
 </body>
 </html>

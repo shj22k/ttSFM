@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import main.sfm.common.chabun.dao.SfmChabunDAO;
+import main.sfm.community.vo.SfmCommunityVO;
 import main.sfm.match.vo.SfmMatchVO;
 import main.sfm.member.vo.SfmMemVO;
+import main.sfm.notice.vo.SfmNoticeVO;
 
 @Service
 @Transactional
@@ -28,4 +30,15 @@ public class SfmChabunServiceImpl implements SfmChabunService {
 		return sfmChabunDAO.getSFMmatchChabun();
 	}
 
+	@Override
+	public SfmCommunityVO getSFMcommunityChabun() {
+		return sfmChabunDAO.getSFMcommunityChabun();
+	}
+
+	@Override
+	public SfmNoticeVO getSFMnoticeChabun() {
+		// TODO Auto-generated method stub
+		logger.info("공지채번들어 간다~");
+		return sfmChabunDAO.getSFMnoticeChabun();
+	}
 }

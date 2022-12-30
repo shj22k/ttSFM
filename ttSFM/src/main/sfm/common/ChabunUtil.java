@@ -4,6 +4,8 @@ public abstract class ChabunUtil {
 	
 	public static final String BIZ_GUBUN_M = "M"; // 멤버 
 	public static final String BIZ_GUBUN_P = "P"; // 매치 
+	public static final String BIZ_GUBUN_C = "C"; // 매치 
+	public static final String BIZ_GUBUN_N = "N"; // 공지
 
 	public static String numPad(String t, String c){
 		
@@ -22,6 +24,14 @@ public abstract class ChabunUtil {
 	public static String getSFMmatchChabun(String type, String memNum) {
 		return BIZ_GUBUN_P.concat(ChabunUtil.numPad(type, memNum));
 	}
+	
+	public static String getSFMcommunityChabun(String type, String memNum) {
+		return BIZ_GUBUN_C.concat(ChabunUtil.numPad(type, memNum));
+	}
+
+	public static String getSFMnoticeChabun(String type, String noticeNum) {
+		return BIZ_GUBUN_N.concat(ChabunUtil.numPad(type, noticeNum));
+    }
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

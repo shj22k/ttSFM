@@ -43,7 +43,7 @@ public class SfmMatchController {
 
 		// 채번로직
 		String matchnum = ChabunUtil.getSFMmatchChabun("D", sfmChabunService.getSFMmatchChabun().getMatchnum());
-		logger.info("getMnum() >>> : " + sfmChabunService.getSFMmatchChabun().getMatchnum());
+		logger.info("matchnum() >>> : " + sfmChabunService.getSFMmatchChabun().getMatchnum());
 		
 		// DB에 연결되는 로직이기 때문에, 반드시 서비스를 통해 연결 해야한다.
 		FileUploadUtil mu = new FileUploadUtil( CommonUtils.SFM_IMG_UPLOAD_MATCH_PATH
@@ -52,6 +52,8 @@ public class SfmMatchController {
 
 		HttpSession session = req.getSession();
 		String memnum = (String)session.getAttribute("memnum");
+		logger.info("memnum() >>> : " + memnum);
+
 		
 		boolean bool = mu.imgfileUpload(req);
 		logger.info("shjMemInsert bool >>> : " + bool);
@@ -83,6 +85,7 @@ public class SfmMatchController {
 		logger.info("mtvo.getMatchparking() >>> :" + mtvo.getMatchparking());
 		logger.info("mtvo.getMatchsuit() >>> :" + mtvo.getMatchsuit());
 		logger.info("mtvo.getMatchshose() >>> :" + mtvo.getMatchshose());
+		logger.info("mtvo.getMemnum() >>> :" + mtvo.getMemnum());
 		logger.info("mtvo.getMempreferredarea() >>> :" + mtvo.getMempreferredarea());
 		logger.info("mtvo.getMatchfile() >>> :" + mtvo.getMatchfile());
 		

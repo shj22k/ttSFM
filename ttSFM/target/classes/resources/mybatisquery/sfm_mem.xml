@@ -30,6 +30,89 @@
 				   			SYSDATE)
 </insert>
 
+<select id="sfmMemSelectAll" resultType="sfmmemvo">
+
+	SELECT	A.MEMNUM			MEMNUM
+		   ,A.MEMNAME			MEMNAME
+		   ,A.MEMID				MEMID
+		   ,A.MEMPW				MEMPW
+		   ,A.MEMGENDER			MEMGENDER
+		   ,A.MEMPHOTO			MEMPHOTO
+		   ,A.MEMHP				MEMHP
+   		   ,A.MEMZONECODE		MEMZONECODE
+   		   ,A.MEMJIBUNADDRESS			MEMJIBUNADDRESS
+   		   ,A.MEMJIBUNADDRESSDETAIL		MEMJIBUNADDRESSDETAIL
+   		   ,A.MEMPOSITION		MEMPOSITION
+   		   ,A.MEMPREFERREDAREA	MEMPREFERREDAREA
+   		   ,A.MEMEMAIL			MEMEMAIL
+   		   ,A.MEMLV				MEMLV
+   		   ,A.ISMANAGER			ISMANAGER
+		   ,A.DELETEYN			DELETEYN
+		   ,TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD') INSERTDATE
+		   ,TO_CHAR(TO_DATE(A.UPDATEDATE), 'YYYY-MM-DD') UPDATEDATE
+	FROM	SFM_MEMBER A
+	WHERE	A.DELETEYN = 'Y'
+	ORDER BY 1 DESC  
+
+</select>
+
+<select id="sfmMemSelect" resultType="sfmmemvo">
+
+	SELECT	A.MEMNUM			MEMNUM
+		   ,A.MEMNAME			MEMNAME
+		   ,A.MEMID				MEMID
+		   ,A.MEMPW				MEMPW
+		   ,A.MEMGENDER			MEMGENDER
+		   ,A.MEMPHOTO			MEMPHOTO
+		   ,A.MEMHP				MEMHP
+   		   ,A.MEMZONECODE		MEMZONECODE
+   		   ,A.MEMJIBUNADDRESS			MEMJIBUNADDRESS
+   		   ,A.MEMJIBUNADDRESSDETAIL		MEMJIBUNADDRESSDETAIL
+   		   ,A.MEMPOSITION		MEMPOSITION
+   		   ,A.MEMPREFERREDAREA	MEMPREFERREDAREA
+   		   ,A.MEMEMAIL			MEMEMAIL
+		   ,A.DELETEYN			DELETEYN
+		   ,TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD') INSERTDATE
+		   ,TO_CHAR(TO_DATE(A.UPDATEDATE), 'YYYY-MM-DD') UPDATEDATE
+	FROM	SFM_MEMBER A
+	WHERE	A.DELETEYN = 'Y'
+	AND 	A.MEMNUM = #{memnum, jdbcType=VARCHAR}
+	ORDER BY 1 DESC  
+
+</select>
+
+<update id="sfmMemUpdate" parameterType="sfmmemvo">
+
+	UPDATE 	SFM_MEMBER 
+			SET MEMNUM   		= #{memnum, jdbcType=VARCHAR}, 
+            	MEMNAME    		= #{memname, jdbcType=VARCHAR}, 
+            	MEMID	 		= #{memid, jdbcType=VARCHAR}, 
+            	MEMPW 			= #{mempw, jdbcType=VARCHAR}, 
+            	MEMGENDER  		= #{memgender, jdbcType=VARCHAR},
+            	MEMPHOTO  		= #{memphoto, jdbcType=VARCHAR},
+            	MEMHP  			= #{memhp, jdbcType=VARCHAR},
+            	MEMZONECODE  	= #{memzonecode, jdbcType=VARCHAR},
+            	MEMJIBUNADDRESS  		= #{memjibunaddress, jdbcType=VARCHAR},
+            	MEMJIBUNADDRESSDETAIL  	= #{memjibunaddressdetail, jdbcType=VARCHAR},
+            	MEMPOSITION  			= #{memposition, jdbcType=VARCHAR},
+            	MEMPREFERREDAREA  		= #{mempreferredarea, jdbcType=VARCHAR},
+            	MEMEMAIL  		= #{mememail, jdbcType=VARCHAR},
+            	UPDATEDATE 		= SYSDATE 
+	WHERE  DELETEYN = 'Y'
+	AND    MEMNUM = #{memnum, jdbcType=VARCHAR}
+	
+</update>
+
+<update id="sfmMemDelete" parameterType="sfmmemvo">
+
+	UPDATE	SFM_MEMBER
+			SET DELETEYN = 'N'
+		   ,UPDATEDATE = SYSDATE	
+	WHERE	DELETEYN = 'Y'
+	AND		MEMNUM = #{ memnum, jdbcType=VARCHAR }
+	
+</update>
+
 <select id="sfmIdCheck" parameterType="sfmmemvo" resultType="sfmmemvo">	
 	
 	SELECT  

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="main.sfm.notice.dao.SfmNoticeDAO">
+
+<insert id="sfmNoticeInsert" parameterType="sfmnoticevo">
+
+	INSERT INTO SFM_NOTICE  (
+							NOTICENUM, NOTICETITLE, NOTICECONTENT, MEMNUM, DELETEYN, INSERTDATE, UPDATEDATE
+							)
+				    VALUES (
+				   			#{noticenum, jdbcType=VARCHAR},
+				   			#{noticetitle, jdbcType=VARCHAR},
+				   			#{noticecontent, jdbcType=VARCHAR},
+				   			#{memnum, jdbcType=VARCHAR},			   			
+				   			'Y',
+				   			SYSDATE,
+				   			SYSDATE)
+</insert>
+<select id="sfmNoticeSelectAll" resultType ="sfmnoticevo">
+	
+	
+	SELECT 		A.NOTICENUM 		NOTICENUM
+		       ,A.NOTICETITLE  		NOTICETITLE
+		       ,A.NOTICECONTENT 	NOTICECONTENT
+		       ,A.MEMNUM 			MEMNUM	
+		       ,A.DELETEYN			DELETEYN 	   
+	           ,TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD')INSERTDATE
+				,TO_CHAR(TO_DATE(A.UPDATEDATE), 'YYYY-MM-DD')UPDATEDATE	
+		FROM 	SFM_NOTICE A
+		WHERE 	DELETEYN = 'Y' 
+		
+		ORDER BY 1 DESC
+</select>
+<select id="sfmNoticeUpdate" resultType ="sfmnoticevo">
+	
+	
+	SELECT 		A.NOTICENUM 		NOTICENUM
+		       ,A.NOTICETITLE  		NOTICETITLE
+		       ,A.NOTICECONTENT 	NOTICECONTENT
+		       ,A.MEMNUM 			MEMNUM	
+		       ,A.DELETEYN			DELETEYN 	   
+	           ,TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD')INSERTDATE
+				,TO_CHAR(TO_DATE(A.UPDATEDATE), 'YYYY-MM-DD')UPDATEDATE	
+		FROM 	SFM_NOTICE A
+		WHERE 	DELETEYN = 'Y' 
+		AND    NOTICENUM = #{noticenum, jdbcType=VARCHAR}
+		ORDER BY 1 DESC
+</select>
+<update id="sfmNoticeUpdate2" parameterType="sfmnoticevo">
+	UPDATE SFM_NOTICE
+	SET 	NOTICENUM 				= #{noticenum,jdbcType=VARCHAR }		
+			,NOTICETITLE 				= #{noticetitle,jdbcType=VARCHAR }
+			,NOTICECONTENT				= #{noticecontent,jdbcType=VARCHAR }	
+						
+			,UPDATEDATE 			= SYSDATE 
+	WHERE 	DELETEYN ='Y'
+	AND    NOTICENUM = #{noticenum, jdbcType=VARCHAR}
+</update>
+<delete id ="sfmNoticeDelete" parameterType="sfmnoticevo">
+UPDATE	SFM_NOTICE 			
+		SET	DELETEYN	= 'N'		
+			,UPDATEDATE	= SYSDATE	
+		WHERE	DELETEYN             = 'Y'		
+		AND    NOTICENUM = #{noticenum, jdbcType=VARCHAR}
+</delete>
+ </mapper>         
+          
+          
+          

@@ -12,5 +12,8 @@
 	SELECT  /*+ INDEX_DESC(A SYS_C0011066) */ NVL(MAX(SUBSTR(MATCHNUM, -4)), 0) + 1 MATCHNUM FROM SFM_MATCH
 </select>
 
+<select id="getSFMcommunityChabun" resultType="sfmcommunityvo">
+	SELECT  /*+ INDEX_DESC(A SYS_C0011066) */ NVL(MAX(SUBSTR(CNUM, -4)), 0) + 1 CNUM FROM SFM_COMMUNITY
+</select>
 
 </mapper>

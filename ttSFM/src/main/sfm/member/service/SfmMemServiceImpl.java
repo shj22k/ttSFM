@@ -26,6 +26,31 @@ public class SfmMemServiceImpl implements SfmMemService{
 	}
 	
 	@Override
+	public List<SfmMemVO> sfmMemSelectAll(SfmMemVO mvo){
+		logger.info("sfmMemSelectAll() 함수 진입 >>> : ");
+		return sfmMemDAO.sfmMemSelectAll(mvo);
+	}
+
+	@Override
+	public List<SfmMemVO> sfmMemSelect(SfmMemVO mvo){
+		logger.info("sfmMemSelect() 함수 진입 >>> : ");
+		return sfmMemDAO.sfmMemSelectAll(mvo);
+	}
+	
+	@Override 
+	public int sfmMemUpdate(SfmMemVO mvo) {
+		logger.info("sfmMemUpdate() 함수 진입 >>> : ");
+		return sfmMemDAO.sfmMemUpdate(mvo);
+	}
+	
+	@Override 
+	public int sfmMemDelete(SfmMemVO mvo) {
+		logger.info("sfmMemDelete() 함수 진입 >>> : ");
+		return sfmMemDAO.sfmMemDelete(mvo);
+	}
+
+
+	@Override
 	public List<SfmMemVO> sfmIdCheck(SfmMemVO mvo){
 		logger.info("sfmIdCheck() 함수 진입 >>> : ");
 		return sfmMemDAO.sfmIdCheck(mvo);
