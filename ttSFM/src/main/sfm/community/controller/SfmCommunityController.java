@@ -117,5 +117,18 @@ public class SfmCommunityController {
 		}
 		return "";
 	}
+	
+	@GetMapping("sfmCommunitySelectCon")
+	public String sfmCommunitySelectCon(HttpServletRequest req, SfmCommunityVO cvo, Model model) {
+		logger.info("SfmCommunityController sfmCommunitySelectCon 진입");
+		
+		List<SfmCommunityVO> listS = sfmCommunityService.sfmCommunitySelectCon(cvo);
+		if(listS.size() == 1) {
+			logger.info("sfmCommunitySelectCon listS.size() >>> : " + listS.size());
+			model.addAttribute("listS", listS);
+			return "community/sfmCommunitySelectCon";
+		}
+		return "";
+	}
 
 }

@@ -29,5 +29,10 @@ public class SfmCommunityDAOImpl implements SfmCommunityDAO {
 		return sqlSession.selectList("sfmCommunitySelectAll", cvo);
 	}
 
+	@Override
+	public List<SfmCommunityVO> sfmCommunitySelectCon(SfmCommunityVO cvo) {
+		logger.info("SfmCommunityDAOImpl sfmCommunitySelectCon 진입");
+		return sqlSession.selectList("sfmCommunitySelectCon", cvo);
+	}
 
 }

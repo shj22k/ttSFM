@@ -12,28 +12,19 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script type="text/javascript">
 
-	function fn_contentView(bid){
-		
-		var url = "${pageContext.request.contextPath}/community/sfmCommunitySelect";
-		url = url + "?bid="+bid;
-	
-		location.href = url;
+	function test(ths){
+		var dataTest1 = $("#cknum").data('value');
+	    var cnum = $("#cnum").text();
+		location.href="/ttSFM/sfmCommunitySelectCon.sfm?cnum="+ths;
 	}
-
+	    
 	$(document).ready(function(){
-		
-		//체크박스 체크 확인하기
-		$(document).on("click","#chkAll",function(){
-			if($(this).prop('checked')){
-				$('chkAll').prop('checked',false);
-			}
-		});
 		
 		//I
 		$(document).on("click","#insertbtn",function(){
@@ -52,7 +43,6 @@
 					"action":"#",
 					"method":"GET",
 				}).submit();
-			
 		});
 		
 		//D
@@ -144,13 +134,10 @@
 %>
 <tbody>
 <tr>
-<!-- 	<td class="tt"> -->
-<%-- 		<input type="checkbox" id="chkbox" name="chkbox" class="chkbox" value=<%= snvo.getNoticenum() %>> --%>
-<!-- 	</td>		 -->
-	<td class="tt"><%= i + 1 %></td>
-	<td class="tt"><a href="#" onClick="fn_contentView(value=<%= cvo.getCnum() %>)">
-		<%= cvo.getCsubject() %>
-	</a></td>
+	<td class="tt" id="cnum"><%= cvo.getCnum() %></td>
+	<td class="tt"><a href="#" onclick="test(<%= cvo.getCnum() %>); return false;" data-value="<%= cvo.getCnum() %>" id="cknum"> <%= cvo.getCsubject() %></a>
+<%-- 		<input type="hidden" id="cnum" name="cnum" value="<%= cvo.getCnum() %>"> --%>
+	</td>
 	<td class="tt"><%= cvo.getCname() %></td>	
 	<td class="tt"><%= cvo.getInsertdate() %> </td>
 </tr>	
@@ -158,16 +145,16 @@
 		} // end of for
 %>
 <tr>
-<td colspan="9">
-<jsp:include page="/WEB-INF/view/commons/sfmPaging.jsp" flush="true">
-	<jsp:param name="url" value="sfmCommunitySelectAll.sfm"/>
-	<jsp:param name="str" value=""/>
-	<jsp:param name="pageSize" value="<%=pageSize%>"/>
-	<jsp:param name="groupSize" value="<%=groupSize%>"/>
-	<jsp:param name="curPage" value="<%=curPage%>"/>
-	<jsp:param name="totalCount" value="<%=totalCount%>"/>
-</jsp:include>
-</td>
+	<td colspan="9">
+		<jsp:include page="/WEB-INF/view/commons/sfmPaging.jsp" flush="true">
+			<jsp:param name="url" value="sfmCommunitySelectAll.sfm"/>
+			<jsp:param name="str" value=""/>
+			<jsp:param name="pageSize" value="<%=pageSize%>"/>
+			<jsp:param name="groupSize" value="<%=groupSize%>"/>
+			<jsp:param name="curPage" value="<%=curPage%>"/>
+			<jsp:param name="totalCount" value="<%=totalCount%>"/>
+		</jsp:include>
+	</td>
 </tr>	
 <% 		
 	}//end of if
