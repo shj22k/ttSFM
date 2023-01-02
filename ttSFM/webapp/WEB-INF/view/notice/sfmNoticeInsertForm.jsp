@@ -9,28 +9,10 @@
 <%
 	Logger logger = LogManager.getLogger(this.getClass());
 	logger.info("kosmoNoticePage.jsp 진입 >>> : ");	
-	String mid = "";
 	String memnum =  request.getParameter("memnum");
-	logger.info("memnum > "+memnum);
-	//Object obj = request.getAttribute("listLogin");
-	
-	/*
-	if (obj !=null) {
-		List<SfmMemVO> list = (List<SfmMemVO>)obj;
-
-		int nCnt = list.size();	
-		
-		logger.info("nCnt"+nCnt);
-		if (nCnt == 1) {
-			memnum = list.get(0).getMemnum();
-			logger.info("memnum"+memnum);
-		}
-		
-	}
-		*/
-		session.setAttribute("memnum", memnum);
+	logger.info("memnum >> "+ memnum);
+	session.getAttribute(memnum);
 %> 
-
 
 <!DOCTYPE html>
 <html>
@@ -47,8 +29,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
-
-	$('#noticeinsertForm').on('click','#noticebtn', function(){
+	$(document).on('click','#noticebtn', function(){
 		alert("작성했습니다. >>> ");
 		//리터럴객체
 		$('#noticeinsertForm').attr({
@@ -60,9 +41,6 @@ $(document).ready(function(){
 });
 </script>
 <body>
-
-
-
 
 
 <h3 style = "color:blue">
@@ -102,7 +80,6 @@ $(document).ready(function(){
 
 	<tr>
 		<td colspan = "2">
-	
 			<button type="button" id="noticebtn">보내기</button>		
 			<input type="hidden" id="memnum" name="memnum" value="">
 			<button type="reset">다시 </button>

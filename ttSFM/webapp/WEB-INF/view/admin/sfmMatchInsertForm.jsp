@@ -145,16 +145,6 @@
               </div>
           </div>
           
-            <!-- 우편번호 -->
-          <div class="row">  
-          <div class="col-md-6 mb-3">
-            <label for="email"><b>우편번호</b></label>
-            <input type="email" class="form-control" id="matchzonecode" name="matchzonecode" placeholder="우편번호" required>
-			<div class="invalid-feedback">
-                  우편번호를 입력해주세요.
-            </div>
-          </div>
-          
            <!-- 우편번호 -->
           <div class="row">  
           <div class="col-md-6 mb-3">

@@ -8,19 +8,20 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
 	Logger logger = LogManager.getLogger(this.getClass());
-	logger.info("kosmoMainPage.jsp 진입 >>> : ");	
-	
+	logger.info("MainPage.jsp 진입 >>> : ");	
 	String memnum = "";
 	Object obj = request.getAttribute("listLogin");
-
 	List<SfmMemVO> list = (List<SfmMemVO>)obj;
 
 	memnum = list.get(0).getMemnum();
-%> 
+	logger.info("memnum >>> : " + memnum);	
+	
+	session.setAttribute("memnum", memnum);
+	logger.info("세션에 담긴 값 memnum >>> : " + memnum);	
+%>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -224,7 +225,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="javascript:alert('준비중입니다.');" onfocus="this.blur()">
+					<a href="sfmCommunityInsertForm.sfm" onfocus="this.blur()">
 						<div class="nav_btn">
 							커뮤니티
 						</div>
@@ -330,10 +331,8 @@
         <br>
         <form class="validation-form" novalidate>
         
-       <jsp:include page="/WEB-INF/view/match/sfmMatchSelectAll.jsp">
-    	<jsp:param name="category" value="product1" />
-		</jsp:include>
-		
+       <jsp:include page="/sfmMatchSelectAll.sfm" />
+       
         </form>
       </div>
     </div>

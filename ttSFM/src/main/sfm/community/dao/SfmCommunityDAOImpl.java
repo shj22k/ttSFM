@@ -1,5 +1,7 @@
 package main.sfm.community.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -20,5 +22,12 @@ public class SfmCommunityDAOImpl implements SfmCommunityDAO {
 		logger.info("SfmCommunityDAOImpl sfmCommunityInsert 진입");
 		return (Integer)sqlSession.insert("sfmCommunityInsert", cvo);
 	}
+	
+	@Override
+	public List<SfmCommunityVO> sfmCommunitySelectAll(SfmCommunityVO cvo) {
+		logger.info("SfmCommunityDAOImpl sfmCommunitySelectAll 진입");
+		return sqlSession.selectList("sfmCommunitySelectAll", cvo);
+	}
+
 
 }

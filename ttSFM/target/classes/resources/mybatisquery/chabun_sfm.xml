@@ -16,4 +16,8 @@
 	SELECT  /*+ INDEX_DESC(A SYS_C0011066) */ NVL(MAX(SUBSTR(CNUM, -4)), 0) + 1 CNUM FROM SFM_COMMUNITY
 </select>
 
+<select id="getSFMnoticeChabun" resultType="sfmnoticevo">
+   SELECT  /*+ INDEX_DESC(A SYS_C0011066) */ NVL(MAX(SUBSTR(NOTICENUM, -4)), 0) + 1 NOTICENUM FROM SFM_NOTICE
+</select>
+
 </mapper>

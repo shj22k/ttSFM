@@ -28,15 +28,17 @@ $(document).ready(function(){
 	});
 	
 	//I
-	$('#sfmNoticeList').on("click","#insertbtn",function(){
+	$(document).on("click","#insertbtn",function(){
+		
 		$('#sfmNoticeList').attr({
 			"action":"sfmNoticeInsertForm.sfm",
 			"method":"GET",
 			"enctype":"application/x-www-form-urlencoded"
 		}).submit();
 	});
+	
 	//U - 수정버튼
-	$('#sfmNoticeList').on("click","#updateBtn",function(){
+	$(document).on("click","#updateBtn",function(){
 
 			$('#sfmNoticeList').attr({
 				"action":"sfmNoticeUpdate.sfm",
@@ -45,8 +47,9 @@ $(document).ready(function(){
 			}).submit();
 		
 	});
+	
 	//D- 삭제합시다
-	$('#sfmNoticeList').on("click","#deletetBtn",function(){
+	$(document).on("click","#deletetBtn",function(){
 		$('#sfmNoticeList').attr({
 			"action":"sfmNoticeDelete.sfm",
 			"method":"GET",
@@ -103,6 +106,7 @@ $(document).ready(function(){
 	<th>공지내용</th>
 	<th>등록일</th>
 	<th>수정일</th>
+	<th>수정일</th>
 </tr>
 </thead>
 <%
@@ -111,11 +115,13 @@ $(document).ready(function(){
 	if (obj == null){ return; }
 	
 	List<SfmNoticeVO> list = (List<SfmNoticeVO>)obj;
+	String memnum = list.get(0).getMemnum();
+	System.out.print("memnum >>> : " + memnum);
+	session.setAttribute("memnum", memnum);
+
 	if (list.size() > 0){
 		for (int i=0; i < list.size(); i++){
 			SfmNoticeVO snvo = list.get(i);
-			
-			
 %>
 <tbody>
 <tr>
@@ -129,6 +135,7 @@ $(document).ready(function(){
 	<td class="tt"><%= snvo.getNoticecontent() %></td>	
 	<td class="tt"><%= snvo.getInsertdate() %> </td>
 	<td class="tt"><%= snvo.getUpdatedate() %> </td>			
+	<td class="tt"><%= snvo.getMemnum() %> </td>			
 	
 	
 </tr>	

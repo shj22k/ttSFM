@@ -1,5 +1,7 @@
 package main.sfm.community.service;
 
+import java.util.List;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,4 +25,10 @@ public class SfmCommunityServiceImpl implements SfmCommunityService {
 		return sfmCommunityDAO.sfmCommunityInsert(cvo);
 	}
 	
+	@Override
+	public List<SfmCommunityVO> sfmCommunitySelectAll(SfmCommunityVO cvo) {
+		logger.info("SfmCommunityServiceImpl sfmCommunitySelectAll 진입");
+		return sfmCommunityDAO.sfmCommunitySelectAll(cvo);
+	}
+
 }

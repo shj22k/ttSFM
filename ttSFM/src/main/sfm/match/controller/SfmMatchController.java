@@ -54,9 +54,15 @@ public class SfmMatchController {
 		String memnum = (String)session.getAttribute("memnum");
 		logger.info("memnum() >>> : " + memnum);
 
-		
 		boolean bool = mu.imgfileUpload(req);
 		logger.info("shjMemInsert bool >>> : " + bool);
+		
+		String matchkickoff = mu.getParameter("matchkickoff");
+		String[] array = matchkickoff.split(" ");
+		String matchdate = array[0]; // 2022-12-29
+		String matchkick = array[1]; // 16:28
+		logger.info("matchdate >>> : " + matchdate);
+		logger.info("matchkick >>> : " + matchkick);
 
 		mtvo.setMatchnum(matchnum);
 		mtvo.setMatchgender(mu.getParameter("matchgender"));
@@ -64,8 +70,8 @@ public class SfmMatchController {
 		mtvo.setMatchzonecode(mu.getParameter("matchzonecode"));
 		mtvo.setMatchjibunaddress(mu.getParameter("matchjibunaddress"));
 		mtvo.setMatchlv(mu.getParameter("matchlv"));
-		mtvo.setMatchkickoff(mu.getParameter("matchkickoff"));
-		mtvo.setMatchtime(mu.getParameter("matchtime"));
+		mtvo.setMatchkickoff(matchdate); // 날짜
+		mtvo.setMatchtime(matchkick); 	// 시간
 		mtvo.setMatchstadium(mu.getParameter("matchstadium"));
 		mtvo.setMatchparking(mu.getParameter("matchparking"));
 		mtvo.setMatchsuit(mu.getParameter("matchsuit"));
@@ -93,14 +99,13 @@ public class SfmMatchController {
 		try {
 			if(insertCnt > 0) {
 				logger.info("sfmMatchInsert insertCnt >>> : " + insertCnt);
-				return "admin/sfmMatchSelectAll";
+				return "admin/sfmMatchSelectAll1";
 			}
 		}catch(Exception e) {
 			System.out.println("에러가 발생" + e);
 		}
 		return "";
 	}
-	
 	
 	// 전체 목록
 	@PostMapping("sfmMatchSelectAll")
@@ -165,6 +170,7 @@ public class SfmMatchController {
 		mtvo.setMatchtime(mu.getParameter("matchtime"));
 		mtvo.setMatchstadium(mu.getParameter("matchstadium"));
 		mtvo.setMatchparking(mu.getParameter("matchparking"));
+		mtvo.setMatchshower(mu.getParameter("matchshower"));
 		mtvo.setMatchsuit(mu.getParameter("matchsuit"));
 		mtvo.setMatchshose(mu.getParameter("matchshose"));
 		mtvo.setMemnum(memnum);

@@ -283,8 +283,6 @@
 			  <label for="minfo" class="form-label"><b>구장설명</b></label>
 			  <textarea class="form-control" id="minfo" rows="5"></textarea>
 		   </div>
-
-        
         
            <!-- 동의 체크 -->
           <hr class="mb-4">
