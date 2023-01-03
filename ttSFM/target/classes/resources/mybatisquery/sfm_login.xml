@@ -6,57 +6,96 @@
 
 <select id="loginCheck" parameterType="sfmmemvo" resultType="sfmmemvo">
 
-	SELECT
-			A.MEMNUM	MEMNUM
-		   ,A.MEMID		MEMID
-		   ,A.MEMPW		MEMPW
-	FROM	SFM_MEMBER A
-	WHERE	A.DELETEYN = 'Y'
-	AND		A.MEMID = #{memid, jdbcType=VARCHAR}
-	AND		A.MEMPW = #{mempw, jdbcType=VARCHAR}
+   SELECT
+         A.MEMID      MEMID
+         ,A.MEMPW      MEMPW
+   FROM   SFM_MEMBER A
+   WHERE   A.DELETEYN = 'Y'
+   AND      A.MEMID = #{memid, jdbcType=VARCHAR}
+   AND      A.MEMPW = #{mempw, jdbcType=VARCHAR}
 </select>
 
 <select id="emailCntCheck" parameterType="sfmmemvo" resultType="sfmmemvo">
-	SELECT 	
-	        A.MEMNAME 	MEMNAME
-	       ,A.MEMEMAIL 	MEMEMAIL
-	FROM 	SFM_MEMBER A
-	WHERE 	A.DELETEYN = 'Y' 	
-	AND    A.MEMNAME = #{memname} 
-	AND    A.MEMEMAIL = #{mememail}	
+   SELECT    
+           A.MEMNAME    MEMNAME
+          ,A.MEMEMAIL    MEMEMAIL
+   FROM    SFM_MEMBER A
+   WHERE    A.DELETEYN = 'Y'    
+   AND    A.MEMNAME = #{memname} 
+   AND    A.MEMEMAIL = #{mememail}   
 </select>
 
 <insert id="tempAuthInsert" parameterType="sfmtempauthvo" >
- 	
- 	<selectKey keyProperty="authnum" resultType="String" order="BEFORE">
- 		SELEC NVL(MAX(TO_NUMBER(TRIM(AUTHNUM))), 0) + 1 FROM TEMP_AUTH
- 	</selectKey>
-	INSERT INTO TEMP_AUTH (	AUTHNUM, 
-							AUTHCERTIFICATION, 
-							MEMEMAIL, 
-							INSERTDATE)
-            		VALUES( #{authnum}, 
-            				#{authcertification}, 
-            				#{mememail},  
-            				SYSDATE)
+    
+    <selectKey keyProperty="authnum" resultType="String" order="BEFORE">
+       SELECT NVL(MAX(TO_NUMBER(TRIM(AUTHNUM))), 0) + 1 FROM TEMP_AUTH
+    </selectKey>
+   INSERT INTO TEMP_AUTH (   AUTHNUM, 
+                     AUTHCERTIFICATION, 
+                     MEMEMAIL, 
+                     INSERTDATE)
+                  VALUES( #{authnum}, 
+                        #{authcertification}, 
+                        #{mememail},  
+                        SYSDATE)
 </insert>
 
 <select id="idFindAuthnum"  parameterType="sfmtempauthvo" resultType="sfmtempauthvo">
-	SELECT 	
-	        A.AUTHCERTIFICATION 		AUTHCERTIFICATION
-	       ,A.MEMEMAIL					MEMEMAIL
-	FROM 	TEMP_AUTH A
-	WHERE 	A.AUTHCERTIFICATION = #{authcertification}		
-	AND     A.MEMEMAIL  = #{mememail}
+   SELECT    
+           A.AUTHCERTIFICATION       AUTHCERTIFICATION
+          ,A.MEMEMAIL               MEMEMAIL
+   FROM    TEMP_AUTH A
+   WHERE    A.AUTHCERTIFICATION = #{authcertification}      
+   AND     A.MEMEMAIL  = #{mememail}
 </select>
 
 <select id="idFind"  parameterType="sfmmemvo" resultType="sfmmemvo">
-	SELECT 	
-	        A.MEMID 		MEMID
-	       ,TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD') 	INSERTDATE
-	FROM 	SFM_MEMBER A
-	WHERE 	A.DELETEYN = 'Y'
-	AND     A.MEMNAME = #{memname}		
-	AND     A.MEMEMAIL = #{mememail}
+   SELECT    
+           A.MEMID       MEMID
+          ,TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD')    INSERTDATE
+   FROM    SFM_MEMBER A
+   WHERE    A.DELETEYN = 'Y'
+   AND     A.MEMNAME = #{memname}      
+   AND     A.MEMEMAIL = #{mememail}
 </select>
+
+<select id="emailCntCheckPW" parameterType="sfmmemvo" resultType="sfmmemvo">
+   SELECT    
+           A.MEMID       MEMID
+          ,A.MEMEMAIL       MEMEMAIL
+   FROM    SFM_MEMBER A
+   WHERE    A.DELETEYN = 'Y'    
+   AND    A.MEMID = #{memid} 
+   AND    A.MEMEMAIL = #{mememail}   
+</select>
+
+
+<insert id="tempPwInsert" parameterType="sfmtemppwvo" >
+    
+    <selectKey keyProperty="pwauth" resultType="String" order="BEFORE">
+       SELECT NVL(MAX(TO_NUMBER(TRIM(PWAUTH))), 0) + 1 FROM TEMP_PW
+    </selectKey>
+   INSERT INTO TEMP_PW (   PWAUTH, 
+                     PWCERTIFICATION,
+                     MEMID, 
+                     MEMEMAIL, 
+                     INSERTDATE)
+                  VALUES( #{pwauth}, 
+                        #{pwcertification},
+                        #{memid}, 
+                        #{mememail},  
+                        SYSDATE)
+</insert>
+
+<select id="pwUpdateCheck" parameterType="sfmtemppwvo" resultType="sfmtemppwvo">
+   SELECT    
+         A.PWCERTIFICATION       PWCERTIFICATION
+         ,A.MEMID               MEMID
+   FROM    TEMP_PW A
+   WHERE    A.PWCERTIFICATION = #{pwcertification}   
+   AND      A.MEMID         = #{memid}
+   
+</select>
+
+
 </mapper>

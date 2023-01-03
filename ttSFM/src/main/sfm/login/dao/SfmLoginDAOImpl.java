@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import main.sfm.login.vo.SfmTempAuthVO;
+import main.sfm.login.vo.SfmTempPwVO;
 import main.sfm.member.vo.SfmMemVO;
 
 @Repository
@@ -50,6 +51,27 @@ public class SfmLoginDAOImpl implements SfmLoginDAO {
 		// TODO Auto-generated method stub
 		logger.info("idFindAuthnum 함수 진입 >>> : ");
 		return sqlSession.selectList("idFindAuthnum", stvo);
+	}
+	
+	@Override
+	public List<SfmMemVO> emailCntCheckPW(SfmMemVO mvo) {
+		// TODO Auto-generated method stub
+		logger.info("emailCntCheckPW 함수 진입 >>> : ");
+		return sqlSession.selectList("emailCntCheckPW", mvo);
+	}
+
+	@Override
+	public int tempPwInsert(SfmTempPwVO stpvo) {
+		// TODO Auto-generated method stub
+		logger.info("tempPwInsert 함수 진입 >>> : ");
+		return sqlSession.insert("tempPwInsert", stpvo);
+	}
+
+	@Override
+	public List<SfmTempPwVO> pwUpdateCheck(SfmTempPwVO stpvo) {
+		// TODO Auto-generated method stub
+		logger.info("pwUpdateCheck 함수 진입 >>> : ");
+		return sqlSession.selectList("pwUpdateCheck", stpvo);
 	}
 
 }

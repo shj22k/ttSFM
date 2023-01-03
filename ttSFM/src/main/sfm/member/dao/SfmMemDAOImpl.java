@@ -52,5 +52,12 @@ public class SfmMemDAOImpl implements SfmMemDAO{
 		logger.info("sfmIdCheck 함수 진입 >>> : ");
 		return sqlSession.selectList("sfmIdCheck", mvo);
 	}
+	
+	@Override
+    public int pwUpdate(SfmMemVO mvo) {
+       // TODO Auto-generated method stub
+       logger.info("pwUpdate 함수 진입 >>> : ");
+       return sqlSession.insert("pwUpdate", mvo);
+    }
 
 }

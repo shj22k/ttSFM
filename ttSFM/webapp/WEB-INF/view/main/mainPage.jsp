@@ -218,7 +218,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="javascript:alert('준비중입니다.');" onfocus="this.blur()">
+					<a href="sfmNoticeSelectAllUI.sfm" onfocus="this.blur()">
 						<div class="nav_btn">
 							공지사항
 						</div>

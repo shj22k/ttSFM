@@ -60,5 +60,20 @@
 
 </select>
 
+<update id="sfmCommunityUpdate" parameterType="sfmcommunityvo">
+
+	UPDATE 	SFM_COMMUNITY 
+			SET CNUM   			= #{cnum, jdbcType=VARCHAR}, 
+            	CSUBJECT    	= #{csubject, jdbcType=VARCHAR}, 
+            	CNAME	 		= #{cname, jdbcType=VARCHAR}, 
+            	CCONTENT 		= #{ccontent, jdbcType=VARCHAR}, 
+            	CFILE  			= #{cfile, jdbcType=VARCHAR},
+            	MEMNUM  		= #{memnum, jdbcType=VARCHAR},
+            	UPDATEDATE 		= SYSDATE 
+	WHERE  DELETEYN = 'Y'
+	AND    CNUM = #{cnum, jdbcType=VARCHAR}
+	
+</update>
+
 
 </mapper>

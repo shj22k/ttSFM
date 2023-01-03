@@ -17,6 +17,8 @@ import main.sfm.common.K_Session;
 import main.sfm.common.PasswordUtil;
 import main.sfm.login.service.SfmLoginService;
 import main.sfm.login.vo.SfmTempAuthVO;
+import main.sfm.login.vo.SfmTempPwVO;
+import main.sfm.member.service.SfmMemService;
 import main.sfm.member.vo.SfmMemVO;
 
 @Controller
@@ -25,7 +27,9 @@ public class SfmLoginController {
 
 	@Autowired(required=false)	// 의존성 주입
 	private SfmLoginService sfmLoginService;
-	
+	@Autowired(required=false)	// 의존성 주입
+	private SfmMemService sfmMemService;
+
 	// 로그인 폼 이동
 	@GetMapping("sfmLoginForm")
 	public String sfmLoginForm() {
@@ -40,15 +44,14 @@ public class SfmLoginController {
 		
 		List<SfmMemVO> listLogin = sfmLoginService.loginCheck(mvo);
 		logger.info("login listLogin.size() >>> : " + listLogin.size());
-		
+
 		if(listLogin.size() == 1) {
 			K_Session ks = K_Session.getInstance();
 			String mID = ks.getSession(req);
-
+			
 			if(mID !=null && mID.equals(listLogin.get(0).getMemid())) {
 				logger.info("SfmLoginController login >>> : 로그인 중 >>> : 다른 페이지로 이동 하기 >>> : " + mID);
-				ks.setSession(req, mvo.getMemnum());
-
+				
 				// 관리자 로그인
 				if(mID.equals("admin1234")) {
 					model.addAttribute("listLogin", listLogin);
@@ -69,10 +72,10 @@ public class SfmLoginController {
 	}
 	
 	// 아이디 찾기 ========================================================================================	
-		@GetMapping("idFindForm")
+		@GetMapping("sfmidfind")
 		public String IdFindForm() {
 			logger.info("LoginForm 함수 진입 >>> : ");	
-			return "login/idFind";
+			return "login/sfmidfind";
 		}
 		
 		// 아이디 찾기 인증번호 	
@@ -84,27 +87,30 @@ public class SfmLoginController {
 			List<SfmMemVO> emailCnt = sfmLoginService.emailCntCheck(mvo);
 			
 			if (emailCnt.size() == 1) {
-				String authnum = PasswordUtil.tempPW(6);
-				
+				String authcertification = PasswordUtil.tempPW(6);
+				logger.info("authcertification >>> : " + authcertification );
 				SfmTempAuthVO stvo = null;
 				stvo = new SfmTempAuthVO();
-				stvo.setAuthnum(authnum);
+				stvo.setAuthcertification(authcertification);
+				logger.info("Authcertification >>> : " + stvo.getAuthcertification());
 				stvo.setMememail(mvo.getMememail());	
+				logger.info("mememail >>> : " + stvo.getMememail());
 				// avo.setMemail("jackbomb51@gmail.com");	
 				int nCnt = sfmLoginService.tempAuthInsert(stvo);
+				logger.info("nCnt >>> : " + nCnt);
 				
 				if (nCnt == 1) {
 
 					String resiveMail = "XXXXXX@gmail.com";
-					String sendMsg = "임시 인증번호 입니다  :::: " + authnum;			
+					String sendMsg = "임시 인증번호 입니다  :::: " + authcertification;			
 					GoogleAuthumMail gam = new GoogleAuthumMail();
 					gam.authumMail(resiveMail, sendMsg);
 					
-					return "login/emailCheck";				
+					return "login/sfmemailCheck";				
 				}			
 			}
 			
-			return "login/idFind";
+			return "login/sfmidFind";
 		}
 		
 		// 아이디 찾아서 받기  	
@@ -116,7 +122,7 @@ public class SfmLoginController {
 			
 			// 아이디 인증 번호 확인 
 			List<SfmMemVO> authnumFind = sfmLoginService.idFindAuthnum(stvo);
-			
+			logger.info("authnumFind.size() >>> : " + authnumFind.size());
 			if (authnumFind.size() == 1) {
 				
 				// 아이디 확인 서비스 호출		
@@ -124,11 +130,85 @@ public class SfmLoginController {
 				
 				if (midFind.size() == 1) {
 					model.addAttribute("midFind", midFind);
-					return "login/idFindOK";										
+					return "login/sfmidFindOK";										
 				}
 			}
-					return "login/idFind";
+					return "login/sfmidFind";
 		}
+		
+	// 패스워드찾기 ========================================================================================	
+	@GetMapping("sfmpwfind")
+	public String sfmPwFindForm() {
+		logger.info("sfmPwFindForm 함수 진입 >>> : ");	
+		return "login/sfmpwfind";
+	}
+	
+	// 임시 패스워드 받기  	
+		@GetMapping("pwFindAuthnum")
+		public String sfmPwFindAuthnum(HttpServletRequest req, SfmMemVO mvo, Model model) {
+			logger.info("sfmPwFindAuthnum 함수 진입 >>> : ");	
+			logger.info("sfmPwFindAuthnum 함수 진입 >>> : " + mvo.getMemid());	
+			logger.info("sfmPwFindAuthnum 함수 진입 >>> : " + mvo.getMememail());
+		
+			// id/email 체크해서 임시 비밀번호 발급하고 임시비밀번호 아이디 이메일 디비에 저장하기 	
+			// id / email 체크  체크 서비스 호출
+			List<SfmMemVO> pwEmailCnt = sfmLoginService.emailCntCheckPW(mvo);
+			
+			if (pwEmailCnt.size() == 1) {
+				
+				// 임시 비밀번호 
+				String pwcertification = PasswordUtil.tempPW(10);
+				
+				// 임시비밀번호 아이디 이메일 디비에 저장하기 
+				SfmTempPwVO stpvo = null;
+				stpvo = new SfmTempPwVO();
+				stpvo.setPwcertification(pwcertification);		
+				stpvo.setMemid(mvo.getMemid());
+				stpvo.setMememail(mvo.getMememail());
+				
+				// 임시 비밀번호 메일로 발급 하기 
+				int nCnt = sfmLoginService.tempPwInsert(stpvo);
+				
+				if (nCnt == 1) {
+
+					String resiveMail = "XXXXXX@gmail.com";
+					String sendMsg = "임시 비밀번호 입니다  :::: " + pwcertification;			
+					GoogleAuthumMail gam = new GoogleAuthumMail();
+					gam.authumMail(resiveMail, sendMsg);
+					
+					return "login/sfmpwUpdateForm";				
+				}		
+			}
+
+			return "login/sfmidfind";
+		}
+		
+		// 새 비밀번호로 변경하기 위한 폼 태크 
+		@GetMapping("pwUpdateForm")
+		public String sfmPwUpdate(SfmTempPwVO stpvo, Model model, SfmMemVO mvo, HttpServletRequest req) {
+			logger.info("sfmPwUpdate 함수 진입 >>> : ");	
+			logger.info("sfmPwUpdate 함수 진입 >>> : " + stpvo.getPwcertification());	
+			logger.info("sfmPwUpdate 함수 진입 >>> : " + stpvo.getMemid());
+					
+			// 임시비밀 번호 확인 
+			List<SfmTempPwVO> tempPwCheck = sfmLoginService.pwUpdateCheck(stpvo);
+			logger.info("tempPwCheck.size() >>> : " + tempPwCheck.size());
+			if (tempPwCheck.size() == 1) {
+				
+				mvo.setMempw(req.getParameter("mempw"));
+				stpvo.setMemid(req.getParameter("memid"));
+				logger.info("mvo.getMempw >>> : " + mvo.getMempw());
+				logger.info("stpvo.getMemid >>> : " + stpvo.getMemid());
+				int a = sfmMemService.pwUpdate(mvo);
+		
+				if(a > 0) {
+					return "login/sfmpwUpdate";				
+				}
+			}
+
+			return "login/sfmpwfind";
+		}
+		
 	
 	// 로그 아웃
 	@GetMapping("logout")

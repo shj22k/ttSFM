@@ -49,11 +49,17 @@ public class SfmMemServiceImpl implements SfmMemService{
 		return sfmMemDAO.sfmMemDelete(mvo);
 	}
 
-
 	@Override
 	public List<SfmMemVO> sfmIdCheck(SfmMemVO mvo){
 		logger.info("sfmIdCheck() 함수 진입 >>> : ");
 		return sfmMemDAO.sfmIdCheck(mvo);
 	}
+	
+    @Override
+    public int pwUpdate(SfmMemVO mvo) {
+       // TODO Auto-generated method stub
+       logger.info("pwUpdate 함수 진입 >>> : ");
+       return sfmMemDAO.pwUpdate(mvo);
+    }
 	
 }

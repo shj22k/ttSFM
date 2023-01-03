@@ -19,7 +19,7 @@ $(document).ready(function(){
 		e.preventDefault();
 	
 		$('#idFindForm').attr({
-			'action':'#',
+			'action':'sfmLoginForm.sfm',
 			'method':'GET',
 			'enctype':'application/x-www-form-urlencoded'
 		}).submit();

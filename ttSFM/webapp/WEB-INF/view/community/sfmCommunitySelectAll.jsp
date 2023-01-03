@@ -19,8 +19,6 @@
 <script type="text/javascript">
 
 	function test(ths){
-		var dataTest1 = $("#cknum").data('value');
-	    var cnum = $("#cnum").text();
 		location.href="/ttSFM/sfmCommunitySelectCon.sfm?cnum="+ths;
 	}
 	    
@@ -34,15 +32,6 @@
 				"method":"GET",
 				"enctype":"application/x-www-form-urlencoded"
 			}).submit();
-		});
-		
-		//U
-		$(document).on("click","#updateBtn",function(){
-	
-				$('#sfmNoticeList').attr({
-					"action":"#",
-					"method":"GET",
-				}).submit();
 		});
 		
 		//D
@@ -94,7 +83,7 @@
 	SfmCommunityVO pagingCVO = (SfmCommunityVO)objPaging;
 %>
 <div class ="container">
-<h3>공지목록</h3>
+<h3>커뮤니티</h3>
 <hr>
 <form name="sfmCommunityList" id="sfmCommunityList">
 <table class="table table-striped" border ="1" align ="center">
@@ -135,9 +124,7 @@
 <tbody>
 <tr>
 	<td class="tt" id="cnum"><%= cvo.getCnum() %></td>
-	<td class="tt"><a href="#" onclick="test(<%= cvo.getCnum() %>); return false;" data-value="<%= cvo.getCnum() %>" id="cknum"> <%= cvo.getCsubject() %></a>
-<%-- 		<input type="hidden" id="cnum" name="cnum" value="<%= cvo.getCnum() %>"> --%>
-	</td>
+	<td class="tt"><a href="#" onclick="test('<%= cvo.getCnum() %>');"><%= cvo.getCsubject() %></a></td>
 	<td class="tt"><%= cvo.getCname() %></td>	
 	<td class="tt"><%= cvo.getInsertdate() %> </td>
 </tr>	

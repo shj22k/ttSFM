@@ -2,21 +2,20 @@
     pageEncoding="UTF-8"%>
 <%@ page import="org.apache.log4j.LogManager" %>  
 <%@ page import="org.apache.log4j.Logger" %>   
-    
-<%@ page import="main.sfm.community.vo.SfmCommunityVO" %>
+<%@ page import="main.sfm.notice.vo.SfmNoticeVO" %>
 <%@ page import="java.util.List" %>
+<%
+	Logger logger = LogManager.getLogger(this.getClass());
+	logger.info("sfmNoticeSelectConUI.jsp >>> : ");
+	
+	String noticenum = request.getParameter("noticenum");
+	session.setAttribute("noticenum", noticenum);
+%> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%
-	Logger logger = LogManager.getLogger(this.getClass());
-	logger.info("sfmCommunitySelectCon.jsp >>> : ");
-	
-	String cnum = request.getParameter("cnum");
-	session.setAttribute("cnum", cnum);
-%> 
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 
@@ -27,18 +26,8 @@
 		$('#selectBtn').on('click', function(){
 			alert("selectAllbtn버튼 클릭  >>> ");
 			//리터럴객체
-			$('#commucon').attr({
-				"action":"sfmCommunitySelectAll.sfm",
-				"method":"GET",
-			}).submit();
-		});
-		
-		// 수정하기
-		$("#updateBtn").on("click",function(){
-			alert("updateBtn버튼 클릭  >>> ");
-
-			$('#commucon').attr({
-				"action":"sfmCommunityUpdateForm.sfm",
+			$('#noticecon').attr({
+				"action":"sfmNoticeSelectAllUI.sfm",
 				"method":"GET",
 			}).submit();
 		});
@@ -51,46 +40,42 @@
 	Object obj = request.getAttribute("listS");
 	if(obj==null) {return;}
 	
-	List<SfmCommunityVO> list = (List<SfmCommunityVO>)obj;
+	List<SfmNoticeVO> list = (List<SfmNoticeVO>)obj;
 	if(list.size() > 0){
 		for(int i=0; i<list.size(); i++){
-			SfmCommunityVO cvo = list.get(i);
+			SfmNoticeVO snvo = list.get(i);
 %>
-<h3 align="center"></h3>
+<h3 align="center">dd</h3>
 <hr>
-<form name="commucon" id="commucon">
+<form name="noticecon" id="noticecon">
 <table border="1" align="center">
 <thead>
 <tr>
-	<td>글번호</td>
+	<td>번호</td>
 	<td>제목</td>
-	<td>작성자</td>
-	<td>글내용</td>
+	<td>내용</td>
 	<td>등록일</td>
-	<td>파일</td>
 </tr>
 </thead>
 <tbody>
 <tr>
-	<td class="tt" align="center"><%= cvo.getCnum() %></td>
-	<td class="tt"><%= cvo.getCsubject() %></td>
-	<td class="tt"><%= cvo.getCname() %></td>
-	<td class="tt"><%= cvo.getCcontent() %></td>
-	<td class="tt"><%= cvo.getInsertdate() %></td>
-	<td class="tt" align="center"><img src="/ttSFM/fileupload/community_photo/<%= cvo.getCfile() %>" border="1" width="25" height="25" alt="image"></td>
+	<td class="tt" align="center"><%= snvo.getNoticenum() %></td>
+	<td class="tt"><%= snvo.getNoticetitle() %></td>
+	<td class="tt"><%= snvo.getNoticecontent() %></td>
+	<td class="tt"><%= snvo.getInsertdate() %></td>
 </tr>
+<%		
+		}
+	}
+%>
 <tr>
 	<td colspan="9" align="right">	
-		<input type="hidden" id="cnum" name="cnum" value="<%= cnum %>" />
+		<input type="hidden" id="noticenum" name="noticenum" value="<%= noticenum %>" />
 		<button type="button" class="btn btn-dark" id="selectBtn">목록으로 이동</button> 												
 		<button type="button" class="btn btn-warning" id="updateBtn">수정하기</button>		
 	</td>
 </tr>	
 </tbody>			
-<%		
-		}
-	}
-%>
 </table>
 </form>
 </body>

@@ -53,17 +53,17 @@ IDFIND<br>
 	Object obj = request.getAttribute("aList");
 	String memname = "";
 	String mememail = "";
-	String authnum = "";
+	String authcertification = "";
 	if (obj !=null){
 		ArrayList<String> aList = (ArrayList)obj;
 		System.out.println("aList.size() >>> : " + aList.size());
 		memname = aList.get(0);
 		mememail = aList.get(1);
-		authnum = aList.get(2);
+		authcertification = aList.get(2);
 		
 		System.out.println("idEmailCheck memname >>> : " + memname);
 		System.out.println("idEmailCheck mememail >>> : " + mememail);
-		System.out.println("idEmailCheck authnum >>> : " + authnum);
+		System.out.println("idEmailCheck authnum >>> : " + authcertification);
 	}
 	
 %>
@@ -86,7 +86,7 @@ IDFIND<br>
 <tr>
 <td>인증번호</td>
 <td>
-<input type="text" name="authnum" id="authnum" value='<%= authnum%>' 
+<input type="text" name="authcertification" id="authcertification" value='<%= authcertification%>' 
        placeholder="인증번호  6자리 숫자 입력" style="width:200px;"></td>
 </tr>
 <tr>

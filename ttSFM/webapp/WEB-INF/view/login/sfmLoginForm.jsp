@@ -87,8 +87,11 @@
 						<span class="txt1">
 							Forgot
 						</span>
-						<a class="txt2" href="#">
-							Username / Password?
+						<a class="txt2" href="sfmidfind.sfm">
+							Username
+						</a>
+						<a class="txt3" href="sfmpwfind.sfm">
+							Password
 						</a>
 					</div>
 

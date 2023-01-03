@@ -12,7 +12,6 @@ import javax.mail.internet.MimeMessage;
 
 public class GoogleAuthumMail {
 	
-	
 	public void authumMail(String resiveMail, String sendMsg) {
 		
 		String mailSubject = "임시 인증번호 메일 입니다.";
@@ -30,7 +29,7 @@ public class GoogleAuthumMail {
 		Session session = Session.getInstance(props, new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("XXXXXX@gmail.com", "XXXXXXXX");
+				return new PasswordAuthentication("lee15975@gmail.com", "snwzegziiwnlocre");
 			}
 		});
 		

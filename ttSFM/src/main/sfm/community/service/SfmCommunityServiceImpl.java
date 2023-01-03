@@ -37,4 +37,10 @@ public class SfmCommunityServiceImpl implements SfmCommunityService {
 		return sfmCommunityDAO.sfmCommunitySelectCon(cvo);
 	}
 
+	@Override
+	public int sfmCommunityUpdate(SfmCommunityVO cvo) {
+		logger.info("SfmCommunityServiceImpl sfmCommunityUpdate 진입");
+		return sfmCommunityDAO.sfmCommunityUpdate(cvo);
+	}
+
 }

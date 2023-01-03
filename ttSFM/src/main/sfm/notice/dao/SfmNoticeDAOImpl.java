@@ -23,6 +23,7 @@ public class SfmNoticeDAOImpl implements SfmNoticeDAO{
 		
 		return (Integer)sqlSession.insert("sfmNoticeInsert", snvo);
 	}
+	
 	//전체조회
 	@Override
 	public List<SfmNoticeVO> sfmNoticeSelectAll(SfmNoticeVO snvo) {
@@ -30,13 +31,15 @@ public class SfmNoticeDAOImpl implements SfmNoticeDAO{
 		logger.info("DAO-sfmNoticeSelectAll 함수진입 >> ");
 		return sqlSession.selectList("sfmNoticeSelectAll", snvo);
 	}
-	//수정버튼
+	
+	//조건조회
 	@Override
-	public List<SfmNoticeVO> sfmNoticeUpdate(SfmNoticeVO snvo) {
+	public List<SfmNoticeVO> sfmNoticeSelectCon(SfmNoticeVO snvo) {
 		// TODO Auto-generated method stub
-		logger.info("DAO-sfmNoticeUpdate 함수진입 >> ");
-		return sqlSession.selectList("sfmNoticeUpdate", snvo);
+		logger.info("DAO-sfmNoticeSelectCon 함수진입 >> ");
+		return sqlSession.selectList("sfmNoticeSelectCon", snvo);
 	}
+	
 	//삭제 버튼
 	@Override
 	public int sfmNoticeDelete(SfmNoticeVO snvo) {
@@ -44,12 +47,13 @@ public class SfmNoticeDAOImpl implements SfmNoticeDAO{
 		logger.info("DAO-sfmNoticeDelete 함수진입 >> ");
 		return (Integer)sqlSession.delete("sfmNoticeDelete", snvo);
 	}
+	
 	//수정완료 버튼
 	@Override
-	public int sfmNoticeUpdate2(SfmNoticeVO snvo) {
+	public int sfmNoticeUpdate(SfmNoticeVO snvo) {
 		// TODO Auto-generated method stub
-		logger.info("DAO-sfmNoticeUpdate2 함수진입 >> ");
-		return (Integer)sqlSession.update("sfmNoticeUpdate2", snvo);
+		logger.info("DAO-sfmNoticeUpdate 함수진입 >> ");
+		return (Integer)sqlSession.update("sfmNoticeUpdate", snvo);
 	}
 
 }

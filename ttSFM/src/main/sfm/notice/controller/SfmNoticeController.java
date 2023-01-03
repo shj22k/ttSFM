@@ -29,14 +29,14 @@ public class SfmNoticeController {
 	@Autowired(required=false) // 채번 의존성 주입
 	private SfmChabunService sfmChabunService;
 
-	//입력폼 호출하기
+	//관리자 - 입력폼 호출하기
 	@RequestMapping(value="sfmNoticeInsertForm",method=RequestMethod.GET)
 	public String sfmNoticeInsertForm() {
 		logger.info("sfmNoticeInsertForm 함수진입 >>>" );
 		return "notice/sfmNoticeInsertForm";
 	}
 
-	//입력
+	//관리자 - 입력
 	@RequestMapping(value = "sfmNoticeInsert" , method=RequestMethod.POST)
 	public String sfmNoticeInsert(HttpServletRequest req,SfmNoticeVO snvo) {
 		String noticenum = ChabunUtil.getSFMnoticeChabun("D", sfmChabunService.getSFMnoticeChabun().getNoticenum());
@@ -65,7 +65,7 @@ public class SfmNoticeController {
 		return "notice/sfmNoticeInsertForm";
 	}
 	
-	//전체조회
+	//관리자 - 전체조회
 	@RequestMapping(value= "sfmNoticeSelectAll", method= RequestMethod.GET)
 	public String sfmNoticeSelectAll(SfmNoticeVO snvo,Model model) {
 		logger.info("sfmNoticeSelectAll 함수진입 >>>" );
@@ -84,56 +84,51 @@ public class SfmNoticeController {
 		return "notice/sfmNoticeInsertForm";
 	}
 	
-	//수정버튼
-	@RequestMapping(value= "sfmNoticeUpdate", method= RequestMethod.GET)
-	public String sfmNoticeUpdate(HttpServletRequest req,SfmNoticeVO snvo,Model model) {
+	//관리자 - 수정폼으로 이동 버튼(조건조회)
+	@RequestMapping(value= "sfmNoticeSelectCon", method= RequestMethod.GET)
+	public String sfmNoticeSelectCon(HttpServletRequest req,SfmNoticeVO snvo,Model model) {
 		String noticenum = req.getParameter("chkbox");
 		snvo.setNoticenum(noticenum);
 		
 		List<SfmNoticeVO> a =  new ArrayList<SfmNoticeVO>();
 		
-		a = sfmNoticeService.sfmNoticeUpdate(snvo);
+		a = sfmNoticeService.sfmNoticeSelectCon(snvo);
 		model.addAttribute("a", a);
 		
 		return "notice/sfmNoticeUpdateForm";
 	}
 	
-	//수정폼에서 수정 후  - 셀렉트올로 보내기 버튼
-	@RequestMapping(value = "sfmNoticeUpdate2" ,method = RequestMethod.GET)
+	//관리자 - 수정버튼
+	@RequestMapping(value = "sfmNoticeUpdate" ,method = RequestMethod.GET)
 	public String sfmNoticeUpdate2(HttpServletRequest req ,Model model) {
-
-			logger.info("컨트롤러- sfmNoticeUpdate2  >>> : " );
-			
+			logger.info("컨트롤러- sfmNoticeUpdate  >>> : " );
 			
 			SfmNoticeVO _snvo = null;
 			_snvo = new SfmNoticeVO();
-			//HttpSession session = req.getSession();
-		    //String memnum = (String)session.getAttribute("memnum");
 			
 			String memnum = req.getParameter("memnum"); 
 		    _snvo.setMemnum(memnum);
 			
 			logger.info("memnum >>" +memnum);
 			_snvo.setNoticenum(req.getParameter("noticenum"));
-			//ogger.info("noticenum >>> "+_snvo.getNoticenum());
 			
 			_snvo.setNoticecontent(req.getParameter("noticecontent"));
 			logger.info("noticecontent >>> "+_snvo.getNoticecontent());
 			_snvo.setNoticetitle(req.getParameter("noticetitle"));
 			logger.info("getNoticetitle >>> "+_snvo.getNoticetitle());
 			
-			int insertCnt =sfmNoticeService.sfmNoticeUpdate2(_snvo);
+			int insertCnt =sfmNoticeService.sfmNoticeUpdate(_snvo);
 			logger.info("insertCnt >>> : "+insertCnt);
 			if(insertCnt >0) {
 			logger.info("insertCnt >>> : "+insertCnt);
-				return "notice/sfmNoticeUpdate2";// 입력한 데이터들 전체조회로 가도록 
+				return "notice/sfmNoticeUpdate";// 입력한 데이터들 전체조회로 가도록 
 			}
 		return "notice/sfmNoticeUpdateForm";
 	}
 	
-	//삭제
+	//관리자 - 삭제
 	@RequestMapping(value ="sfmNoticeDelete" , method = RequestMethod.GET)
-	public String sfmNoticeDelete(HttpServletRequest req,SfmNoticeVO snvo,Model model) {
+	public String sfmNoticeDelete(HttpServletRequest req ,SfmNoticeVO snvo ,Model model) {
 		
 		String chkbox = req.getParameter("chkbox");
 		snvo.setNoticenum(chkbox);
@@ -146,4 +141,39 @@ public class SfmNoticeController {
 		}
 		return "notice/sfmNoticeDelete";
 	}
+	
+	//사용자 - 전체조회
+	@RequestMapping(value= "sfmNoticeSelectAllUI", method= RequestMethod.GET)
+	public String sfmNoticeSelectAllUI(SfmNoticeVO snvo,Model model) {
+		logger.info("sfmNoticeSelectAll 함수진입 >>>" );
+		
+		List<SfmNoticeVO> listAll = sfmNoticeService.sfmNoticeSelectAll(snvo);
+
+		int nCnt= listAll.size();
+		logger.info("sfmNoticeSelectAll Cnt >>> : "+nCnt);
+		if(nCnt>0) {
+			logger.info("sfmNoticeSelectAll nCnt >>> : "+ nCnt);
+			
+			model.addAttribute("listAll", listAll);
+			return "noticeUI/sfmNoticeSelectAllUI";
+		}
+		return "noticeUI/sfmNoticeInsertForm";
+	}
+	
+	//사용자 - 부분조회
+	@RequestMapping(value= "sfmNoticeSelectConUI", method= RequestMethod.GET)
+	public String sfmNoticeSelectConUI(HttpServletRequest req, SfmNoticeVO snvo, Model model) {
+		logger.info("sfmNoticeSelectConUI 함수진입 >>>" );
+		
+		List<SfmNoticeVO> listS = sfmNoticeService.sfmNoticeSelectCon(snvo);
+		
+		if(listS.size()==0) {
+			logger.info("sfmNoticeSelectConUI listS.size() >>> : "+ listS.size());
+			model.addAttribute("listS", listS);
+			return "noticeUI/sfmNoticeSelectConUI";
+		}
+		return "noticeUI/sfmNoticeSelectConUI";
+	}
+
+
 }

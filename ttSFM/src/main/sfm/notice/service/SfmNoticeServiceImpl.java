@@ -38,10 +38,10 @@ public class SfmNoticeServiceImpl implements SfmNoticeService{
 	}
 	//수정버튼
 	@Override
-	public List<SfmNoticeVO> sfmNoticeUpdate(SfmNoticeVO snvo) {
+	public List<SfmNoticeVO> sfmNoticeSelectCon(SfmNoticeVO snvo) {
 		// TODO Auto-generated method stub
 		logger.info("sfmNoticeUpdate() 함수 진입 >>> : ");
-		return sfmNoticeDAO.sfmNoticeUpdate(snvo);
+		return sfmNoticeDAO.sfmNoticeSelectCon(snvo);
 	}
 	//삭제버튼
 	@Override
@@ -52,10 +52,10 @@ public class SfmNoticeServiceImpl implements SfmNoticeService{
 	}
 	//수정완료 버튼
 	@Override
-	public int sfmNoticeUpdate2(SfmNoticeVO snvo) {
+	public int sfmNoticeUpdate(SfmNoticeVO snvo) {
 		// TODO Auto-generated method stub
-		logger.info("sfmNoticeUpdate2() 함수 진입 >>> : ");
-		return sfmNoticeDAO.sfmNoticeUpdate2(snvo);
+		logger.info("sfmNoticeUpdate() 함수 진입 >>> : ");
+		return sfmNoticeDAO.sfmNoticeUpdate(snvo);
 	}
 
 }

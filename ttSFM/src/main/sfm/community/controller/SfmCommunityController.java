@@ -1,5 +1,6 @@
 package main.sfm.community.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -130,5 +131,67 @@ public class SfmCommunityController {
 		}
 		return "";
 	}
+
+	// 수정 폼 호출 // sfmCommunityUpdate : 수정폼
+	@GetMapping("sfmCommunityUpdateForm")
+	public String sfmCommunityUpdateForm(HttpServletRequest req, Model model,SfmCommunityVO cvo) throws Exception{
+		logger.info("sfmCommunityUpdateForm 함수 진입 >>> : ");
+		
+		String cnum = req.getParameter("cnum");
+		
+		cvo.setCnum(cnum);
+		logger.info("cnum >>> : " + cnum);
+		
+		List<SfmCommunityVO> udateForm = new ArrayList<SfmCommunityVO>();
+		udateForm = sfmCommunityService.sfmCommunitySelectCon(cvo);
+		
+		model.addAttribute("udateForm", udateForm);
+		
+		return "community/sfmCommunityUpdateForm";
+	}
+	
+	@PostMapping("sfmCommunityUpdate")
+	public String sfmCommunityUpdate(HttpServletRequest req, Model model,SfmCommunityVO cvo) {
+		logger.info("sfmCommunityUpdate 함수 진입");
+
+		// DB에 연결되는 로직이기 때문에, 반드시 서비스를 통해 연결 해야한다.
+		FileUploadUtil mu = new FileUploadUtil( CommonUtils.SFM_IMG_UPLOAD_COMMUNITY_PATH
+				   ,CommonUtils.SFM_IMG_FILE_SIZE
+				   ,CommonUtils.SFM_EN_CODE);
+		
+		boolean bool = mu.imgfileUpload(req);
+		logger.info("shjMemInsert bool >>> : " + bool);
+		
+		HttpSession session = req.getSession();
+		String memnum = (String)session.getAttribute("memnum");
+		String cnum = (String)session.getAttribute("cnum");
+		logger.info("cnum() >>> : " + cnum);
+
+		logger.info("memnum() >>> : " + memnum);
+		
+		cvo.setCnum(cnum);
+		logger.info("cvo.getCnum() >>> : " + cvo.getCnum());
+		cvo.setCsubject(mu.getParameter("csubject"));
+		cvo.setCname(mu.getParameter("cname"));
+		cvo.setCcontent(mu.getParameter("ccontent"));
+		cvo.setCfile(mu.getFileName("cfile"));
+		cvo.setMemnum(memnum);
+		logger.info("cvo.getCnum() >>> : " + cvo.getCnum());
+		logger.info("cvo.getCsubject() >>> : " + cvo.getCsubject());
+		logger.info("cvo.getCname() >>> : " + cvo.getCname());
+		logger.info("cvo.getCcontent() >>> : " + cvo.getCcontent());
+		logger.info("cvo.getCfile() >>> : " + cvo.getCfile());
+		logger.info("cvo.getMemnum() >>> : " + cvo.getMemnum());
+
+		int updatecnt = sfmCommunityService.sfmCommunityUpdate(cvo);
+		if(updatecnt > 0) {
+			logger.info("updatecnt >>> : " + updatecnt);
+			model.addAttribute("updatecnt", updatecnt);
+			
+			return "community/sfmCommunityUpdateForm1";
+		}
+		return "";
+	}
+	
 
 }

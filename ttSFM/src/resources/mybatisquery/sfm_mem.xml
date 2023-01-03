@@ -123,5 +123,12 @@
 	
 </select>
 
+<update id="pwUpdate"  parameterType="sfmmemvo">
+
+   UPDATE   SFM_MEMBER
+   SET 		MEMPW   = #{mempw}
+   WHERE    DELETEYN = 'Y' 
+   AND      MEMID = #{memid}
+</update>
 
 </mapper>

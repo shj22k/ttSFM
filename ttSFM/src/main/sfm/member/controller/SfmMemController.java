@@ -3,6 +3,7 @@ package main.sfm.member.controller;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -89,6 +90,7 @@ public class SfmMemController {
 		return "member/sfmMemInsertForm";
 	}
 	
+	// 내정보 페이지 이동
 	@PostMapping("sfmMemSelectAll")
 	public String sfmMemSelectAll(SfmMemVO mvo, Model model) {
 		logger.info("sfmMemSelectAll 진입");
@@ -102,14 +104,12 @@ public class SfmMemController {
 				logger.info("sfmMemService nCnt >>> : " + nCnt);
 				
 				model.addAttribute("fileUploadListAll", fileUploadListAll);		
-				return "member/sfmMemSelectAll";	// 내정보 보기 페이지
+				return "member/sfmMemSelectAll";	// 내정보 보기
 			}
-
 		}catch(Exception e) {
 			logger.info("에러가 >>> :" + e.getMessage());
 		}
-		
-		return "main/mainPage";
+		return "admin/mainPage";
 	}
 	
 	// 수정 폼으로 이동
@@ -117,22 +117,23 @@ public class SfmMemController {
 	public String sfmMatchUpdateForm(HttpServletRequest req, Model model,SfmMemVO mvo) throws Exception{
 		logger.info("sfmMemUpdateForm 함수 진입 >>> : ");
 
-		String memnum = req.getParameter("chkbox");
+		HttpSession session = req.getSession();
+		String memnum = (String)session.getAttribute("memnum");
+		logger.info("memnum() >>> : " + memnum);
 		
 		mvo.setMemnum(memnum);
 		
-		List<SfmMemVO> sfmMemUpdateForm = new ArrayList<SfmMemVO>();
-		sfmMemUpdateForm = sfmMemService.sfmMemSelect(mvo);
+		List<SfmMemVO> updateForm = new ArrayList<SfmMemVO>();
+		updateForm = sfmMemService.sfmMemSelect(mvo);
 		
-		model.addAttribute("sfmMemUpdateForm", sfmMemUpdateForm);
+		model.addAttribute("updateForm", updateForm);
 		
-		return "admin/sfmMemUpdateForm";
+		return "member/sfmMemUpdateForm";	// 회원 수정페이지
 	}
-	
 	
 	// 수정 폼에서 '수정하기 버튼 클릭시'
 	@PostMapping("sfmMemUpdate")
-	public String sfmMatchUpdate(HttpServletRequest req, SfmMemVO mvo, Model model) {
+	public String sfmMemUpdate(HttpServletRequest req, SfmMemVO mvo, Model model) {
 		
 		// DB에 연결되는 로직이기 때문에, 반드시 서비스를 통해 연결 해야한다.
 		FileUploadUtil mu = new FileUploadUtil( CommonUtils.SFM_IMG_UPLOAD_PATH
@@ -179,7 +180,7 @@ public class SfmMemController {
 		try {
 			if(updateCnt > 0) {
 				logger.info("sfmMatchInsert insertCnt >>> : " + updateCnt);
-				return "admin/sfmMatchSelectAll";
+				return "member/sfmMemUpdate";
 			}
 		}catch(Exception e) {
 			System.out.println("에러가 발생" + e);

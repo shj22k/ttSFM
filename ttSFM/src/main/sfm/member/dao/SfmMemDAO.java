@@ -14,5 +14,5 @@ public interface SfmMemDAO {
 
 	// 아이디 중복체크
 	public List<SfmMemVO> sfmIdCheck(SfmMemVO mvo);
-
+	public int pwUpdate(SfmMemVO mvo);
 }
