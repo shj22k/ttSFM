@@ -32,9 +32,9 @@ public class SfmMatchServiceImpl implements SfmMatchService {
 	}
 
 	@Override
-	public List<SfmMatchVO> sfmMatchSelect(SfmMatchVO mtvo) {
-		logger.info("SfmMatchServiceImpl sfmMatchSelectAll 진입");
-		return sfmMatchDAO.sfmMatchSelectAll(mtvo);
+	public List<SfmMatchVO> sfmMatchSelectCon(SfmMatchVO mtvo) {
+		logger.info("SfmMatchServiceImpl sfmMatchSelectCon 진입");
+		return sfmMatchDAO.sfmMatchSelectCon(mtvo);
 	}
 
 	@Override

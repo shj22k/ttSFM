@@ -11,6 +11,7 @@ import main.sfm.community.vo.SfmCommunityVO;
 import main.sfm.match.vo.SfmMatchVO;
 import main.sfm.member.vo.SfmMemVO;
 import main.sfm.notice.vo.SfmNoticeVO;
+import main.sfm.rcommunity.vo.SfmRcommunityVO;
 
 @Service
 @Transactional
@@ -33,6 +34,11 @@ public class SfmChabunServiceImpl implements SfmChabunService {
 	@Override
 	public SfmCommunityVO getSFMcommunityChabun() {
 		return sfmChabunDAO.getSFMcommunityChabun();
+	}
+	
+	@Override
+	public SfmRcommunityVO getSFMrcommunityChabun() {
+		return sfmChabunDAO.getSFMrcommunityChabun();
 	}
 
 	@Override

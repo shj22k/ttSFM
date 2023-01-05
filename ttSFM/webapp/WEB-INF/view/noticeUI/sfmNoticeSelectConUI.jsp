@@ -2,35 +2,46 @@
     pageEncoding="UTF-8"%>
 <%@ page import="org.apache.log4j.LogManager" %>  
 <%@ page import="org.apache.log4j.Logger" %>   
+    
 <%@ page import="main.sfm.notice.vo.SfmNoticeVO" %>
 <%@ page import="java.util.List" %>
-<%
-	Logger logger = LogManager.getLogger(this.getClass());
-	logger.info("sfmNoticeSelectConUI.jsp >>> : ");
-	
-	String noticenum = request.getParameter("noticenum");
-	session.setAttribute("noticenum", noticenum);
-%> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%
+	Logger logger = LogManager.getLogger(this.getClass());
+	logger.info("sfmNoticeSelectCon.jsp >>> : ");
+	
+	String noticenum = request.getParameter("noticenum");
+	session.setAttribute("noticenum", noticenum);
+%> 
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 
 	$(document).ready(function(){
 		alert("ready 함수 진입");
 		
-		// 목록으로 이동
-		$('#selectBtn').on('click', function(){
-			alert("selectAllbtn버튼 클릭  >>> ");
-			//리터럴객체
-			$('#noticecon').attr({
-				"action":"sfmNoticeSelectAllUI.sfm",
-				"method":"GET",
-			}).submit();
-		});
+// 		// 목록으로 이동
+// 		$('#selectBtn').on('click', function(){
+// 			alert("selectAllbtn버튼 클릭  >>> ");
+// 			//리터럴객체
+// 			$('#commucon').attr({
+// 				"action":"sfmCommunitySelectAll.sfm",
+// 				"method":"GET",
+// 			}).submit();
+// 		});
+		
+// 		// 수정하기
+// 		$("#updateBtn").on("click",function(){
+// 			alert("updateBtn버튼 클릭  >>> ");
+
+// 			$('#commucon').attr({
+// 				"action":"sfmCommunityUpdateForm.sfm",
+// 				"method":"GET",
+// 			}).submit();
+// 		});
 	});
 	
 </script>
@@ -45,29 +56,19 @@
 		for(int i=0; i<list.size(); i++){
 			SfmNoticeVO snvo = list.get(i);
 %>
-<h3 align="center">dd</h3>
+<h3 align="center"></h3>
 <hr>
-<form name="noticecon" id="noticecon">
+<form name="commucon" id="commucon">
 <table border="1" align="center">
 <thead>
 <tr>
-	<td>번호</td>
-	<td>제목</td>
-	<td>내용</td>
-	<td>등록일</td>
+	<td>글번호</td>
 </tr>
 </thead>
 <tbody>
 <tr>
 	<td class="tt" align="center"><%= snvo.getNoticenum() %></td>
-	<td class="tt"><%= snvo.getNoticetitle() %></td>
-	<td class="tt"><%= snvo.getNoticecontent() %></td>
-	<td class="tt"><%= snvo.getInsertdate() %></td>
 </tr>
-<%		
-		}
-	}
-%>
 <tr>
 	<td colspan="9" align="right">	
 		<input type="hidden" id="noticenum" name="noticenum" value="<%= noticenum %>" />
@@ -76,6 +77,10 @@
 	</td>
 </tr>	
 </tbody>			
+<%		
+		}
+	}
+%>
 </table>
 </form>
 </body>

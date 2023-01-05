@@ -40,7 +40,7 @@ public class SfmNoticeServiceImpl implements SfmNoticeService{
 	@Override
 	public List<SfmNoticeVO> sfmNoticeSelectCon(SfmNoticeVO snvo) {
 		// TODO Auto-generated method stub
-		logger.info("sfmNoticeUpdate() 함수 진입 >>> : ");
+		logger.info("sfmNoticeSelectCon() 함수 진입 >>> : ");
 		return sfmNoticeDAO.sfmNoticeSelectCon(snvo);
 	}
 	//삭제버튼

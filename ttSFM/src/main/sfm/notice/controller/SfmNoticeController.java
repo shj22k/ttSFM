@@ -144,16 +144,15 @@ public class SfmNoticeController {
 	
 	//사용자 - 전체조회
 	@RequestMapping(value= "sfmNoticeSelectAllUI", method= RequestMethod.GET)
-	public String sfmNoticeSelectAllUI(SfmNoticeVO snvo,Model model) {
+	public String sfmNoticeSelectAllUI(HttpServletRequest req, SfmNoticeVO snvo, Model model) {
 		logger.info("sfmNoticeSelectAll 함수진입 >>>" );
-		
+
 		List<SfmNoticeVO> listAll = sfmNoticeService.sfmNoticeSelectAll(snvo);
 
 		int nCnt= listAll.size();
 		logger.info("sfmNoticeSelectAll Cnt >>> : "+nCnt);
 		if(nCnt>0) {
 			logger.info("sfmNoticeSelectAll nCnt >>> : "+ nCnt);
-			
 			model.addAttribute("listAll", listAll);
 			return "noticeUI/sfmNoticeSelectAllUI";
 		}
@@ -165,9 +164,14 @@ public class SfmNoticeController {
 	public String sfmNoticeSelectConUI(HttpServletRequest req, SfmNoticeVO snvo, Model model) {
 		logger.info("sfmNoticeSelectConUI 함수진입 >>>" );
 		
+		String noticenum = req.getParameter("noticenum");
+		logger.info("noticenum >>> : "+noticenum);
+		snvo.setNoticenum(noticenum);
+		logger.info("noticenum >>> : "+noticenum);
+		
 		List<SfmNoticeVO> listS = sfmNoticeService.sfmNoticeSelectCon(snvo);
 		
-		if(listS.size()==0) {
+		if(listS.size()==1) {
 			logger.info("sfmNoticeSelectConUI listS.size() >>> : "+ listS.size());
 			model.addAttribute("listS", listS);
 			return "noticeUI/sfmNoticeSelectConUI";

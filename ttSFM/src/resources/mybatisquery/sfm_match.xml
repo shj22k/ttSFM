@@ -56,7 +56,7 @@
 
 </select>
 
-<select id="sfmMatchSelect" resultType="sfmmatchvo">
+<select id="sfmMatchSelectCon" resultType="sfmmatchvo">
 
 	SELECT	A.MATCHNUM				MATCHNUM
 		   ,A.MATCHGENDER			MATCHGENDER

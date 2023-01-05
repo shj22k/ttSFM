@@ -12,26 +12,8 @@
 	String mid = "";
 	String memnum =  "";
 	
-	
-	//Object obj = request.getAttribute("listLogin");
-	
-	/*
-	if (obj !=null) {
-		List<SfmMemVO> list = (List<SfmMemVO>)obj;
-
-		int nCnt = list.size();	
-		
-		logger.info("nCnt"+nCnt);
-		if (nCnt == 1) {
-			memnum = list.get(0).getMemnum();
-			logger.info("memnum"+memnum);
-		}
-		
-	}
-		*/
-		
-		session.setAttribute("memnum", memnum);
-		logger.info("memnum > "+memnum);
+	session.setAttribute("memnum", memnum);
+	logger.info("memnum > "+memnum);
 %> 
 
 

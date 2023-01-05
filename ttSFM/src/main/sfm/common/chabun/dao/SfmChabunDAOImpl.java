@@ -10,6 +10,7 @@ import main.sfm.community.vo.SfmCommunityVO;
 import main.sfm.match.vo.SfmMatchVO;
 import main.sfm.member.vo.SfmMemVO;
 import main.sfm.notice.vo.SfmNoticeVO;
+import main.sfm.rcommunity.vo.SfmRcommunityVO;
 
 @Repository
 public class SfmChabunDAOImpl implements SfmChabunDAO {
@@ -33,6 +34,11 @@ public class SfmChabunDAOImpl implements SfmChabunDAO {
 		return sqlSession.selectOne("getSFMcommunityChabun");
 	}
 
+	@Override
+	public SfmRcommunityVO getSFMrcommunityChabun() {
+		return sqlSession.selectOne("getSFMrcommunityChabun");
+	}
+	
 	@Override
 	public SfmNoticeVO getSFMnoticeChabun() {
 		// TODO Auto-generated method stub

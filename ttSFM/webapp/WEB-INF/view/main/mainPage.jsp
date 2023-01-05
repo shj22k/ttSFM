@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <%@ page import="org.apache.log4j.LogManager" %>  
 <%@ page import="org.apache.log4j.Logger" %>   
 <%@ page import="main.sfm.member.vo.SfmMemVO" %>
@@ -22,218 +23,131 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
   <title>티키타카</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/ttSFM/include/mainPage.css">
+
  <!-- ------------------css 선언 시작 -------------------------------------------- -->
   <!--  케러셀 컨테이너 색상정하기  -->
   <!-- 맨위는 검색ㅂ -->
   <style>
  
- <!------------------------------------ 
-   .section {
-    display: block;
-    width: 400px;
-    height: 160px;
-    background: #f7f7f7;
-    position: absolute;
-    left: 0px;
-    top: 175px;
-    width: 400px;
-    height: 501px;
-
-}
-
-   .section2 {
-    display: block;
-    width: 544px;
-    height: 160px;
-    background: #f7f7f7;
-    position: absolute;
-    left: 1503px;
-    top: 175px;
-    width: 400px;
-    height: 501px;
-}
  
-    .carousel-inner > .carousel-item > img{
-       width: 700px;
-      height: 500px;
-    }
     
-    #searchbar{
-	margin-left: 36px;
-	margin-left: 2.250rem;
-	height: 34px;
-	height: 2.125rem;
-	padding: 15px 0;
-	padding: 1em 0;
-}
-
-/* 상단바 버튼 영역 */
-#btnarea{
-	text-align: right;
-	padding-bottom:15px;
-	padding-bottom:1rem;
-}
-
-/* 상단바 메뉴영역 */
-#naviarea{
-	background-color: #EAEAEA;
-}
-
-#naviarea ul:after{
-	content: "";
-	display: block;
-	clear: both;
-}
-
-#naviarea ul{
-	padding: 0;
-}
-
-/* 메뉴 버튼 */
-#naviarea ul > li{
-	list-style: none;
-	float: left;
-	width: 25%;
-}
-
-/* 메뉴버튼 */
-#naviarea ul > li .nav_btn{
-	width: 100%;
-	text-align: center;
-	padding: 10px 0;
-	padding: 1.2rem 0;
-	font-size: 125%;
-}
-
-/* 메뉴버튼에 마우스를 올렸을때 */
-#naviarea ul > li .nav_btn:hover{
-	background-color: #D1D1D1;
-}
-
-#naviarea ul a{
-	text-decoration: none;
-	font-weight:bold;
-	color: black;
-}
-<!---------------------------------------------------->
-	.p-3 {
-    padding: 1rem!important;
-	}
-  
-  	.form-control {
-    display: block;
-    width: 100%;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: 0.25rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
-  
-    body {
-      min-height: 100vh;
-
-      background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
-      background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-      background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-      background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-      background: linear-gradient(to top right, #ffffff 0%, #ffffff 100%);
-    }
-
-     .input-form {
-      max-width: 1100px;
-
-      margin-top: -15px;
-      padding: 32px;
-
-      background: #fff;
-      
-      -webkit-border-radius: 10px;
-      
-      -moz-border-radius: 10px;
-      border-radius: 1px;
-      -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-      -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-      box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-      z-index: 1;
-    }
   </style>
+<script type='text/javascript'>
+
+	$(function date(){
+	
+	    $('.input-group.date').datepicker({
+	
+	        calendarWeeks: false,
+	        todayHighlight: true,
+	        autoclose: true,
+	        format: "yyyy/mm/dd",
+	        language: "kr"
+	    });
+	});
+
+</script>
 </head>
 <!-- ------------------css 선언 끝 -------------------------------------------- -->
 <body>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-  <script>
-    $('.carousel').carousel({
-      interval: 2000 //기본 5초
-    })
-    
-  </script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+  crossorigin="anonymous"></script>
+<script>
 
+	$('.carousel').carousel({
+	  interval: 2000 //기본 5초
+	})
+  
+</script>
+  
+<div style="padding:0px 400px 0px 400px;">
+<div class="container"></div>
+<!-- 상단바 -->
+<div class="topnav">
+  <img src="/ttSFM/img/fb/tikilogo2.png" width="150px">
+  	
+  	<!-- 구장 예약 내역 아이콘 -->
+  	<a href="https://www.plabfootball.com/mypage/myplab/">
+  	<img class="icon-margin2" align="right" src="/ttSFM/img/fb/date2.png" width="35px"><a href="https://www.plabfootball.com/mypage/"></a>
+  	</a>
+ 	 <!-- 구장 예약 내역 아이콘 -->
+  
+  	<!-- 마이 페이지 아이콘 -->
+  	<a href="https://www.plabfootball.com/mypage/">
+  	<img class="icon-margin2" align="right" src="/ttSFM/img/fb/user.png" width="35px">
+  	</a>
+  	<!-- 마이 페이지 아이콘 -->
+  	
+  <div align="right" class="search-container">
+    <form action="/action_page.php">
+      <input type="text" style="width:400px;" placeholder="Search.." name="search">
+      <button type="submit" style="width:50px;"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+  
+</div>
+<!-- 상단바 끝-->
 <!-- ---------------------------시작-------------------------------------------------------------- -->
 <!-- 전체 양 옆 여백 조절하기 -->
-<div style="padding:0px 400px 0px 400px;">
+
 <!-- 상단 로고 -->
-<div class="container"><img src="/ttSFM/img/fb/tikilogo.png" width="100px"><h2>Tiki Taka</h2></div>
+
 <!------------------------------ 메뉴 2 ----------------------------->
+
 <div id="naviarea">
-		<header id="topbar">
-			<ul class="wrapper">
-				<!-- 메뉴버튼들 ----------------------->
-				<li>
-					<a href="boardSelectAll.k" onfocus="this.blur()">
-						<div class="nav_btn">
-							소개
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="javascript:alert('준비중입니다.');" onfocus="this.blur()">
-						<div class="nav_btn">
-							이벤트
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="sfmNoticeSelectAllUI.sfm" onfocus="this.blur()">
-						<div class="nav_btn">
-							공지사항
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="sfmCommunityInsertForm.sfm" onfocus="this.blur()">
-						<div class="nav_btn">
-							커뮤니티
-						</div>
-					</a>
-				</li>
-			</ul>
-			</header>
-		</div>
+<header id="topbar">
+	<ul class="wrapper mb">
+		<!-- 메뉴버튼들 ----------------------->
+		<li>
+			<a href="boardSelectAll.k" onfocus="this.blur()">
+				<div class="nav_btn">
+					소개
+				</div>
+			</a>
+		</li>
+		<li>
+			<a href="javascript:alert('준비중입니다.');" onfocus="this.blur()">
+				<div class="nav_btn">
+					이벤트
+				</div>
+			</a>
+		</li>
+		<li>
+			<a href="sfmNoticeSelectAllUI.sfm" onfocus="this.blur()">
+				<div class="nav_btn">
+					공지사항
+				</div>
+			</a>
+		</li>
+		<li>
+			<a href="sfmCommunityInsertForm.sfm" onfocus="this.blur()">
+				<div class="nav_btn">
+					커뮤니티
+				</div>
+			</a>
+		</li>
+	</ul>
+	</header>
+</div>
 <!------------------------------ 메뉴 2 ------------->
 
  <!--------------  슬라이드 ---------------------------------------------------------------- -->		
@@ -282,65 +196,32 @@
     <!-- 인디케이터 끝 -->
   </div>
 </div>
-
 </div>
+
 <!--------------  슬라이드 끝 ---------------------------------------------------------------- -->	
-<!-- -------------------------- 메뉴--------------------------------------------------------- --> 
-  <div id="naviarea">
-		<header id="topbar">
-			<ul class="wrapper">
-				<!-- 메뉴버튼들 ----------------------->
-				<li>
-					<a href="boardSelectAll.k" onfocus="this.blur()">
-						<div class="nav_btn">
-							소개
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="javascript:alert('준비중입니다.');" onfocus="this.blur()">
-						<div class="nav_btn">
-							이벤트
-						</div>
-					</a>
-				</li>
-				<li>
-	               <a href="sfmNoticeInsertForm.sfm" onfocus="this.blur()">
-	                  <div class="nav_btn">
-	                     	공지사항
-	                  </div>
-	               </a>
-            	</li>
-				<li>
-					<a href="javascript:alert('준비중입니다.');" onfocus="this.blur()">
-						<div class="nav_btn">
-							커뮤니티
-						</div>
-					</a>
-				</li>
-			</ul>
-			</header>
-			
-		</div>
- <!-- ------------ 메뉴 끝--------------------------------------------------------- -->
- <div class="container">
-    <div class="input-form-backgroud row">
-      <div class="input-form col-md-12 mx-auto">
-        <br>
-        <h4 class="mb-3"><b>풋살장 목록</b></h4>
-        <br>
-        <form class="validation-form" novalidate>
-        
-       <jsp:include page="/sfmMatchSelectAll.sfm" />
+<div class="container">
+   <div class="input-form-backgroud row">
+     <div class="input-form col-md-12 mx-auto">
+       <form class="validation-form" novalidate>
        
-        </form>
+      	<jsp:include page="/sfmMatchSelectAll.sfm" >
+   			<jsp:param name="category" value="product1" />
+		</jsp:include>
+		<footer class="my-3 text-center text-small">
+     		<p class="mb-1">&copy; 2022 YD</p>
+   		</footer>
+       </form>
       </div>
     </div>
-    <footer class="my-3 text-center text-small">
-      <p class="mb-1">&copy; 2022 YD</p>
-    </footer>
   </div>
 </div>	
-		
-</body>
+    
+<!--  하단바~~~~~~~~~~~~~~~~~~~~~ -->
+<div class="topnav">
+  <a class="active" href="#home"><img src="/ttSFM/img/fb/tikilogo2.png" width="150px"></a>
+     <br>
+     <br>
+     <br>
+     <br>
+</div></body>
 </html>

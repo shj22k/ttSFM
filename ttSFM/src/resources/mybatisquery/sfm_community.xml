@@ -37,7 +37,7 @@
 			   ,COUNT(A.CNUM) OVER() AS totalCount
 		FROM	SFM_COMMUNITY A
 		WHERE	A.DELETEYN = 'Y'
-		ORDER BY 1
+		ORDER BY 1 DESC
 	<!-- ? : 현재 페이지 : curPage -->
 	) WHERE pageSize = #{curPage}
 

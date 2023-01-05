@@ -126,6 +126,30 @@ public class SfmMatchController {
 		return "";
 	}
 	
+	// 부분 조회
+	@GetMapping("sfmMatchSelectCon")
+	public String sfmMatchSelectCon(SfmMatchVO mtvo, Model model, HttpServletRequest req) {
+		logger.info("SfmMatchController sfmMatchSelectAll 진입");
+
+		String matchnum = req.getParameter("matchnum");
+		logger.info("matchnum >>> : "+matchnum);
+		mtvo.setMatchnum(matchnum);
+		logger.info("matchnum >>> : "+matchnum);
+
+		List<SfmMatchVO> listS = sfmMatchService.sfmMatchSelectAll(mtvo);
+		int nCnt = listS.size();
+		
+		try {
+			if(nCnt > 0) {
+				logger.info("nCnt >>> : " + nCnt);
+				
+				model.addAttribute("listS", listS);
+				return "admin/sfmMatchSelectCon";
+			}
+		}catch(Exception e) { System.out.println("에러가 발생" + e); }
+		return "";
+	}
+
 	
 	// 수정 폼으로 이동
 	@GetMapping("sfmMatchUpdateForm")
@@ -137,7 +161,7 @@ public class SfmMatchController {
 		mtvo.setMemnum(memnum);
 		
 		List<SfmMatchVO> sfmMatchUpdateForm = new ArrayList<SfmMatchVO>();
-		sfmMatchUpdateForm = sfmMatchService.sfmMatchSelect(mtvo);
+		sfmMatchUpdateForm = sfmMatchService.sfmMatchSelectCon(mtvo);
 		
 		model.addAttribute("sfmMatchUpdateForm", sfmMatchUpdateForm);
 		

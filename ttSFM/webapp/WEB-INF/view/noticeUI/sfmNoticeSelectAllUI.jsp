@@ -1,20 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ page import="org.apache.log4j.LogManager" %>  
 <%@ page import="org.apache.log4j.Logger" %> 
 <%@ page import="java.util.List" %>  
 <%@page import="main.sfm.member.vo.SfmMemVO" %>
 <%@page import="main.sfm.notice.vo.SfmNoticeVO" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<% request.setCharacterEncoding("UTF-8"); %>
+<%
+	Logger logger = LogManager.getLogger(this.getClass());
+	logger.info("sfmnoticeUISelectCon.jsp >>> : ");
+	
+// 	String noticenum = request.getParameter("noticenum");
+// 	session.setAttribute("noticenum", noticenum);
+%> 
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script type="text/javascript">
 
@@ -55,11 +64,6 @@
 </style>
 </head>
 <body>
-<% request.setCharacterEncoding("UTF-8"); %>
-<%
-	Logger logger = LogManager.getLogger(this.getClass());
-	logger.info("sfmNoticeSelectAll.jsp >>> :");
-%>
 <div class ="container">
 <h3>공지목록</h3>
 <hr>
@@ -67,9 +71,9 @@
 <table class="table table-striped" border ="1" align ="center">
 <thead>
 <tr>
-	<th>순번<th>
-	<th>공지번호</th>
-	<th>공지제목</th>
+		<th>순번</th>
+		<th>공지번호</th>
+		<th>공지제목</th>
 </tr>
 </thead>
 <%
@@ -90,7 +94,7 @@
 	<td class="tt"><%= i + 1 %></td>
 	<td class="tt"><%= snvo.getNoticenum() %></td>
 	<td class="tt"><a href="#" onclick="fn_link('<%= snvo.getNoticenum() %>');"><%= snvo.getNoticetitle() %></a></td>
-</tr>	
+</tr>
 <%
 		} // end of for
 	}//end of if

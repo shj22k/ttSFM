@@ -80,14 +80,16 @@
 	//boardSelectList.jsp?&curPage=1	
 	//boardSelectList.jsp?&curPage=0
 %>
-	<a href="<%=url%>?<%=str%>curPage=1">◁◁</a>&nbsp;&nbsp;&nbsp;
+	<a href="<%=url%>?<%=str%>curPage=1">
+			<img src="/ttSFM/img/img_arrow/left2.png" style='width:25px'>
+	</a>&nbsp;&nbsp;&nbsp;
 	<a href="<%=url%>?<%=str%>curPage=<%=linkPage%> ">
-			<img src="/ShjSpring/img/img_ghost/ghost_happy.png" style='width:25px'>
+			<img src="/ttSFM/img/img_arrow/left1.png" style='width:25px'>
 	</a>&nbsp;&nbsp;&nbsp;
 <%
 	}else{
 %>
-		◁◁&nbsp;&nbsp;&nbsp;<img src="/ShjSpring/img/img_ghost/ghost_happy.png" style='width:25px'>&nbsp;&nbsp;&nbsp;
+		<img src="/ttSFM/img/img/img_arrow/left2.png" style='width:25px'>&nbsp;&nbsp;&nbsp;<img src="/ttSFM/img/img/img_arrow/left1.png" style='width:25px'>&nbsp;&nbsp;&nbsp;
 <%
 	}
 	
@@ -132,16 +134,18 @@
 	//	boardSelectList.jsp?&curPage=40	
 %>
 	<a href="<%=url%>?<%=str%>curPage=<%=linkPage%>">
-			<img src="/ShjSpring/img/img_ghost/ghost_happy.png" style='width:25px'>
+			<img src="/ttSFM/img/img_arrow/right1.png" style='width:25px'>
 	</a>&nbsp;&nbsp;&nbsp;
-	<a href="<%=url%>?<%=str%>curPage=<%=pageCount%>">▷▷</a>&nbsp;&nbsp;&nbsp;
+	<a href="<%=url%>?<%=str%>curPage=<%=pageCount%>">
+			<img src="/ttSFM/img/img_arrow/right2.png" style='width:25px'>
+	</a>&nbsp;&nbsp;&nbsp;
 <%
 	}else{
 		System.out.println("다음그룹이 있는 경우 linkPage >>> : " + linkPage);
 		System.out.println("다음그룹이 있는 경우pageCount >>> : " +pageCount);
 		System.out.println("다음그룹이 있는 경우_else");
 %>
-	<img src="/ShjSpring/img/img_ghost/ghost_happy.png" style='width:25px'>&nbsp;&nbsp;&nbsp;▷▷&nbsp;&nbsp;&nbsp;
+	<img src="/ttSFM/img/img/img_arrow/right1.png" style='width:25px'>&nbsp;&nbsp;&nbsp;<img src="/ttSFM/img/img/img_arrow/right2.png" style='width:25px'>&nbsp;&nbsp;&nbsp;
 <%
 	}
 %>

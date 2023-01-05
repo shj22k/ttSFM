@@ -9,7 +9,7 @@ public interface SfmMatchDAO {
 
 	public int sfmMatchInsert(SfmMatchVO mtvo);
 	public List<SfmMatchVO> sfmMatchSelectAll(SfmMatchVO mtvo);
-	public List<SfmMatchVO> sfmMatchSelect(SfmMatchVO mtvo);
+	public List<SfmMatchVO> sfmMatchSelectCon(SfmMatchVO mtvo);
 	public int sfmMatchUpdate(SfmMatchVO mtvo);
 	public int sfmMatchDelete(SfmMatchVO mtvo);
 	

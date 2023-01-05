@@ -30,9 +30,9 @@ public class SfmMatchDAOImpl implements SfmMatchDAO {
 	}
 
 	@Override
-	public List<SfmMatchVO> sfmMatchSelect(SfmMatchVO mtvo) {
-		logger.info("SfmMatchDAOImpl sfmMatchSelect 진입");
-		return sqlSession.selectList("sfmMatchSelect", mtvo);
+	public List<SfmMatchVO> sfmMatchSelectCon(SfmMatchVO mtvo) {
+		logger.info("SfmMatchDAOImpl sfmMatchSelectCon 진입");
+		return sqlSession.selectList("sfmMatchSelectCon", mtvo);
 	}
 
 	@Override
