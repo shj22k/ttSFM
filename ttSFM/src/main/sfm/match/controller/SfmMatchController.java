@@ -76,6 +76,7 @@ public class SfmMatchController {
 		mtvo.setMatchparking(mu.getParameter("matchparking"));
 		mtvo.setMatchsuit(mu.getParameter("matchsuit"));
 		mtvo.setMatchshose(mu.getParameter("matchshose"));
+		mtvo.setMatchshower(mu.getParameter("matchshower"));
 		mtvo.setMemnum(memnum);
 		mtvo.setMempreferredarea(mu.getParameter("mempreferredarea"));
 		mtvo.setMatchfile(mu.getFileName("matchfile"));
@@ -149,7 +150,25 @@ public class SfmMatchController {
 		}catch(Exception e) { System.out.println("에러가 발생" + e); }
 		return "";
 	}
+	
+	@GetMapping("sfmMatchSelectfilter")
+	public String sfmMatchSelectfilter(SfmMatchVO mtvo, Model model, HttpServletRequest req) {
+		logger.info("SfmMatchController sfmMatchSelectfilter 진입");
 
+		List<SfmMatchVO> searchList = sfmMatchService.sfmMatchSelectfilter(mtvo);
+		int nCnt = searchList.size();
+		logger.info("sfmMatchSelectfilter nCnt >>> : " + nCnt);
+		
+		try {
+			if(nCnt > 0) {
+				logger.info("nCnt >>> : " + nCnt);
+				
+				model.addAttribute("searchList", searchList);
+				return "admin/sfmMatchSelectAll";
+			}
+		}catch(Exception e) { System.out.println("에러가 발생" + e); }
+		return "";
+	}
 	
 	// 수정 폼으로 이동
 	@GetMapping("sfmMatchUpdateForm")

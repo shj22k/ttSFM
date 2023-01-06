@@ -19,13 +19,26 @@
 	
 	String matchnum = request.getParameter("matchnum");
 	session.setAttribute("matchnum", matchnum);
-%> 
+	
+	Object obj = request.getAttribute("listS");
+	if(obj==null) {return;}
+	
+	List<SfmMatchVO> list = (List<SfmMatchVO>)obj;
+	SfmMatchVO mtvo = list.get(0);
+%>
+
 <link rel="stylesheet" type="text/css" href="/ttSFM/include/styles.css">
 <link rel="stylesheet" type="text/css" href="/ttSFM/include/sfmMatchSelect.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
   	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script type='text/javascript'>
+
+	function text_gray(ths){
+		if(ths.contains("풋살화")){
+			document.getElementById("shose").style = "color:gray;";
+		}
+	}
 
 	$(function(){
 	    $('.input-group.date').datepicker({
@@ -135,15 +148,6 @@
 </div>
 <!--------------  슬라이드 끝 ---------------------------------------------------------------- -->	
 
-<%
-	Object obj = request.getAttribute("listS");
-	if(obj==null) {return;}
-	
-	List<SfmMatchVO> list = (List<SfmMatchVO>)obj;
-	if(list.size() > 0){
-		for(int i=0; i<list.size(); i++){
-			SfmMatchVO mtvo = list.get(i);
-%>
 <div class="container">
 <div class="input-form-backgroud row">
 <div class="input-form col-md-12 mx-auto">
@@ -163,19 +167,19 @@
 	<li class="info__list">
 		<img src="https://plab-football.s3.amazonaws.com/static/img/ic_info_level.svg" class="icon">
 		<div>
-			<p class=""></p>
+			<p class=""><%= mtvo.getMatchlv() %></p>
 		</div>
 	</li>
 	<li class="info__list">
 		<img src="https://plab-football.s3.amazonaws.com/static/img/ic_info_gender.svg" class="icon">
 		<div>
-			<p>남자만</p>
+			<p><%= mtvo.getMatchgender() %></p>
 		</div>
 	</li>
 	<li class="info__list">
 		<img src="https://plab-football.s3.amazonaws.com/static/img/ic_info_stadium.svg" class="icon">
 		<div>
-			<p>6vs6 3파전</p>
+			<p><%= mtvo.getMatchpersonnel() %></p>
 		</div>
 	</li>
 	<li class="info__list">
@@ -187,7 +191,7 @@
 	<li class="info__list">
 		<img src="https://plab-football.s3.amazonaws.com/static/img/ic_info_shoes.svg" class="icon">
 		<div>
-		<p class="link">풋살화/운동화</p></div></li></ul></div> <div class="stadInner"><div class="info__list__wrapper"><ul><!----> <!----> <!----> <!----> <li class="info__list"> <div></div></li></ul> <!----></div></div></section>
+		<p class="link"><%= mtvo.getMatchshose() %></p></div></li></ul></div> <div class="stadInner"><div class="info__list__wrapper"><ul><!----> <!----> <!----> <!----> <li class="info__list"> <div></div></li></ul> <!----></div></div></section>
 </form>
 </div>
 		
@@ -206,7 +210,9 @@
 					<li class="info__list">
 						<div>
 							<p class="">MATCHKICKOFF</p>
-							<p class="">부산 준타스 풋살 아레나 화이트 (MATCHZONECODE / MATCHJIBUNADDRESS)</p>
+							<p class=""><%= mtvo.getMatchstadium() %></p>
+							<p class=""><%= mtvo.getMatchjibunaddress() %></p>
+							
 						</div>
 					</li>
 				</ul>
@@ -219,7 +225,6 @@
 	</form>
 </div>
 </div>
-
 </div>
 </div>	
 </div>
@@ -239,41 +244,35 @@
 				</div>
 			<div id="mnRule" class="info__list__wrapper double">
 			<ul>
-			<li class="info__list">
-			<img src="https://plab-football.s3.amazonaws.com/static/img/ic_info_stadium.svg" class="icon">
-			<div>
-			<p class="">40x20</p>
-			</div>
-			</li>
-			<li class="info__list">
-			<img src="https://plab-football.s3.amazonaws.com/static/img/ic_info_shower.svg" class="icon no">
-			<div>
-			<p>샤워실</p>
-			</div>
-			</li>
-			<li class="info__list">
-			<img src="https://plab-football.s3.amazonaws.com/static/img/ic_info_park.svg" alt="유료주차" class="icon">
-			<div>
-			<p>유료주차</p>
-			</div>
-			</li>
-			<li class="info__list">
-			<img src="https://plab-football.s3.amazonaws.com/static/img/ic_info_shoes.svg" class="icon">
-			<div>
-			<p>풋살화 대여</p>
-			</div>
-			</li>
-
+				<li class="info__list">
+					<img src="https://plab-football.s3.amazonaws.com/static/img/ic_info_stadium.svg" class="icon">
+					<div>
+						<p class="">40x20</p>
+					</div>
+				</li>
+				<li class="info__list">
+					<img src="https://plab-football.s3.amazonaws.com/static/img/ic_info_shower.svg" class="icon no">
+					<div>
+						<p>샤워실</p>
+					</div>
+				</li>
+				<li class="info__list">
+					<img src="https://plab-football.s3.amazonaws.com/static/img/ic_info_park.svg" alt="유료주차" class="icon">
+					<div>
+						<p>유료주차</p>
+					</div>
+				</li>
+				<li class="info__list">
+					<img src="https://plab-football.s3.amazonaws.com/static/img/ic_info_shoes.svg" class="icon">
+					<div>
+						<p id="shose"><script>text_gray('<%= mtvo.getMatchshose() %>')</script></p>
+					</div>
+				</li>
 			</div> 
 			<div class="stadInner"><div class="info__list__wrapper">
 			<ul><!----> <!----> <!----> <!----> 
 			<li class="info__list"> <div></div></li></ul> <!----></div></div></section>
 		</form>
-<%		
-		}
-	}
-%>
-		
 		
 		      	▶ 구장 특이사항
 <br>

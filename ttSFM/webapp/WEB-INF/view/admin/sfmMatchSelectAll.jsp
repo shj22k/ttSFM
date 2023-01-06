@@ -44,6 +44,18 @@
 	    });
 	});
 	
+	$(document).ready(function(){
+		alert("jQuery ready() 함수 블럭 진입 >>> : ")
+
+		$("#search_btn").click(function(){
+			alert("search_btn 버튼 클릭 >>> : ");
+			
+			$("#boardList").attr({
+				"method":"GET",
+				"action":"sfmMatchSelectfilter.sfm",
+			}).submit();
+		});
+	});
 
 </script>
 </head>
@@ -65,7 +77,7 @@
 
        <!-- 지역 셀렉트  -->
         <div class="col-md-2 mb-3">
-         <select class="custom-select d-block w-100" id="memaddr">
+         <select class="custom-select d-block w-100" id="memaddr" name="memaddr">
            <option selected>지역</option>
            <option value="서울">서울</option>
            <option value="경기">경기</option>
@@ -74,7 +86,7 @@
        </div>
        <!-- 지역 셀렉트  -->
        <div class="col-md-2 mb-3">
-         <select class="custom-select d-block w-100" id="memposition">
+         <select class="custom-select d-block w-100" id="memposition" name="memposition">
            <option selected>포지션</option>
            <option value="공격수">공격수</option>
            <option value="미드필더">미드필더</option>
@@ -85,12 +97,13 @@
        </div>
        
        <div class="col-md-2 mb-3">
-         <select class="custom-select d-block w-100" id="memaddr">
+         <select class="custom-select d-block w-100" id="memaddr" name="memaddr">
            <option selected>레벨</option>
            <option>아마추어</option>
            <option>프로</option>
            <option>프로</option>
          </select>
+         <input type="button" id="search_btn" name="search_btn" value="검색">
        </div>
        &nbsp;
        <div class="input-group date">
