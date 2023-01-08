@@ -8,8 +8,12 @@
 		<typeAlias type="main.sfm.match.vo.SfmMatchVO" alias="sfmmatchvo"/>
 		<typeAlias type="main.sfm.community.vo.SfmCommunityVO" alias="sfmcommunityvo"/>
 		<typeAlias type="main.sfm.rcommunity.vo.SfmRcommunityVO" alias="sfmrcommunityvo"/>
-		<typeAlias type="main.sfm.notice.vo.SfmNoticeVO" alias="sfmnoticevo"/> 
-		
+		<typeAlias type="main.sfm.notice.vo.SfmNoticeVO" alias="sfmnoticevo"/>
+		<typeAlias type="main.sfm.event.vo.SfmEventVO" alias="sfmeventvo"/> 
+		<typeAlias type="main.sfm.payment.vo.SfmPaymentVO" alias="sfmpaymentvo"/> 
+		 
+		<!--  게시판 좋아요  -->
+        <typeAlias type="main.sfm.like.vo.SfmLikeVO" alias="sfmlikevo"/>  
 		<!-- ID,PW 찾기  -->	
 		<typeAlias type="main.sfm.login.vo.SfmTempAuthVO" alias="sfmtempauthvo"/>
 		<typeAlias type="main.sfm.login.vo.SfmTempPwVO" alias="sfmtemppwvo"/>

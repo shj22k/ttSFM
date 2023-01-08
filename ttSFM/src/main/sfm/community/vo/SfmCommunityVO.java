@@ -23,6 +23,11 @@ public class SfmCommunityVO {
 	private String groupSize;
 	private String curPage;
 	private String totalCount;
+	
+	// 좋아요 필드
+	private String blnum;
+	private int like_cnt_1;
+	private int like_cnt_2;
 
 	
 	public SfmCommunityVO() {
@@ -50,6 +55,13 @@ public class SfmCommunityVO {
 		this.groupSize = groupSize;
 		this.curPage = curPage;
 		this.totalCount = totalCount;
+	}
+
+	public SfmCommunityVO(String blnum, int like_cnt_1, int like_cnt_2) {
+		super();
+		this.blnum = blnum;
+		this.like_cnt_1 = like_cnt_1;
+		this.like_cnt_2 = like_cnt_2;
 	}
 
 	public String getCnum() {
@@ -219,6 +231,30 @@ public class SfmCommunityVO {
 
 	public void setTotalCount(String totalCount) {
 		this.totalCount = totalCount;
+	}
+
+	public String getBlnum() {
+		return blnum;
+	}
+
+	public void setBlnum(String blnum) {
+		this.blnum = blnum;
+	}
+
+	public int getLike_cnt_1() {
+		return like_cnt_1;
+	}
+
+	public void setLike_cnt_1(int like_cnt_1) {
+		this.like_cnt_1 = like_cnt_1;
+	}
+
+	public int getLike_cnt_2() {
+		return like_cnt_2;
+	}
+
+	public void setLike_cnt_2(int like_cnt_2) {
+		this.like_cnt_2 = like_cnt_2;
 	}
 	
 	

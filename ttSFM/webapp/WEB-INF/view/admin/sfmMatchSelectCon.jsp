@@ -7,7 +7,6 @@
 
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,19 +25,31 @@
 	List<SfmMatchVO> list = (List<SfmMatchVO>)obj;
 	SfmMatchVO mtvo = list.get(0);
 %>
-
 <link rel="stylesheet" type="text/css" href="/ttSFM/include/styles.css">
 <link rel="stylesheet" type="text/css" href="/ttSFM/include/sfmMatchSelect.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
   	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--vue-->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-cookies@1.7.0/vue-cookies.js"></script>
 <script type='text/javascript'>
 
-	function text_gray(ths){
-		if(ths.contains("풋살화")){
-			document.getElementById("shose").style = "color:gray;";
-		}
+	function test(ths, thi){
+		location.href="/ttSFM/sfmMatchMap.sfm?jibun="+ths+"&stadium="+thi;
 	}
+
+	function showmap() {
+	    var togglemap = document.getElementById("toggleMap");
+	    var stadmap = document.getElementById("stadMap");
+	    if (stadmap.style.zIndex=== "0") {
+	      stadmap.style.zIndex = "1";
+	      togglemap.innerHTML = "지도 닫기";
+	    } else {
+	      stadmap.style.zIndex = "0";
+	      togglemap.innerHTML = "지도 보기";
+	    }
+	  }
 
 	$(function(){
 	    $('.input-group.date').datepicker({
@@ -49,6 +60,21 @@
 	        format: "yyyy/mm/dd",
 	        language: "kr"
 	    });
+	});
+	
+	$(document).ready(function(){
+		
+		$("#toggleMap").click(function(){
+			alert("search_btn 버튼 클릭 >>> : ");
+			
+			$("#jibun").text();
+			
+			$("#matchSelectCon").attr({
+				"method":"GET",
+				"action":"sfmMatchMap.sfm",
+			}).submit();
+		});
+		
 	});
 
 </script>
@@ -83,7 +109,6 @@
 	</a>
 	<!-- 구장 예약 내역 아이콘 -->
 	
-	
 	<!-- 마이 페이지 아이콘 -->
 	<a href="https://www.plabfootball.com/mypage/">
 		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/user.png" width="35px">
@@ -113,7 +138,6 @@
 		  src="/ttSFM/img/fb/fb1.jpg"
 		  alt="First slide">
 	</div>
-
 	<div class="carousel-item">
 		<img class="d-block w-100"
 		  src="/ttSFM/img/fb/fb2.jpg"
@@ -124,7 +148,6 @@
 		  src="/ttSFM/img/fb/fb3.jpg"
 		  alt="Third slide">
 	</div>
-
 	<!-- 왼쪽 오른쪽 화살표 버튼 -->
 	<a class="carousel-control-prev" href="#demo" data-slide="prev">
 		<!-- <span>Previous</span> -->
@@ -153,7 +176,7 @@
 <div class="input-form col-md-12 mx-auto">
 <div class="middle">
 <div class="middle-left">
-<form class="validation-form" novalidate>
+<form id="matchSelectCon" name="matchSelectCon" class="validation-form" novalidate>
 <!-- 매치제목 -->
 
 <section class="section">
@@ -194,7 +217,7 @@
 		<p class="link"><%= mtvo.getMatchshose() %></p></div></li></ul></div> <div class="stadInner"><div class="info__list__wrapper"><ul><!----> <!----> <!----> <!----> <li class="info__list"> <div></div></li></ul> <!----></div></div></section>
 </form>
 </div>
-		
+
 <div class="middle-right">
 	<form class="validation-form" novalidate>
 	<!-- 매치제목 -->
@@ -209,10 +232,18 @@
 				<ul>
 					<li class="info__list">
 						<div>
-							<p class="">MATCHKICKOFF</p>
+						<%
+							String date = mtvo.getMatchkickoff();
+							String month = date.split("-")[1];
+							String day = date.split("-")[2];
+						%>
+							<p class=""><%= month+"월 "+day+"일 "+ mtvo.getMatchtime() %></p>
 							<p class=""><%= mtvo.getMatchstadium() %></p>
-							<p class=""><%= mtvo.getMatchjibunaddress() %></p>
-							
+							<p class="" id="jibun"><%= mtvo.getMatchjibunaddress() %></p>
+								<input type="hidden" id="jibun" name="jibun" value="<%= mtvo.getMatchjibunaddress() %>" />
+								<input type="hidden" id="stadium" name="stadium" value="<%= mtvo.getMatchstadium() %>" />
+							<p id="copybtn1" style="text-decoration:underline;" title="주소 복사">주소 복사</span>
+							<p id="toggleMap" onclick="test('<%= mtvo.getMatchjibunaddress() %>', '<%= mtvo.getMatchstadium() %>');" style="text-decoration:underline;">지도 보기</span>
 						</div>
 					</li>
 				</ul>
@@ -233,9 +264,9 @@
     <div class="input-form2-backgroud row">
       <div class="input-form2 col-md-12 mx-auto">
 		
-		 <form class="validation-form" novalidate>
+		<form class="validation-form" novalidate>
         <!-- 매치제목 -->
-	
+        
 			<section class="section">
 				<div class="section__header">
 				<div class="section__title">
@@ -253,19 +284,19 @@
 				<li class="info__list">
 					<img src="https://plab-football.s3.amazonaws.com/static/img/ic_info_shower.svg" class="icon no">
 					<div>
-						<p>샤워실</p>
+						<p><%= mtvo.getMatchshower() %></p>
 					</div>
 				</li>
 				<li class="info__list">
 					<img src="https://plab-football.s3.amazonaws.com/static/img/ic_info_park.svg" alt="유료주차" class="icon">
 					<div>
-						<p>유료주차</p>
+						<p><%= mtvo.getMatchparking() %></p>
 					</div>
 				</li>
 				<li class="info__list">
 					<img src="https://plab-football.s3.amazonaws.com/static/img/ic_info_shoes.svg" class="icon">
 					<div>
-						<p id="shose"><script>text_gray('<%= mtvo.getMatchshose() %>')</script></p>
+						<p><%= mtvo.getMatchshose() %></p>
 					</div>
 				</li>
 			</div> 
@@ -307,7 +338,23 @@
 	</div>
 	</div>
 	</div>
+   <script>
    
+	function copyToClipboard(val) {
+	    var t = document.createElement("textarea");
+	    document.body.appendChild(t);
+	    t.value = val;
+	    t.select();
+	    document.execCommand('copy');
+	    document.body.removeChild(t);
+	    }
+	
+	    $('#copybtn1').click(function() {
+	      copyToClipboard($("#jibun").text());
+	      alert('주소를 복사하였습니다');
+	    });
+
+   </script>
     <footer class="my-3 text-center text-small">
       <p class="mb-1">&copy; 2022 YD</p>
     </footer>

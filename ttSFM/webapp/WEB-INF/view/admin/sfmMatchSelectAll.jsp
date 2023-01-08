@@ -118,10 +118,10 @@
 <tr>
 	<th>시간</th>	
 	<th>글제목</th>
-	<th>매치레벨</th>	
-	<th>매치인원</th>
+	<th>레벨</th>	
+	<th>인원</th>
 	<th>위치</th>
-	<th>날짜</th>
+	<th>일자</th>
 </tr>
 </thead>
 <%
@@ -140,8 +140,8 @@
 	<td style="width:8%"><%= mtvo.getMatchkickoff() %></td>				
 </tr>
 <%
-	}	// end of for
-}	// end of if
+		}	// end of for
+	}	// end of if
 %>
 </tbody>	
 </table>

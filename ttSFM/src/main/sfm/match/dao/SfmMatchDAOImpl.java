@@ -40,6 +40,12 @@ public class SfmMatchDAOImpl implements SfmMatchDAO {
 		logger.info("SfmMatchDAOImpl sfmMatchSelectfilter 진입");
 		return sqlSession.selectList("sfmMatchSelectfilter", mtvo);
 	}
+	
+	@Override
+	public List<SfmMatchVO> sfmMatchMap(SfmMatchVO mtvo) {
+		logger.info("SfmMatchDAOImpl sfmMatchMap 진입");
+		return sqlSession.selectList("sfmMatchMap", mtvo);
+	}
 
 	@Override
 	public int sfmMatchUpdate(SfmMatchVO mtvo) {

@@ -5,6 +5,20 @@
 <%@ page import="main.sfm.community.vo.SfmCommunityVO" %>
 <%@ page import="java.util.List" %>
 
+<% request.setCharacterEncoding("UTF-8");%> 
+<%
+	Object obj = request.getAttribute("listS");
+	if(obj == null) return;
+	
+	List<SfmCommunityVO> list = (List<SfmCommunityVO>)obj;
+	int nCnt = list.size();
+	
+	SfmCommunityVO cvo = null;
+	if (nCnt == 1){
+		cvo = list.get(0);
+	}	
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +28,16 @@
 	Logger logger = LogManager.getLogger(this.getClass());
 	logger.info("sfmCommunitySelectCon.jsp >>> : ");
 	
-	String cnum = request.getParameter("cnum");
-	session.setAttribute("cnum", cnum);
+ 	
+ 	String memnum = request.getParameter("memnum");
+ 	String cnum = request.getParameter("cnum");
+ 	session.getAttribute(memnum);
+ //	session.getAttribute(cnum);
+ 	session.setAttribute("cnum", cnum);
+//	session.setAttribute("memnum", memnum);
+
+
+	
 %> 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -23,16 +45,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript" src="/ttSFM/js/common.js"></script>
 
-<!-- 달력 -->
-<!-- <script src="https://code.jquery.com/jquery-3.2.1.js"></script> -->
-<link rel="stylesheet" href="/css/jquery-ui.min.css">
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<script type='text/javascript' src='//code.jquery.com/jquery-1.8.3.js'></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
-<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
-<script src="/js/bootstrap-datepicker.kr.js" charset="UTF-8"></script>
     
 <!-- 검색바 -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -40,22 +53,69 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="/ttSFM/include/sfmCommunitySelect.css">
 <!-- 검색바 -->
-	
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type='text/javascript'>
-
-	$(function date(){
-	    $('.input-group.date').datepicker({
-	
-	        calendarWeeks: false,
-	        todayHighlight: true,
-	        autoclose: true,
-	        format: "yyyy/mm/dd",
-	        language: "kr"
-	    });
-	});
   
 	$(document).ready(function(){
 		alert("ready 함수 진입");
+			
+		// like_1 버튼 
+		$(document).on("click", "#like_1", function(e){
+			alert("like_1 버튼 클릭 >>> : ");
+			
+			let sfmLikeURL = "like_cnt_1.sfm";
+			let reqType = "GET";
+			let dataParam = {
+				like_cnt_1: $(this).val(),
+				memnum: $("memnum").val(),
+				cnum: $("cnum").val(),
+			};		
+			dataParam = $("#sfmCommunityUpdateForm").serialize();
+			console.log("dataParam >>> : " + dataParam);
+			
+			$.ajax({
+				url: sfmLikeURL,
+				type: reqType,								
+				data: dataParam,	            
+				success: whenSuccess				
+			});
+			
+			function whenSuccess(resData){
+				alert("resData >>> : " + resData);
+				console.log("resData >>> : " + resData);			
+				$("#disp_cnt_recom").text(resData).val();				
+			}	
+			
+		});
+		
+		// like_2 버튼 
+		$(document).on("click", "#like_2", function(e){
+			alert("like_2 버튼 클릭 >>> : ");
+			
+			let sfmLikeURL = "like_cnt_2.sfm";
+			let reqType = "GET";
+			let dataParam = {
+				like_cnt_2: $(this).val(),
+				memnum: $("memnum").val(),
+				cnum: $("cnum").val(),
+			};		
+			dataParam = $("#sfmCommunityUpdateForm").serialize();
+			console.log("dataParam >>> : " + dataParam);
+			
+			$.ajax({
+				url: sfmLikeURL,
+				type: reqType,								
+				data: dataParam,	            
+				success: whenSuccess				
+			});
+			
+			function whenSuccess(resData){
+				alert("resData >>> : " + resData);
+				console.log("resData >>> : " + resData);			
+				$("#disp_cnt_stop").text(resData).val();				
+			}	
+			
+		});
 		
 		// 목록으로 이동
 		$('#selectBtn').on('click', function(){
@@ -77,6 +137,7 @@
 			}).submit();
 		});
 	});
+	
 
 </script>
 </head>
@@ -113,15 +174,7 @@
 <div class="container">
 <div class="input-form-backgroud">
 <div class="input-form col-md-12 mx-auto">
-<%
-	Object obj = request.getAttribute("listS");
-	if(obj==null) {return;}
-	
-	List<SfmCommunityVO> list = (List<SfmCommunityVO>)obj;
-	if(list.size() > 0){
-		for(int i=0; i<list.size(); i++){
-			SfmCommunityVO cvo = list.get(i);
-%>
+
 <h3><b>커뮤니티</b></h3>
 <br>
 <form name="commucon" id="commucon">
@@ -130,19 +183,21 @@
 		<td>제목</td>
 		<td colspan="10" style="text-align:left;width:400;">
 			<font size="4" style="color:black;"><%= cvo.getCsubject() %></font>
+			<input type="hidden" name="cnum" id="cnum" value="<%= cnum %>" />
+			<input type="hidden" name="memnum" id="memnum" value="<%= memnum %>" />
 		</td>
 	</tr>
 	<tr>
 		
 		<td>이름:<%= cvo.getCname() %></td><td class="td_1"></td>
-		<td class="td_2"> 추천: &nbsp; 조회:  &nbsp; 작성일자 : <%= cvo.getInsertdate() %></td>
+		<td class="td_2"> 추천: <%= cvo.getLike_cnt_1() %>&nbsp; 조회:  &nbsp; 작성일자 : <%= cvo.getInsertdate() %></td>
 	</tr>
 	<tr>
 		<td colspan="6" style="text-align:left"> 
 <%-- 				<img src="/ShjSpring/fileupload/product/<%= _kpvo.getKpfile() %>" width="50" height="50"><br> --%>
 		
-			<img src="/ttSFM/fileupload/board/" border="1" width="100" height="100" alt="image"><br>
-			<img src="/ttSFM/fileupload/board/" border="1" width="200" height="100" alt="image"><br>
+			<img src="/ttSFM/fileupload/community_photo" border="1" width="100" height="100" alt="image"><br>
+			<img src="/ttSFM/fileupload/community_photo" border="1" width="200" height="100" alt="image"><br>
 		</td>
 	</tr>
 	<tr>
@@ -153,16 +208,16 @@
 	</tr>
 	<tr>
 		<td colspan="6" style="text-align:center">
-		<button type="button" class="btn btn-light" name="like_1" id="like_1">추천
+			<button type="button" class="btn btn-light" name="like_1" id="like_1">추천
 			<p>
 				<img src='/ttSFM/img/img_board/heart.png' style='width:12px; margin:3px 3px 0 0;'>
-				<span id="disp_cnt_recom"></span>
+				<span id="disp_cnt_recom"><%= cvo.getLike_cnt_1() %></span>
 			</p>
 		</button>
 		<button type="button" class="btn btn-light" name="like_2" id="like_2">반대
 			<p>
 				<img src='/ttSFM/img/img_board/thumb_rev.png' style='width:12px; margin:3px 3px 0 0;'>
-				<span id="disp_cnt_stop"></span>
+				<span id="disp_cnt_stop"><%= cvo.getLike_cnt_2() %></span>
 			</p>
 		</button>
 		<button type="button" class="btn btn-light" name="like_3" id="like_3">신고
@@ -174,7 +229,6 @@
 	</tr>
 	<tr>
 		<td colspan="9" align="right">	
-			<input type="hidden" id="cnum" name="cnum" value="<%= cnum %>" />
 			<button type="button" class="btn btn-dark" id="selectBtn">목록으로 이동</button> 												
 			<button type="button" class="btn btn-warning" id="updateBtn">수정하기</button>		
 		</td>
@@ -186,12 +240,9 @@
 <%-- <jsp:include page="/sfmMatchSelectAll.sfm" > --%>
 	
 	<jsp:include page="/sfmRcommunitySelectAll.sfm">
-		<jsp:param value="<%= cvo.getCnum()%>" name="cnum"/>
+		<jsp:param value="<%= cnum %>" name="cnum"/>
 	</jsp:include>
-<%		
-		}
-	}
-%>
+
 </div>
 </div>
 </div>

@@ -8,9 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import main.sfm.common.chabun.dao.SfmChabunDAO;
 import main.sfm.community.vo.SfmCommunityVO;
+import main.sfm.event.vo.SfmEventVO;
 import main.sfm.match.vo.SfmMatchVO;
 import main.sfm.member.vo.SfmMemVO;
 import main.sfm.notice.vo.SfmNoticeVO;
+import main.sfm.payment.vo.SfmPaymentVO;
 import main.sfm.rcommunity.vo.SfmRcommunityVO;
 
 @Service
@@ -47,4 +49,19 @@ public class SfmChabunServiceImpl implements SfmChabunService {
 		logger.info("공지채번들어 간다~");
 		return sfmChabunDAO.getSFMnoticeChabun();
 	}
+	
+	@Override
+	public SfmEventVO getSFMeventChabun() {
+		// TODO Auto-generated method stub
+		logger.info("이뱐트채번들어 간다~");
+		return sfmChabunDAO.getSFMeventChabun();
+	}
+	
+	@Override
+	public SfmPaymentVO getSFMpaymentChabun() {
+		// TODO Auto-generated method stub
+		logger.info("getSFMpaymentChabun 진입");
+		return sfmChabunDAO.getSFMpaymentChabun();
+	}
+
 }

@@ -250,13 +250,13 @@
 	               </a>
 	            </li>
 				<li>
-					<a href="stadiuminsertform.sfm" onfocus="this.blur()">
-						<div class="nav_btn">
-							이벤트
-						</div>
-					</a>
-				</li>
-			</ul>
+	               <a href="sfmEventInsertForm.sfm?memnum=<%=memnum%>" onfocus="this.blur()">
+	                  <div class="nav_btn">
+	                    	 이벤트
+	                  </div>
+	               </a>
+            	</li>
+            </ul>
 			</header>
 			
 		</div>

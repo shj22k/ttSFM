@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import main.sfm.common.ChabunUtil;
 import main.sfm.common.CommonUtils;
@@ -21,10 +22,11 @@ import main.sfm.common.chabun.service.SfmChabunService;
 import main.sfm.match.dao.SfmMatchDAOImpl;
 import main.sfm.match.service.SfmMatchService;
 import main.sfm.match.vo.SfmMatchVO;
+import main.sfm.member.vo.SfmMemVO;
 
 @Controller
 public class SfmMatchController {
-	Logger logger = LogManager.getLogger(SfmMatchDAOImpl.class);
+	Logger logger = LogManager.getLogger(SfmMatchController.class);
 
 	@Autowired(required=false) // 의존성 주입
 	private SfmMatchService sfmMatchService;
@@ -100,7 +102,7 @@ public class SfmMatchController {
 		try {
 			if(insertCnt > 0) {
 				logger.info("sfmMatchInsert insertCnt >>> : " + insertCnt);
-				return "admin/sfmMatchSelectAll1";
+				return "admin/sfmMatchInsertForm";
 			}
 		}catch(Exception e) {
 			System.out.println("에러가 발생" + e);
@@ -260,5 +262,29 @@ public class SfmMatchController {
 		return "sfm/sfmMatchSelectAll";
 	}
 	
+	@GetMapping("sfmMatchMap")
+	public Object sfmIdCheck(SfmMatchVO mtvo, HttpServletRequest req, Model model) {
+		logger.info("---sfmMatchMap 함수 진입---");
+		
+		//sfmMatchMap
+		mtvo.setMatchjibunaddress(req.getParameter("jibun"));
+		logger.info("mtvo.getMatchjibunaddress() >>> : " + mtvo.getMatchjibunaddress());
+		mtvo.setMatchstadium(req.getParameter("jibun"));
+		logger.info("mtvo.getMatchstadium() >>> : " + mtvo.getMatchstadium());
+
+		List<SfmMatchVO> map = sfmMatchService.sfmMatchMap(mtvo);
+		logger.info("mtvo.getMatchjibunaddress() >>> : " + mtvo.getMatchjibunaddress());
+		int nCnt = map.size();
+		
+		try {
+			if(nCnt > 0) {
+				logger.info("nCnt >>> : " + nCnt);
+				model.addAttribute("map", map);
+				return "commons/sfmMatchMap";
+			}
+		}catch(Exception e) { System.out.println("에러가 발생" + e); }
+		
+		return "commons/sfmMatchMap";
+	}
 	
 }

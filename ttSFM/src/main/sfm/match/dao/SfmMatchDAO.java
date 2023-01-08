@@ -11,6 +11,8 @@ public interface SfmMatchDAO {
 	public List<SfmMatchVO> sfmMatchSelectAll(SfmMatchVO mtvo);
 	public List<SfmMatchVO> sfmMatchSelectCon(SfmMatchVO mtvo);
 	public List<SfmMatchVO> sfmMatchSelectfilter(SfmMatchVO mtvo);
+	
+	public List<SfmMatchVO> sfmMatchMap(SfmMatchVO mtvo);
 
 	public int sfmMatchUpdate(SfmMatchVO mtvo);
 	public int sfmMatchDelete(SfmMatchVO mtvo);

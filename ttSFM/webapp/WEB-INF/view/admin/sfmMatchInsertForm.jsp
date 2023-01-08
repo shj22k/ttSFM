@@ -104,6 +104,16 @@
 		    $(this).addClass('select');
 		});
 		
+		$('#seletAll').on('click', function(){
+			alert("seletAll 버튼 클릭");
+			console.log("seletAll 보내기 >>> : ");	
+
+			$('#stadiuminsertform').attr({
+				'action':'sfmMatchSelectAll.sfm',
+				'method':'POST',
+			}).submit();
+		});
+		
 		$('#btn').on('click', function(){
 			alert("btn 버튼 클릭");
 			console.log("btn 보내기 >>> : ");	
@@ -122,7 +132,6 @@
 				'enctype':'multipart/form-data'
 			}).submit();
 		});
-
 	});
 	
 </script>
@@ -315,6 +324,7 @@
             <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
           </div>
           <div class="mb-4"></div>
+          <button class="btn btn-primary btn-lg btn-block" type="submit" id="seletAll">목록 보기</button>
           <button class="btn btn-primary btn-lg btn-block" type="submit" id="btn">등록 완료</button>
         </form>
       </div>

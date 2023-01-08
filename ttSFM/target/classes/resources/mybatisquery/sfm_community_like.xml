@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+          
+<mapper namespace="main.sfm.like.dao.SfmLikeDAO">
+
+<select id="sfmLikeSelect" parameterType="sfmlikevo" resultType="sfmlikevo">	
+	
+		SELECT 	A.BLNUM 	BLNUM	
+		FROM 	SFM_COMMUNITY_LIKE A
+		WHERE 	A.DELETEYN = 'Y' 
+		AND     A.MEMNUM = #{memnum}	
+		AND     A.CNUM = #{cnum}
+		
+</select>
+
+<select id="sfmLikeSelectAll" parameterType="sfmlikevo" resultType="sfmlikevo">	
+	
+		SELECT 	*
+		FROM 	SFM_COMMUNITY_LIKE A
+		WHERE 	A.DELETEYN = 'Y' 
+		AND     A.MEMNUM = #{memnum}	
+		AND     A.CNUM = #{cnum}
+		
+</select>
+
+
+<insert id="sfmLikeInsert" parameterType="sfmlikevo" >
+ 
+	INSERT INTO SFM_COMMUNITY_LIKE (	BLNUM, MEMNUM, CNUM, 									
+									DELETEYN, INSERTDATE, UPDATEDATE)
+            				VALUES(	(SELECT NVL(MAX(BLNUM), 0) + 1 AS BLNUM FROM SFM_COMMUNITY_LIKE), 
+	            					#{memnum}, 
+	            					#{cnum},  	            				 				
+	            					'Y', 
+	            					SYSDATE, 
+	            					SYSDATE)
+</insert>
+
+
+<update id="sfmLikeUpdate_1" parameterType="sfmlikevo" >
+    
+	UPDATE 	SFM_COMMUNITY_LIKE 
+	   SET  LIKE_CNT_1 = LIKE_CNT_1 + 1
+		   ,UPDATEDATE = SYSDATE
+	 WHERE  MEMNUM = #{memnum}
+	 AND    CNUM = #{cnum}	 
+	 
+</update>
+
+<update id="sfmLikeUpdate_2" parameterType="sfmlikevo" >
+    
+	UPDATE 	SFM_COMMUNITY_LIKE 
+	   SET  LIKE_CNT_2 = LIKE_CNT_2 + 1
+		   ,UPDATEDATE = SYSDATE
+	 WHERE  MEMNUM = #{memnum}
+	 AND    CNUM = #{cnum}	 
+	 
+</update>
+
+</mapper> 

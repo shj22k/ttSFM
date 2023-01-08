@@ -42,7 +42,12 @@ public class SfmMatchServiceImpl implements SfmMatchService {
 		logger.info("SfmMatchServiceImpl sfmMatchSelectfilter 진입");
 		return sfmMatchDAO.sfmMatchSelectfilter(mtvo);
 	}
-
+	
+	@Override
+	public List<SfmMatchVO> sfmMatchMap(SfmMatchVO mtvo) {
+		logger.info("SfmMatchServiceImpl sfmMatchMap 진입");
+		return sfmMatchDAO.sfmMatchMap(mtvo);
+	}
 
 	@Override
 	public int sfmMatchUpdate(SfmMatchVO mtvo) {

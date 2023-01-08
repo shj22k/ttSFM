@@ -24,4 +24,8 @@
    SELECT  /*+ INDEX_DESC(A SYS_C0011066) */ NVL(MAX(SUBSTR(NOTICENUM, -4)), 0) + 1 NOTICENUM FROM SFM_NOTICE
 </select>
 
+<select id="getSFMeventChabun" resultType="sfmeventvo">
+	SELECT  /*+ INDEX_DESC(A SYS_C0011206) */ NVL(MAX(SUBSTR(EVENTNUM, -4)), 0) + 1 EVENTNUM FROM SFM_EVENT
+</select>
+
 </mapper>

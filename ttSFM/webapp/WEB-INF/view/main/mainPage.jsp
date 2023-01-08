@@ -38,12 +38,8 @@
  <!-- ------------------css 선언 시작 -------------------------------------------- -->
   <!--  케러셀 컨테이너 색상정하기  -->
   <!-- 맨위는 검색ㅂ -->
-  <style>
- 
- 
-    
-  </style>
 <script type='text/javascript'>
+	
 
 	$(function date(){
 	
@@ -125,13 +121,13 @@
 			</a>
 		</li>
 		<li>
-			<a href="javascript:alert('준비중입니다.');" onfocus="this.blur()">
-				<div class="nav_btn">
-					이벤트
-				</div>
-			</a>
-		</li>
-		<li>
+            <a href="sfmEventSelectAllUser.sfm" onfocus="this.blur()">
+               <div class="nav_btn">
+                  	이벤트
+               </div>
+         	</a>
+        </li>
+        <li>
 			<a href="sfmNoticeSelectAllUI.sfm" onfocus="this.blur()">
 				<div class="nav_btn">
 					공지사항
