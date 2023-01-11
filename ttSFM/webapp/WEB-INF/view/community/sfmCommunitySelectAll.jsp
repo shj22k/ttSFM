@@ -24,26 +24,21 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 
-	<link rel="stylesheet" href="/css/jquery-ui.min.css">
+<link rel="stylesheet" href="/css/jquery-ui.min.css">
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script type='text/javascript' src='//code.jquery.com/jquery-1.8.3.js'></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
+<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+<script src="/js/bootstrap-datepicker.kr.js" charset="UTF-8"></script>
+   
+<!-- 검색바 -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/ttSFM/include/sfmCommunitySelectAll.css">
+<!-- 검색바 -->
 
-
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-
-    <script type='text/javascript' src='//code.jquery.com/jquery-1.8.3.js'></script>
-	
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
-
-    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
-
-    <script src="/js/bootstrap-datepicker.kr.js" charset="UTF-8"></script>
-    
-    <!-- 검색바 -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="/ttSFM/include/sfmCommunitySelectAll.css">
-	<!-- 검색바 -->
-	
+<script src = "http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 	
 	function test(ths){
@@ -54,8 +49,9 @@
 		
 		//I
 		$(document).on("click","#insertbtn",function(){
+			alert("insertbtn 버튼클릭");
 			
-			$('#sfmNoticeList').attr({
+			$('#sfmCommunityList').attr({
 				"action":"sfmCommunityInsertForm.sfm",
 				"method":"GET",
 				"enctype":"application/x-www-form-urlencoded"
@@ -64,7 +60,7 @@
 		
 		//D
 		$(document).on("click","#deletetBtn",function(){
-			$('#sfmNoticeList').attr({
+			$('#sfmCommunityList').attr({
 				"action":"#",
 				"method":"GET",
 				"enctype":"application/x-www-form-urlencoded"
@@ -86,7 +82,7 @@
   	
   	<!-- 구장 예약 내역 아이콘 -->
   	<a href="https://www.plabfootball.com/mypage/myplab/">
-  		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/date2.png" width="35px"><a href="https://www.plabfootball.com/mypage/"></a>
+  		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/date2.png" width="35px">
   	</a>
  	<!-- 구장 예약 내역 아이콘 -->
   
@@ -187,7 +183,7 @@
 </tbody>		
 </table>
 	<div align="right">		
-		<button type="button" class="btn btn-primary btn-sm" id="selectBtn">글쓰기</button>								
+		<button type="button" class="btn btn-primary btn-sm" id="insertbtn" name="insertbtn">글쓰기</button>								
 	</div>	
 </form>	
 </div>

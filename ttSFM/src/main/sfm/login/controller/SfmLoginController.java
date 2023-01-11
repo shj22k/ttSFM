@@ -42,9 +42,13 @@ public class SfmLoginController {
 	public String sfmLogin(HttpServletRequest req, SfmMemVO mvo, Model model) {
 		logger.info("sfmLogin 진입");
 		
+		
 		List<SfmMemVO> listLogin = sfmLoginService.loginCheck(mvo);
 		logger.info("login listLogin.size() >>> : " + listLogin.size());
-		
+		String mpw = listLogin.get(0).getMempw();
+		logger.info("req.getParamet >>> : " + req.getParameter("mempw"));
+		logger.info("mpw : " + mpw);
+
 		if(listLogin.size() == 1) {
 			K_Session ks = K_Session.getInstance();
 			String mID = ks.getSession(req);
@@ -54,7 +58,7 @@ public class SfmLoginController {
 				ks.setSession(req, mvo.getMemnum());
 
 				// 관리자 로그인
-				if(mID.equals("admin1234")) {
+				if(mID.equals("admin1234") && req.getParameter("mempw").equals("admin1234") ) {
 					model.addAttribute("listLogin", listLogin);
 					return "admin/sfmAdminPage";
 				}

@@ -336,7 +336,7 @@
           <button class="btn btn-primary btn-lg btn-block" type="submit" id="seletAll">목록 보기</button>
           <button class="btn btn-primary btn-lg btn-block" type="submit" id="btn">등록 완료</button>
           	<input type="hidden" id="memnum" name="memnum" value="M202212230001" />
-          	<input type="hidden" id="memid" name="memid" value="M202212230001" />
+          	<input type="hidden" id="memid" name="memid" value="shj22k" />
           <button class="btn btn-primary btn-lg btn-block" type="submit" id="mainbtn">메인화면 이동</button>
         </form>
       </div>

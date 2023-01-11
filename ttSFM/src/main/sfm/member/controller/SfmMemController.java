@@ -218,4 +218,9 @@ public class SfmMemController {
 		return msg;
 	}
 
+	@GetMapping("mainIntro")
+	public String mainIntro(HttpServletRequest req, Model model,SfmMemVO mvo) {
+		logger.info("mainIntro 함수 진입 >>> : ");
+		return "member/mainIntro";
+	}
 }

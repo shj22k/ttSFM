@@ -25,7 +25,6 @@
 		          document.querySelector("#address").value =  data.address
 		        }
 	  	 }).open();
-		
 	};	
 
 </script>

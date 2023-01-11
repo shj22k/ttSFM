@@ -115,9 +115,9 @@
 	<ul class="wrapper mb">
 		<!-- 메뉴버튼들 ----------------------->
 		<li>
-			<a href="boardSelectAll.k" onfocus="this.blur()">
-				<div class="nav_btn">
-					소개
+			<a href="mainIntro.sfm" onfocus="this.blur()">
+            	<div class="nav_btn">					
+            		소개
 				</div>
 			</a>
 		</li>
@@ -136,7 +136,7 @@
 			</a>
 		</li>
 		<li>
-			<a href="sfmCommunityInsertForm.sfm" onfocus="this.blur()">
+			<a href="sfmCommunitySelectAll.sfm" onfocus="this.blur()">
 				<div class="nav_btn">
 					커뮤니티
 				</div>
