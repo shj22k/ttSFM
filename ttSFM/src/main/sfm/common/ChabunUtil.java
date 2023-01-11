@@ -8,7 +8,7 @@ public abstract class ChabunUtil {
 	public static final String BIZ_GUBUN_RC = "RC"; // 커뮤니티댓글 
 	public static final String BIZ_GUBUN_N = "N"; // 공지
 	public static final String BIZ_GUBUN_E = "E"; // 이벤트
-	public static final String BIZ_GUBUN_PAY = "PA"; // 이벤트
+	public static final String BIZ_GUBUN_PAY = "PA"; // 결제
 
 	
 	public static String numPad(String t, String c){

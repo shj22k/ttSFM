@@ -91,7 +91,7 @@ public class SfmMemController {
 	}
 	
 	// 내정보 페이지 이동
-	@PostMapping("sfmMemSelectAll")
+	@GetMapping("sfmMemSelectAll")
 	public String sfmMemSelectAll(SfmMemVO mvo, Model model) {
 		logger.info("sfmMemSelectAll 진입");
 		
@@ -102,7 +102,6 @@ public class SfmMemController {
 		try {
 			if(nCnt > 0) {
 				logger.info("sfmMemService nCnt >>> : " + nCnt);
-				
 				model.addAttribute("fileUploadListAll", fileUploadListAll);		
 				return "member/sfmMemSelectAll";	// 내정보 보기
 			}

@@ -5,20 +5,24 @@
 <%@ page import="org.apache.log4j.Logger" %>   
 <%@ page import="main.sfm.member.vo.SfmMemVO" %>
 <%@ page import="java.util.List" %>
-
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
 	Logger logger = LogManager.getLogger(this.getClass());
 	logger.info("MainPage.jsp 진입 >>> : ");	
 	String memnum = "";
+	String memid = "";
 	Object obj = request.getAttribute("listLogin");
 	List<SfmMemVO> list = (List<SfmMemVO>)obj;
 
 	memnum = list.get(0).getMemnum();
+	memid = list.get(0).getMemid();
 	logger.info("memnum >>> : " + memnum);	
+	logger.info("memid >>> : " + memid);	
 	
 	session.setAttribute("memnum", memnum);
+	session.setAttribute("memid", memid);
 	logger.info("세션에 담긴 값 memnum >>> : " + memnum);	
+	logger.info("세션에 담긴 값 memid >>> : " + memid);	
 %>
 
 <!DOCTYPE html>
@@ -39,19 +43,16 @@
   <!--  케러셀 컨테이너 색상정하기  -->
   <!-- 맨위는 검색ㅂ -->
 <script type='text/javascript'>
-	
 
-	$(function date(){
-	
+	function date(){
 	    $('.input-group.date').datepicker({
-	
 	        calendarWeeks: false,
 	        todayHighlight: true,
 	        autoclose: true,
 	        format: "yyyy/mm/dd",
 	        language: "kr"
 	    });
-	});
+	};
 
 </script>
 </head>
@@ -82,14 +83,14 @@
   <img src="/ttSFM/img/fb/tikilogo2.png" width="150px">
   	
   	<!-- 구장 예약 내역 아이콘 -->
-  	<a href="https://www.plabfootball.com/mypage/myplab/">
-  	<img class="icon-margin2" align="right" src="/ttSFM/img/fb/date2.png" width="35px"><a href="https://www.plabfootball.com/mypage/"></a>
+  	<a href="calendar.sfm">
+  		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/date2.png" width="35px">
   	</a>
  	 <!-- 구장 예약 내역 아이콘 -->
   
   	<!-- 마이 페이지 아이콘 -->
   	<a href="https://www.plabfootball.com/mypage/">
-  	<img class="icon-margin2" align="right" src="/ttSFM/img/fb/user.png" width="35px">
+  		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/user.png" width="35px">
   	</a>
   	<!-- 마이 페이지 아이콘 -->
   	

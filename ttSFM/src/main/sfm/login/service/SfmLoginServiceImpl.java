@@ -75,4 +75,19 @@ public class SfmLoginServiceImpl implements SfmLoginService {
 		logger.info("pwUpdateCheck 함수 진입 >>> : ");
 		return sfmLoginDAO.pwUpdateCheck(stpvo);
 	}
+	
+	@Override
+	public List<SfmMemVO> kakaoLogin(SfmMemVO mvo) {
+	   // TODO Auto-generated method stub
+	   logger.info("kakaoLogin 함수 진입 >>> : ");
+	   return sfmLoginDAO.kakaoLogin(mvo);
+	}
+	   
+	@Override
+	public int kakaoInsert(SfmMemVO mvo) {
+	   // TODO Auto-generated method stub
+	   logger.info("kakaoInsert 함수 진입 >>> : ");
+	   return sfmLoginDAO.kakaoInsert(mvo);
+	}
+
 }

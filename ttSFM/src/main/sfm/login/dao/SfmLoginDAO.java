@@ -25,4 +25,8 @@ public interface SfmLoginDAO {
 	public int tempPwInsert(SfmTempPwVO stpvo);
 	// 새 비밀번호 변경전 임시 비밀번호 확인   
 	public List<SfmTempPwVO> pwUpdateCheck(SfmTempPwVO stpvo);
+	// kakao 로그인 
+	public List<SfmMemVO> kakaoLogin(SfmMemVO mvo);
+	public int kakaoInsert(SfmMemVO mvo);
+
 }

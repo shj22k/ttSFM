@@ -236,7 +236,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="stadiuminsertform.sfm" onfocus="this.blur()">
+					<a href="sfmMemSelectAll.sfm" onfocus="this.blur()">
 						<div class="nav_btn">
 							회원수정
 						</div>

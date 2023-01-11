@@ -98,5 +98,50 @@
    
 </select>
 
+<!-- kakao 아이디 조회 / 로그인   -->
+<select id="kakaoLogin" parameterType="sfmmemvo" resultType="sfmmemvo">
+   SELECT  A.MEMNUM          MEMNUM
+          ,A.MEMID              MEMID
+          ,A.SNSTYPE           SNSYTYPE
+          ,A.SNSID             SNSID
+          ,A.SNSEMAIL          SNSEMAIL
+   FROM    SFM_MEMBER A
+   WHERE   A.SNSTYPE = #{snstype} 
+   AND     A.SNSID = #{snsid}
+   AND     A.SNSEMAIL = #{snsemail}
+</select>
+
+<insert id="kakaoInsert" parameterType="sfmmemvo" >
+
+   <selectKey keyProperty="memnum" resultType="String" order="BEFORE">
+      SELECT 'M' || 
+        TO_CHAR(SYSDATE, 'YYYYMMDD') ||
+        LPAD(NVL(MAX(SUBSTR(MEMNUM, -4)), 0) + 1, 4, '0') FROM SFM_MEMBER;
+   </selectKey>
+   INSERT INTO SFM_MEMBER(    MEMNUM, MEMNAME, MEMID, MEMPW, MEMGENDER, MEMPHOTO, MEMHP,
+                     MEMZONECODE, MEMJIBUNADDRESS, MEMJIBUNADDRESSDETAIL, MEMPOSITION,
+                     MEMPREFERREDAREA, MEMEMAIL, MEMLV, ISMANAGER,
+                     DELETEYN, INSERTDATE, UPDATEDATE,
+                              SNSTYPE, SNSID, SNSEMAIL) 
+                     VALUES(    #{memnum, jdbcType=VARCHAR},
+                        #{memname, jdbcType=VARCHAR},
+                        #{memid, jdbcType=VARCHAR},
+                        #{mempw, jdbcType=VARCHAR},
+                        #{memgender, jdbcType=VARCHAR},
+                        #{memphoto, jdbcType=VARCHAR},
+                        #{memhp, jdbcType=VARCHAR},
+                        #{memzonecode, jdbcType=VARCHAR},
+                        #{memjibunaddress, jdbcType=VARCHAR},
+                        #{memjibunaddressdetail, jdbcType=VARCHAR},
+                        #{memposition, jdbcType=VARCHAR},
+                        #{mempreferredarea, jdbcType=VARCHAR},
+                        #{mememail, jdbcType=VARCHAR},
+                        #{memlv, jdbcType=VARCHAR},
+                        #{ismanager, jdbcType=VARCHAR},
+                        'Y',
+                        SYSDATE,
+                        SYSDATE,
+                                #{snstype, jdbcType=VARCHAR}, #{snsid, jdbcType=VARCHAR}, #{snsemail, jdbcType=VARCHAR})
+</insert>
 
 </mapper>

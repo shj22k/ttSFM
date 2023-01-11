@@ -32,17 +32,15 @@
 		location.href="/ttSFM/sfmMatchSelectCon.sfm?matchnum="+ths;
 	}
 
-	$(function date(){
-	
+	function date(){
 	    $('.input-group.date').datepicker({
-	
 	        calendarWeeks: false,
 	        todayHighlight: true,
 	        autoclose: true,
 	        format: "yyyy/mm/dd",
 	        language: "kr"
 	    });
-	});
+	}
 	
 	$(document).ready(function(){
 		alert("jQuery ready() 함수 블럭 진입 >>> : ")
@@ -62,7 +60,7 @@
 <body>
 <%
 	Logger logger = LogManager.getLogger(this.getClass());
-	logger.info("shjMemSelectAll.jsp.jsp >>> : ");
+	logger.info("shjMatchSelectAll.jsp >>> : ");
 	
 	Object obj = request.getAttribute("listAll");
 	if(obj == null) {return;}

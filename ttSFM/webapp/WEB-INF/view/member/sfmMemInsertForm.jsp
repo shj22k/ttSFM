@@ -99,6 +99,7 @@
 			}
 		});
 		
+		// 로그인하기
 		$('#logingo').on('click', function(){
 			alert("logingo 보내기 버튼 블럭 진입 >>> : ");			
 			console.log("logingo 보내기 >>> : ");	

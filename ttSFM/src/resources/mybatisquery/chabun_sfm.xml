@@ -28,4 +28,9 @@
 	SELECT  /*+ INDEX_DESC(A SYS_C0011206) */ NVL(MAX(SUBSTR(EVENTNUM, -4)), 0) + 1 EVENTNUM FROM SFM_EVENT
 </select>
 
+<select id="getSFMpaymentChabun" resultType="sfmpaymentvo">
+	SELECT  /*+ INDEX_DESC(A SYS_C0011206) */ NVL(MAX(SUBSTR(PAYMENTNUM, -4)), 0) + 1 PAYMENTNUM FROM SFM_PAYMENT
+</select>
+
+
 </mapper>

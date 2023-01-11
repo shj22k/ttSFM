@@ -64,18 +64,15 @@
   
     body {
 	      min-height: 100vh;
-	
-  background:url("/testServlet/img/img/fb/jandigu.jpg") no-repeat;
-  background-repeat: no-repeat;
-  background-size: cover;
+		  background:url("/testServlet/img/img/fb/jandigu.jpg") no-repeat;
+		  background-repeat: no-repeat;
+		  background-size: cover;
     }
 
     .input-form {
 	      max-width: 680px;
-	
 	      margin-top: 80px;
 	      padding: 32px;
-	
 	      background: #fff;
 	      -webkit-border-radius: 10px;
 	      -moz-border-radius: 10px;
@@ -84,6 +81,7 @@
 	      -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
 	      box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
     }
+    
 </style>
 </head>
 <!-- 달력 자바스크립트 -->
@@ -132,6 +130,17 @@
 				'enctype':'multipart/form-data'
 			}).submit();
 		});
+		
+		$('#mainbtn').on('click', function(){
+			alert("mainbtn 버튼 클릭");
+			console.log("mainbtn 보내기 >>> : ");	
+
+			$('#stadiuminsertform').attr({
+				'action':'sfmLogin.sfm',
+				'method':'POST',
+			}).submit();
+		});
+
 	});
 	
 </script>
@@ -326,6 +335,9 @@
           <div class="mb-4"></div>
           <button class="btn btn-primary btn-lg btn-block" type="submit" id="seletAll">목록 보기</button>
           <button class="btn btn-primary btn-lg btn-block" type="submit" id="btn">등록 완료</button>
+          	<input type="hidden" id="memnum" name="memnum" value="M202212230001" />
+          	<input type="hidden" id="memid" name="memid" value="M202212230001" />
+          <button class="btn btn-primary btn-lg btn-block" type="submit" id="mainbtn">메인화면 이동</button>
         </form>
       </div>
     </div>

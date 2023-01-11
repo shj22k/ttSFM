@@ -1,18 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="main.sfm.rcommunity.vo.SfmRcommunityVO" %> 
-<%@ page import="main.sfm.community.vo.SfmCommunityVO" %> 
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.util.ArrayList" %>
 <%@ page import=" org.apache.log4j.LogManager" %>
 <%@ page import="org.apache.log4j.Logger" %>
-
+<%@ page import="main.sfm.rcommunity.vo.SfmRcommunityVO" %> 
+<%@ page import="main.sfm.community.vo.SfmCommunityVO" %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.form-control{
+float:left;
+
+}
+
+.btn{
+float:right;
+}
+
+.con {
+width:530px;
+}
+
+td{
+    padding: 0.25rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+</style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<!-- @@@ 부트스트랩 추가 -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script type="text/javascript">
 
 	$(document).ready(function(){
@@ -237,24 +259,28 @@
 %>
 <div id="rcwriterdiv">
 <form name="rcommunityForm" id="rcommunityForm">
-<table>
+
+<div class="con">
+<table class="table">
 <tr>
-	<td>작성자</td>
+	<td><b>작성자</b></td>
 	<td>
-		<input type="text" name="rcname" id="rcname"/>
+		<input style="width:320px;"class="form-control" type="text" name="rcname" id="rcname"/>
+		<input class="btn btn-outline-secondary" type="button" value="저장하기" id="insertBtn">
 		<input type="hidden" name="cnum" id="cnum" value="<%=cnum%>">
 		<input type="hidden" name="rcnum" id="rcnum">
-	    <input type="button" value="저장하기" id="insertBtn">
-	</td>
+	</td>    
+	
 </tr>
 <tr>
-	<td>덧글 내용</td>
+	<td><b>댓글 내용</b></td>
 	<td>
-		<textarea name="rccontent" id="rccontent" rows="5" cols="50" style="resize: none"></textarea>	
+		<textarea class="form-control" name="rccontent" id="rccontent" rows="2" cols="50" style="resize: none"></textarea>	
 		<div><span class="bytes">0</span>bytes</div>
 	</td>	
 </tr>
 </table>
+</div>
 <hr>
 <ul name="rcommunitylist" id="rcommunitylist">
 	<!-- 여기에 동적 생성 요소가 들어온다. -->

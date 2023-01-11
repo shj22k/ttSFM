@@ -73,5 +73,18 @@ public class SfmLoginDAOImpl implements SfmLoginDAO {
 		logger.info("pwUpdateCheck 함수 진입 >>> : ");
 		return sqlSession.selectList("pwUpdateCheck", stpvo);
 	}
-
+	
+	@Override
+	public List<SfmMemVO> kakaoLogin(SfmMemVO mvo) {
+	   // TODO Auto-generated method stub
+	   logger.info("kakaoLogin 함수 진입 >>> : ");
+	   return sqlSession.selectList("kakaoLogin", mvo);
+	}
+	   
+	@Override
+	public int kakaoInsert(SfmMemVO mvo) {
+	   // TODO Auto-generated method stub
+	   logger.info("kakaoInsert 함수 진입 >>> : ");
+	   return sqlSession.insert("kakaoInsert", mvo);   
+	}
 }

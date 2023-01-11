@@ -1,5 +1,7 @@
 package main.sfm.payment.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -20,6 +22,18 @@ public class SfmPaymentDAOImpl implements SfmPaymentDAO {
 	public int sfmPaymentInsert(SfmPaymentVO pvo) {
 		logger.info("SfmPaymentDAOImpl sfmPaymentInsert 진입");
 		return (Integer)sqlSession.insert("sfmPaymentInsert", pvo);
+	}
+	
+	@Override
+	public List<SfmPaymentVO> sfmPaymentSelect(SfmPaymentVO pvo) {
+		logger.info("SfmPaymentDAOImpl sfmPaymentSelect 진입");
+		return sqlSession.selectList("sfmPaymentSelect", pvo);
+	}
+	
+	@Override
+	public List<SfmPaymentVO> sfmPaymentComplete(SfmPaymentVO pvo) {
+		logger.info("SfmPaymentDAOImpl sfmPaymentComplete 진입");
+		return sqlSession.selectList("sfmPaymentComplete", pvo);
 	}
 
 }

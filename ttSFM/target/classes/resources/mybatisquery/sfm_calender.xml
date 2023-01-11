@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+			
+<mapper namespace="main.sfm.calender.dao.SfmCalenderDAO">
+
+<!-- 캘린더 입력 -->
+<insert id="sfmCalenderInsert" parameterType="sfmcalendervo">
+	<selectKey keyProperty="calno" resultType="String" order="BEFORE">
+		SELECT
+		'C' || LPAD(NVL(MAX(SUBSTR(calno, -4)), 0) + 1, 4, '0') FROM SFM_CALENDER
+	</selectKey>
+	 INSERT INTO SFM_CALENDER 								
+					( 								
+						 CALNO						
+						,CALTITLE					
+						,CALSTARTDATE				
+						,CALENDDATE				
+						,CALDESCRIPTION		
+						,CALTYPE				
+						,CALBACKGROUNDCOLOR					
+						,CALALLDAY				
+						,MEMID					
+						,DELETEYN
+						,INSERTDATE				
+						,UPDATEDATE														
+					) 								
+			VALUES	 								
+					( 								
+						 #{calno, jdbcType=VARCHAR}							
+						,#{caltitle, jdbcType=VARCHAR}							
+						,#{calstartdate, jdbcType=VARCHAR}							
+						,#{calenddate, jdbcType=VARCHAR}							
+						,#{caldescription, jdbcType=VARCHAR}							
+						,#{caltype, jdbcType=VARCHAR}							
+						,#{calbackgroundColor, jdbcType=VARCHAR}							
+						,#{calallDay, jdbcType=VARCHAR}	
+						,#{memid, jdbcType=VARCHAR}							
+						,'Y'						
+						,SYSDATE					
+						,SYSDATE																	
+					) 	
+</insert>
+
+<!-- 캘린더 조회 -->
+<select id="sfmCalenderSelectAll" resultType="sfmcalendervo">
+
+		SELECT 													
+					 A.CALNO				CALNO				
+					,A.CALTITLE				CALTITLE			
+					,A.CALSTARTDATE			CALSTARTDATE		
+					,A.CALENDDATE			CALENDDATE			
+					,A.CALDESCRIPTION		CALDESCRIPTION		
+					,A.CALTYPE				CALTYPE			
+					,A.CALBACKGROUNDCOLOR	CALBACKGROUNDCOLOR	
+					,A.CALALLDAY			CALALLDAY	
+					,A.MEMID				MEMID				
+					,A.DELETEYN				DELETEYN		
+					,A.INSERTDATE			INSERTDATE		
+					,A.UPDATEDATE			UPDATEDATE		
+		FROM 													
+					SFM_CALENDER A
+		WHERE 		A.DELETEYN = 'Y'
+		AND 		MEMID = #{memid, jdbcType=VARCHAR}								
+	 	ORDER BY 1 DESC
+</select>
+
+</mapper>

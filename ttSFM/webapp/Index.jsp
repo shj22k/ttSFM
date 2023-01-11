@@ -9,6 +9,7 @@
 <body>
 <a href="sfmMemInsertForm.sfm">회원가입</a><br>
 <a href="sfmLoginForm.sfm">로그인</a><br>
+<a href="sfmChat.sfm">채팅</a><br>
 
 </body>
 </html>

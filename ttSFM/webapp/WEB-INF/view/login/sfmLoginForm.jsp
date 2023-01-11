@@ -15,11 +15,61 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-css/1.4.6/select2-bootstrap.min.css");
 
 </style>
-</head>
-<body>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- 카카오 로그인 api  -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
+
+	//카카오 로그인 ===================================================================================
+	window.Kakao.init('237cf63d102ae9906251cdddc198259f'); // 사용하려는 앱의 JavaScript 키 입력
+	function kakaoLoginApi() {
+	   alert("kakaoLoginApi >>> : ");
+	   window.Kakao.Auth.login({
+	      success: function(authObj){
+	         // console.log( "authObj >>> : " + JSON.stringify(authObj));   
+	         window.Kakao.API.request({
+	            url: '/v2/user/me',
+	            success : function(res) {
+	               console.log( "res  >>> : " + JSON.stringify(res));                   
+	                        
+	                    let k_id = res.id;
+	                    let k_email = res.kakao_account.email;
+	                    
+	                    console.log("k_id >>> : " + k_id);
+	                    console.log("k_email >>> : " + k_email);
+	                    
+	                    kakaoLogin(k_id, k_email);                  
+	            }
+	         });            
+	      }
+	   });
+	}
+	
+	function kakaoLogin(k_id, k_email) {
+		   alert("kakaoLogin >>> : " + k_id + " : " + k_email);
+		   
+		   let url = "kakaoLogin.sfm";
+		   $.ajax({
+		      url: url,
+		      type: "POST",
+		      dataType: "JSON",
+		      data: { 
+		            snsid : k_id, 
+		            snsemail :k_email,
+		            snstype : '01',
+		      },
+		      success : function(data){
+		         alert("전송성공")
+		      },
+		      error: function (error){
+		    	  
+				 alert("e >>> : " + e.responseText);
+		       }
+		   });
+		}
+	//카카오 로그인 ===================================================================================
 
 	$(document).ready(function(){
 		alert("sfmLoginForm.jsp ready 함수 시작 ===");
@@ -37,8 +87,9 @@
 		});
 	});
 
-
 </script>
+</head>
+<body>
 
 
 <!------ Include the above in your HEAD tag ---------->

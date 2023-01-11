@@ -12,6 +12,8 @@
 		<typeAlias type="main.sfm.event.vo.SfmEventVO" alias="sfmeventvo"/> 
 		<typeAlias type="main.sfm.payment.vo.SfmPaymentVO" alias="sfmpaymentvo"/> 
 		 
+		<!--  일정관리 캘린더  -->
+		<typeAlias type="main.sfm.calender.vo.SfmCalenderVO" alias="sfmcalendervo"/> 
 		<!--  게시판 좋아요  -->
         <typeAlias type="main.sfm.like.vo.SfmLikeVO" alias="sfmlikevo"/>  
 		<!-- ID,PW 찾기  -->	
