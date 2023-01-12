@@ -226,11 +226,7 @@
 			<h3 align="center">경기목록 보러가기 !</h3>
 			<button class="login100-form-btn" id="submitButton" type="submit" style="margin: 20px auto;margin-left: 305px; width: 298px;">경기목록 보기</button>   		</div>
         <div class="right">
-      	<img src="/ttSFM/img/fb/fb16.jpg" style="width: 957px;height: 540px;">
-
+      		<img src="/ttSFM/img/fb/fb16.jpg" style="width: 957px;height: 540px;">
 		</div>               
-
-       
     </body>
-
 </html>

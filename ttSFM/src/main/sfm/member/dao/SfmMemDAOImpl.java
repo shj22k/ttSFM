@@ -60,4 +60,28 @@ public class SfmMemDAOImpl implements SfmMemDAO{
        return sqlSession.insert("pwUpdate", mvo);
     }
 
+	@Override
+	public int sfmMemUpdate2(SfmMemVO mvo) {
+		// TODO Auto-generated method stub
+		return (Integer)sqlSession.update("sfmMemUpdate2", mvo);
+	}
+
+	@Override
+	public List<SfmMemVO> sfmMemUpdateForm(SfmMemVO mvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("sfmMemUpdateForm", mvo);
+	}
+
+	@Override
+	public List<SfmMemVO> sfmMemUpdateFormUser(SfmMemVO mvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("sfmMemUpdateFormUser", mvo);
+	}
+
+	@Override
+	public List<SfmMemVO> myPage(SfmMemVO mvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("myPage",mvo);
+	}
+
 }

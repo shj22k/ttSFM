@@ -214,7 +214,6 @@ public class SfmLoginController {
 		return "login/sfmpwfind";
 	}
 		
-		
 	  //kakao Login ========================================================================================       
 	  @PostMapping("kakaoLogin")
 	  public String kakaoLogin(HttpServletRequest req, SfmMemVO mvo, Model model) {

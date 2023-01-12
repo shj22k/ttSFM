@@ -45,36 +45,47 @@ public class SfmMemController {
 		String memnum = ChabunUtil.getSFMmemChabun("D", sfmChabunService.getSFMmemChabun().getMemnum());
 		logger.info("채번으로 생성된 memnum >>> : " + sfmChabunService.getSFMmemChabun().getMemnum());
 		
+		FileUploadUtil fu = new FileUploadUtil( CommonUtils.SFM_IMG_UPLOAD_PATH
+				   ,CommonUtils.SFM_IMG_FILE_SIZE
+				   ,CommonUtils.SFM_EN_CODE);
+		
+		boolean bool = fu.imgfileUpload(req);
+		logger.info("sfmMemInsert fileUpload >>> : " +bool );
+		
 		SfmMemVO mvo = null;
 		mvo = new SfmMemVO();
 		
 		// 전화번호
 		String memhp = req.getParameter("memhp");
+		logger.info("memhp >>> : " +memhp );
 		String memhp1 = req.getParameter("memhp1");
 		String memhp2 = req.getParameter("memhp2");
 		memhp = memhp.concat("-" + memhp1).concat("-" + memhp2);
+		logger.info("memhp >>> : " +memhp );
 
 		mvo.setMemnum(memnum);
-		mvo.setMemname(req.getParameter("memname"));
+		mvo.setMemname(fu.getParameter("memname"));
 		logger.info("mvo.getMemname() >>> : " + mvo.getMemname());
-		mvo.setMemgender(req.getParameter("memgender"));
+		mvo.setMemgender(fu.getParameter("memgender"));
 		logger.info("mvo.getMemgender() >>> : " + mvo.getMemgender());
-		mvo.setMemid(req.getParameter("memid"));
+		mvo.setMemid(fu.getParameter("memid"));
 		logger.info("mvo.getMemid() >>> : " + mvo.getMemid());
-		mvo.setMempw(req.getParameter("mempw"));
+		mvo.setMempw(fu.getParameter("mempw"));
 		logger.info("mvo.getMempw() >>> : " + mvo.getMempw());
-		mvo.setMemzonecode(req.getParameter("memzonecode"));
-		mvo.setMemjibunaddress(req.getParameter("memjibunaddress"));
-		mvo.setMemjibunaddressdetail(req.getParameter("memjibunaddressdetail"));
-		mvo.setMememail(req.getParameter("mememail"));
+		mvo.setMemphoto(fu.getFileName("memphoto"));
+		mvo.setMemzonecode(fu.getParameter("memzonecode"));
+		mvo.setMemjibunaddress(fu.getParameter("memjibunaddress"));
+		mvo.setMemjibunaddressdetail(fu.getParameter("memjibunaddressdetail"));
+		mvo.setMememail(fu.getParameter("mememail"));
 		logger.info("mvo.getMememail() >>> : " + mvo.getMememail());
-		mvo.setMemposition(req.getParameter("memposition"));
-		mvo.setMempreferredarea(req.getParameter("mempreferredarea"));
+		mvo.setMemposition(fu.getParameter("memposition"));
+		mvo.setMempreferredarea(fu.getParameter("mempreferredarea"));
 		mvo.setMemhp(memhp);
 		logger.info("mvo.getMemhp() >>> : " + mvo.getMemhp());
 		mvo.setIsmanager("0");
 		logger.info("mvo.getMemid() >>> : " + mvo.getMemid());
 		logger.info("mvo.getMempw() >>> : " + mvo.getMempw());
+		logger.info("mvo.getMempw() >>> : " + mvo.getMemphoto());
 		logger.info("mvo.getMemzonecode() >>> : " + mvo.getMemzonecode());
 		logger.info("mvo.getMemjibunaddress() >>> : " + mvo.getMemjibunaddress());
 		logger.info("mvo.getMemjibunaddressdetail() >>> : " + mvo.getMemjibunaddressdetail());
@@ -85,14 +96,14 @@ public class SfmMemController {
 		int insertCnt = sfmMemService.sfmMemInsert(mvo);
 		if(insertCnt > 0) {
 			logger.info("sfmMemService insertCnt >>> : " + insertCnt);
-			return "member/sfmMemInsertForm";
+			return "member/sfmMemInsertForm";//sfmMemUpdate2 ->myPage 로가서 조회시켜줌 
 		}
 		return "member/sfmMemInsertForm";
 	}
 	
-	// 내정보 페이지 이동
+	// 내정보 페이지 이동 -전체조회
 	@GetMapping("sfmMemSelectAll")
-	public String sfmMemSelectAll(SfmMemVO mvo, Model model) {
+	public String sfmMemSelectAll(HttpServletRequest req,SfmMemVO mvo, Model model) {
 		logger.info("sfmMemSelectAll 진입");
 		
 		// DB에 연결되는 로직이기 때문에, 반드시 서비스를 통해 연결 해야한다.
@@ -102,6 +113,7 @@ public class SfmMemController {
 		try {
 			if(nCnt > 0) {
 				logger.info("sfmMemService nCnt >>> : " + nCnt);
+				
 				model.addAttribute("fileUploadListAll", fileUploadListAll);		
 				return "member/sfmMemSelectAll";	// 내정보 보기
 			}
@@ -110,11 +122,59 @@ public class SfmMemController {
 		}
 		return "admin/mainPage";
 	}
+	// myPage - 전체조회느낌
+	@GetMapping("myPage") 
+	public String myPage(HttpServletRequest req,SfmMemVO mvo, Model model) {
+		logger.info("myPage 진입");
+		
+		HttpSession session = req.getSession();
+		String memnum = (String)session.getAttribute("memnum");
+		logger.info("ctrl-myPage-memnum() >>> : " + memnum);
+		
+		mvo.setMemnum(memnum);
+		// DB에 연결되는 로직이기 때문에, 반드시 서비스를 통해 연결 해야한다.
+		List<SfmMemVO> fileUploadListAll = sfmMemService.myPage(mvo);
+		int nCnt = fileUploadListAll.size();
+		
+		try {
+			if(nCnt > 0) {
+				logger.info("myPage nCnt >>> : " + nCnt);
+				
+				model.addAttribute("fileUploadListAll", fileUploadListAll);		
+				return "member/myPage";	// 내정보 보기
+			}
+		}catch(Exception e) {
+			logger.info("에러가 >>> :" + e.getMessage());
+		}
+		return "admin/mainPage";
+	}
 	
-	// 수정 폼으로 이동
+	//관리자페이지에서 수정 폼으로 이동  -그냥 업뎃 -리스트 관리자용
 	@GetMapping("sfmMemUpdateForm")
-	public String sfmMatchUpdateForm(HttpServletRequest req, Model model,SfmMemVO mvo) throws Exception{
+	public String sfmMemUpdateForm(HttpServletRequest req, Model model,SfmMemVO mvo) throws Exception{
 		logger.info("sfmMemUpdateForm 함수 진입 >>> : ");
+
+		String memnum = req.getParameter("chkbox");
+		mvo.setMemnum(memnum);
+		mvo.setMemid(req.getParameter("memid"));
+		logger.info("memnum() >>> : " + mvo.getMemid());
+		mvo.setMempw(req.getParameter("mempw"));
+		logger.info("mempw() >>> : " + mvo.getMemid());
+		mvo.setMememail(req.getParameter("mememail"));
+		logger.info("mememail() >>> : " + mvo.getMemid());
+		
+		List<SfmMemVO> updateForm = new ArrayList<SfmMemVO>();
+		//updateForm = sfmMemService.sfmMemSelect(mvo);
+		updateForm = sfmMemService.sfmMemUpdateForm(mvo);
+		
+		model.addAttribute("updateForm", updateForm);
+		
+		return "member/sfmMemUpdateForm";	// 회원 수정페이지
+	}
+	// 마이페이지에서 수정 폼으로 이동 -그냥 업뎃 -리스트
+	@GetMapping("sfmMemUpdateFormUser")
+	public String sfmMemUpdateFormUser(HttpServletRequest req, Model model,SfmMemVO mvo) throws Exception{
+		logger.info("sfmMemUpdateFormUser 함수 진입 >>> : ");
 
 		HttpSession session = req.getSession();
 		String memnum = (String)session.getAttribute("memnum");
@@ -123,14 +183,14 @@ public class SfmMemController {
 		mvo.setMemnum(memnum);
 		
 		List<SfmMemVO> updateForm = new ArrayList<SfmMemVO>();
-		updateForm = sfmMemService.sfmMemSelect(mvo);
-		
+		//updateForm = sfmMemService.sfmMemSelect(mvo);
+		updateForm = sfmMemService.sfmMemUpdateFormUser(mvo);
 		model.addAttribute("updateForm", updateForm);
 		
-		return "member/sfmMemUpdateForm";	// 회원 수정페이지
+		return "member/sfmMemUpdateFormUser";	// 회원 수정페이지
 	}
 	
-	// 수정 폼에서 '수정하기 버튼 클릭시'
+	// 수정 폼에서 '수정하기 버튼 클릭시' -기존 업뎃2 관리자용
 	@PostMapping("sfmMemUpdate")
 	public String sfmMemUpdate(HttpServletRequest req, SfmMemVO mvo, Model model) {
 		
@@ -139,8 +199,12 @@ public class SfmMemController {
 				   ,CommonUtils.SFM_IMG_FILE_SIZE
 				   ,CommonUtils.SFM_EN_CODE);
 
+		HttpSession session = req.getSession();
+	    String memnum = (String)session.getAttribute("memnum");
+	    mvo.setMemnum(memnum);
+		logger.info("");
 		boolean bool = mu.imgfileUpload(req);
-		logger.info("shjMemInsert bool >>> : " + bool);
+		logger.info("sfmMemUpdate bool >>> : " + bool);
 
 		// 전화번호
 		String memhp = mu.getParameter("memhp");
@@ -161,6 +225,8 @@ public class SfmMemController {
 		mvo.setMemjibunaddressdetail(mu.getParameter("memjibunaddressdetail"));
 		mvo.setMememail(mu.getParameter("mememail"));
 		logger.info("mvo.getMememail() >>> : " + mvo.getMememail());
+		mvo.setMemphoto(mu.getFileName("memphoto"));//회원수정 사진
+		logger.info("memphoto >>> "+mu.getFileName("memphoto"));
 		mvo.setMemposition(mu.getParameter("memposition"));
 		mvo.setMempreferredarea(mu.getParameter("mempreferredarea"));
 		mvo.setMemhp(memhp);
@@ -178,8 +244,74 @@ public class SfmMemController {
 		int updateCnt = sfmMemService.sfmMemUpdate(mvo);
 		try {
 			if(updateCnt > 0) {
-				logger.info("sfmMatchInsert insertCnt >>> : " + updateCnt);
+				logger.info("sfmMemUpdate updateCnt >>> : " + updateCnt);
 				return "member/sfmMemUpdate";
+			}
+		}catch(Exception e) {
+			System.out.println("에러가 발생" + e);
+		}
+		return "";
+	}
+	
+	//파이페이지- 수정 폼에서 '회원수정하기 버튼 클릭시'-기존 업뎃2
+	@PostMapping("sfmMemUpdate2")
+	public String sfmMemUpdate2(HttpServletRequest req, SfmMemVO mvo, Model model) {
+		
+		// DB에 연결되는 로직이기 때문에, 반드시 서비스를 통해 연결 해야한다.
+		FileUploadUtil mu = new FileUploadUtil( CommonUtils.SFM_IMG_UPLOAD_PATH
+				   ,CommonUtils.SFM_IMG_FILE_SIZE
+				   ,CommonUtils.SFM_EN_CODE);
+		SfmMemVO _mvo = null;
+		_mvo = new SfmMemVO();
+		HttpSession session = req.getSession();
+	    String memnum = (String)session.getAttribute("memnum");
+	    _mvo.setMemnum(memnum);
+		logger.info("sfmMemUpdate2 memnum >> "+memnum);
+		
+		boolean bool = mu.imgfileUpload(req);
+		logger.info("sfmMemUpdate2 bool >>> : " + bool);
+
+		// 전화번호
+		String memhp = mu.getParameter("memhp");
+		logger.info("mvo.memhp() >>> : " + memhp);
+		String memhp1 = mu.getParameter("memhp1");
+		String memhp2 = mu.getParameter("memhp2");
+		memhp = memhp.concat("-" + memhp1).concat("-" + memhp2);
+		logger.info("mvo.memhp() >>> : " + memhp);
+		_mvo.setMemname(mu.getParameter("memname"));
+		logger.info("mvo.getMemname() >>> : " + _mvo.getMemname());
+		_mvo.setMemgender(mu.getParameter("memgender"));
+		logger.info("mvo.getMemgender() >>> : " + _mvo.getMemgender());
+		_mvo.setMemid(mu.getParameter("memid"));
+		logger.info("mvo.getMemid() >>> : " + _mvo.getMemid());
+		_mvo.setMempw(mu.getParameter("mempw"));
+		logger.info("mvo.getMempw() >>> : " + _mvo.getMempw());
+		_mvo.setMemzonecode(mu.getParameter("memzonecode"));
+		_mvo.setMemjibunaddress(mu.getParameter("memjibunaddress"));
+		_mvo.setMemjibunaddressdetail(mu.getParameter("memjibunaddressdetail"));
+		_mvo.setMememail(mu.getParameter("mememail"));
+		logger.info("mvo.getMememail() >>> : " + _mvo.getMememail());
+		_mvo.setMemphoto(mu.getFileName("memphoto"));//회원수정 사진
+		logger.info("memphoto >>> "+mu.getFileName("memphoto"));
+		_mvo.setMemposition(mu.getParameter("memposition"));
+		_mvo.setMempreferredarea(mu.getParameter("mempreferredarea"));
+		_mvo.setMemhp(memhp);
+		logger.info("mvo.getMemhp() >>> : " + _mvo.getMemhp());
+		_mvo.setIsmanager("0");
+		logger.info("mvo.getMemid() >>> : " + _mvo.getMemid());
+		logger.info("mvo.getMempw() >>> : " + _mvo.getMempw());
+		logger.info("mvo.getMemzonecode() >>> : " + _mvo.getMemzonecode());
+		logger.info("mvo.getMemjibunaddress() >>> : " + _mvo.getMemjibunaddress());
+		logger.info("mvo.getMemjibunaddressdetail() >>> : " + _mvo.getMemjibunaddressdetail());
+		logger.info("mvo.getMememail() >>> : " + _mvo.getMememail());
+		logger.info("mvo.getMemposition() >>> : " + _mvo.getMemposition());
+		logger.info("mvo.getMempreferredarea() >>> : " + _mvo.getMempreferredarea());
+		
+		int updateCnt = sfmMemService.sfmMemUpdate2(_mvo);
+		try {
+			if(updateCnt > 0) {
+				logger.info("sfmMemUpdate2 insertCnt >>> : " + updateCnt);
+				return "member/sfmMemUpdate2";
 			}
 		}catch(Exception e) {
 			System.out.println("에러가 발생" + e);
@@ -198,7 +330,7 @@ public class SfmMemController {
 		if(deleteCnt > 0) {
 			model.addAttribute("deleteCnt", deleteCnt);
 		}
-		return "sfm/sfmMatchSelectAll";
+		return "member/sfmMemSelectAll";
 	}
 
 	
@@ -217,10 +349,15 @@ public class SfmMemController {
 		
 		return msg;
 	}
-
+	
 	@GetMapping("mainIntro")
 	public String mainIntro(HttpServletRequest req, Model model,SfmMemVO mvo) {
 		logger.info("mainIntro 함수 진입 >>> : ");
+
+		
 		return "member/mainIntro";
 	}
+
+	
+
 }

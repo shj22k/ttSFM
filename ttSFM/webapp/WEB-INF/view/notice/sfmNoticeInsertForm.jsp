@@ -27,18 +27,28 @@
 <script src = "http://code.jquery.com/jquery-latest.min.js"></script>
 
 <script type="text/javascript">
-$(document).ready(function(){
-	
-	$(document).on('click','#noticebtn', function(){
-		alert("작성했습니다. >>> ");
-		//리터럴객체
-		$('#noticeinsertForm').attr({
-			"action":"sfmNoticeInsert.sfm",
-			"method":"POST",
-			
-		}).submit();
+
+	$(document).ready(function(){
+		
+		$(document).on('click','#noticebtn', function(){
+			alert("작성했습니다. >>> ");
+			//리터럴객체
+			$('#noticeinsertForm').attr({
+				"action":"sfmNoticeInsert.sfm",
+				"method":"POST",
+			}).submit();
+		});
+		
+		$(document).on('click','#noticeselbtn', function(){
+		      alert("전체조회중. >>> ");
+		      //리터럴객체
+		      $('#noticeinsertForm').attr({
+		         "action":"sfmNoticeSelectAll.sfm",
+		         "method":"GET",
+		      }).submit();
+	     });
 	});
-});
+
 </script>
 <body>
 
@@ -83,6 +93,7 @@ $(document).ready(function(){
 			<button type="button" id="noticebtn">보내기</button>		
 			<input type="hidden" id="memnum" name="memnum" value="">
 			<button type="reset">다시 </button>
+			<button type="button" id="noticeselbtn">공지사항 목록 조회</button>
 		</td>
 	</tr>
 </table>

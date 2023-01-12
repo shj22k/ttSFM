@@ -12,23 +12,24 @@
   	
   	.middle{
   margin-top: 20px;
-  width: 500px;
-  height: 384px;
+  margin-left: 48px;
+  width: 511px;
+  height: 400px;
   position: relative;
   border-right: 2px solid #D9E0E6;
 }
 .middle-left{
   outline: 1px solid #ffffff;
   position: absolute;
-  top: -20px;
+  top: -8px;
   width: 455px;
   height: 500px;
 	
 }
 .middle-right{
   position: absolute;
-  top: -17px;
-  left: 620px;
+  top: -8px;
+  left: 566px;
   width: 425px;
   height: 500px;
 }
@@ -335,4 +336,14 @@ body {
     margin-right: auto;
     margin-left: auto;
 }
+
+p3 {
+	
+ display: inline-block;
+} 
+
+p4, p5 {
+	 display: inline-block;
+}
+
 

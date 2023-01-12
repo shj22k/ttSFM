@@ -8,8 +8,12 @@ public interface SfmMemDAO {
 	
 	public int sfmMemInsert(SfmMemVO mvo);
 	public List<SfmMemVO> sfmMemSelectAll(SfmMemVO mvo);
+	public List<SfmMemVO> myPage(SfmMemVO mvo);
 	public List<SfmMemVO> sfmMemSelect(SfmMemVO mvo);
+	public List<SfmMemVO> sfmMemUpdateForm(SfmMemVO mvo);
+	public List<SfmMemVO> sfmMemUpdateFormUser(SfmMemVO mvo);
 	public int sfmMemUpdate(SfmMemVO mvo);
+	public int sfmMemUpdate2(SfmMemVO mvo);
 	public int sfmMemDelete(SfmMemVO mvo);
 
 	// 아이디 중복체크

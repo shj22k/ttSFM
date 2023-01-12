@@ -26,26 +26,18 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 
-	<link rel="stylesheet" href="/css/jquery-ui.min.css">
-
-
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-
-    <script type='text/javascript' src='//code.jquery.com/jquery-1.8.3.js'></script>
-
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
-
-    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
-
-    <script src="/js/bootstrap-datepicker.kr.js" charset="UTF-8"></script>
+<link rel="stylesheet" href="/css/jquery-ui.min.css">
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script type='text/javascript' src='//code.jquery.com/jquery-1.8.3.js'></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
+<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+<script src="/js/bootstrap-datepicker.kr.js" charset="UTF-8"></script>
     
     <!-- 검색바 -->
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <link rel="stylesheet" type="text/css" href="/testServlet/include/sfmNoticeSelectAll.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/ttSFM/include/sfmNoticeSelectAll.css">
 	<!-- 검색바 -->
 
   <script type='text/javascript'>
@@ -122,19 +114,19 @@
 <div style="padding:0px 400px 0px 400px;">
 <div class="topnav">
   <a>
-  <img src="/kosSpring/img/fb/tikilogo2.png" width="150px"><a style="font-size:30px"><b>관리자페이지<b></a>
+  <img src="/ttSFM/img/fb/tikilogo2.png" width="150px"><a style="font-size:30px"><b>관리자페이지<b></a>
   </a>
   	
   	<!-- 구장 예약 내역 아이콘 -->
   	<a href="https://www.plabfootball.com/mypage/myplab/">
-  	<img class="icon-margin2" align="right" src="/kosSpring/img/fb/date2.png" width="35px"><a href="https://www.plabfootball.com/mypage/"></a>
+  	<img class="icon-margin2" align="right" src="/ttSFM/img/fb/date2.png" width="35px"><a href="https://www.plabfootball.com/mypage/"></a>
   	</a>
  	 <!-- 구장 예약 내역 아이콘 -->
   
   
   	<!-- 마이 페이지 아이콘 -->
   	<a href="https://www.plabfootball.com/mypage/">
-  	<img class="icon-margin2" align="right" src="/kosSpring/img/fb/user.png" width="35px">
+  	<img class="icon-margin2" align="right" src="/ttSFM/img/fb/user.png" width="35px">
   	</a>
   	<!-- 마이 페이지 아이콘 -->
   	
@@ -226,7 +218,7 @@
 </div>
     <!--  하단바~~~~~~~~~~~~~~~~~~~~~ -->
 <div class="topnav">
-  <a class="active" href="#home"><img src="/kosSpring/img/fb/tikilogo2.png" width="150px" ;></a>
+  <a class="active" href="#home"><img src="/ttSFM/img/fb/tikilogo2.png" width="150px" ;></a>
   	
   <div class="search-container">
     <form action="/action_page.php">

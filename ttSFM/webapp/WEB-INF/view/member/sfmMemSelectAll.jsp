@@ -53,7 +53,7 @@
 			alert("insertBtn 버튼 클릭---");
 			
 			$('#shjList').attr({
-				'action':'sfmMemInsertForm.shj',
+				'action':'sfmMemInsertForm.sfm',
 				'method':'GET',
 				"enctype":"application/x-www-form-urlencoded"
 			}).submit();
@@ -64,7 +64,7 @@
 			alert("insertBtn 버튼 클릭---");
 			
 			$('#shjList').attr({
-				'action':'shjMemSelectForm.shj',
+				'action':'shjMemSelectForm.sfm',
 				'method':'GET',
 				"enctype":"application/x-www-form-urlencoded"
 			}).submit();
@@ -75,9 +75,9 @@
 			alert("updateBtn 버튼 클릭---");
 
 			$('#shjList').attr({
-				'action':'sfmMemUpdateForm.shj',
-				'method':'GET',
-				"enctype":"application/x-www-form-urlencoded"
+				'action':'sfmMemUpdateForm.sfm',
+				'method':'GET'
+				//"enctype":"application/x-www-form-urlencoded"
 			}).submit();
 		});
 		
@@ -86,7 +86,7 @@
 			alert("deleteBtn 버튼 클릭---");
 
 			$('#shjList').attr({
-				'action':'sfmMemDelete.shj',
+				'action':'sfmMemDelete.sfm',
 				'method':'GET',
 				"enctype":"application/x-www-form-urlencoded"
 			}).submit();
@@ -138,8 +138,9 @@
 	<th>핸드폰</th>
 	<th>이메일</th>
 	<th>선호 포지션</th>
-	<th>주소</th>
-	<th>상세주소</th>
+	<th>선호지역</th>
+	<th>주소</th>	
+	<th>회원사진</th>
 	
 </tr>
 </thead>
@@ -161,10 +162,10 @@
 	<td class="tt"><%= mvo.getMemgender() %></td>
 	<td class="tt"><%= mvo.getMemhp() %></td>
 	<td class="tt"><%= mvo.getMememail() %></td>
+	<td class="tt"><%= mvo.getMemposition() %></td>
 	<td class="tt"><%= mvo.getMempreferredarea() %></td>
 	<td class="tt"><%= mvo.getMemjibunaddress() %></td>
-	<td class="tt"><%= mvo.getMemjibunaddressdetail() %></td>
-<%-- 	<td class="tt"><img src="/ShjSpring/fileupload/shj_photo/<%= mvo.getMemphoto() %>" border="1" width="25" height="25" alt="image"></td> --%>
+	<td class="tt"><img src="/ttSFM/fileupload/mem_photo/<%= mvo.getMemphoto() %>" border="1" width="25" height="25" alt="image"></td> 
 </tr>
 <%
 		}	// end of for

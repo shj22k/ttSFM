@@ -20,6 +20,9 @@
 <!-- 카카오 로그인 api  -->
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+</head>
+<body>
 <script type="text/javascript">
 
 	//카카오 로그인 ===================================================================================
@@ -37,6 +40,9 @@
 	                    let k_id = res.id;
 	                    let k_email = res.kakao_account.email;
 	                    
+	                    $("#snsid").val(k_id);
+	                    $("#snsemail").val(k_email);
+	                    $("#snstype").val("01");
 	                    console.log("k_id >>> : " + k_id);
 	                    console.log("k_email >>> : " + k_email);
 	                    
@@ -50,24 +56,11 @@
 	function kakaoLogin(k_id, k_email) {
 		   alert("kakaoLogin >>> : " + k_id + " : " + k_email);
 		   
-		   let url = "kakaoLogin.sfm";
-		   $.ajax({
-		      url: url,
-		      type: "POST",
-		      dataType: "JSON",
-		      data: { 
-		            snsid : k_id, 
-		            snsemail :k_email,
-		            snstype : '01',
-		      },
-		      success : function(data){
-		         alert("전송성공")
-		      },
-		      error: function (error){
-		    	  
-				 alert("e >>> : " + e.responseText);
-		       }
-		   });
+		   $("#kakaologin").attr({
+			      "action":"kakaoLogin.sfm",
+			      "method":"POST",
+			      'enctype':'application/x-www-form-urlencoded'
+			}).submit();		   
 		}
 	//카카오 로그인 ===================================================================================
 
@@ -88,9 +81,6 @@
 	});
 
 </script>
-</head>
-<body>
-
 
 <!------ Include the above in your HEAD tag ---------->
 <div class="limiter">
@@ -153,6 +143,15 @@
 						</a>
 					</div>
 				</form>
+				<form id="kakaologin" name="kakaologin">
+	               <tr>
+	                  <td>
+	                  <input type="hidden" id="snsid" name="snsid" value="k_id"/>
+	                  <input type="hidden" id="snsemail" name="snsemail" value="k_email"/>
+	                  <input type="hidden" id="snstype" name="snstype" value="01"/>
+	                  </td>
+	               </tr>
+	            </form>
 			</div>
 		</div>
 	</div>

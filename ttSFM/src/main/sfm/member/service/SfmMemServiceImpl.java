@@ -61,5 +61,29 @@ public class SfmMemServiceImpl implements SfmMemService{
        logger.info("pwUpdate 함수 진입 >>> : ");
        return sfmMemDAO.pwUpdate(mvo);
     }
+
+	@Override
+	public int sfmMemUpdate2(SfmMemVO mvo) {
+		// TODO Auto-generated method stub
+		return sfmMemDAO.sfmMemUpdate2(mvo);
+	}
+
+	@Override
+	public List<SfmMemVO> sfmMemUpdateForm(SfmMemVO mvo) {
+		// TODO Auto-generated method stub
+		return sfmMemDAO.sfmMemUpdateForm(mvo);
+	}
+
+	@Override
+	public List<SfmMemVO> sfmMemUpdateFormUser(SfmMemVO mvo) {
+		// TODO Auto-generated method stub
+		return sfmMemDAO.sfmMemUpdateFormUser(mvo);
+	}
+
+	@Override
+	public List<SfmMemVO> myPage(SfmMemVO mvo) {
+		// TODO Auto-generated method stub
+		return sfmMemDAO.myPage(mvo);
+	}
 	
 }

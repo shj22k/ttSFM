@@ -23,6 +23,7 @@ html {
 
 body {
 	min-height: 100%;
+
 }
 
 * {
@@ -14729,6 +14730,7 @@ i {
 .info__list__wrapper .info__list {
 	padding: 10px 0px;
 	display: flex;
+	margin-top: -20px;
 }
 
 .info__list__wrapper .info__list img {
@@ -20681,7 +20683,7 @@ textarea {
 
 .section {
 	margin-bottom: 20px;
-	background-color: white;
+	background-color: #f5f7f6;
 	/* padding: 52px 20px; */
 }
 

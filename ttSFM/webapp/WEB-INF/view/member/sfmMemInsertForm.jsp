@@ -99,10 +99,9 @@
 			}
 		});
 		
-		// 로그인하기
-		$('#logingo').on('click', function(){
-			alert("logingo 보내기 버튼 블럭 진입 >>> : ");			
-			console.log("logingo 보내기 >>> : ");	
+		$('#meminsert').on('click', function(){
+			alert("meminsert 보내기 버튼 블럭 진입 >>> : ");			
+			console.log("meminsert 보내기 >>> : ");	
 			
 			var memposition = $("#memposition").val();
 			var memhp = $("#memhp").val();
@@ -110,7 +109,8 @@
 
 			$('#memform').attr({
 				'action':'sfmMemInsert.sfm',
-				'method':'POST'
+				'method':'POST',
+				'enctype':'multipart/form-data'
 			}).submit();
 		});
 	});
@@ -194,7 +194,12 @@
                  비밀번호를 입력해주세요.
             </div>
           </div>
-            
+             <!-- 회원사진 -->
+            <div class="mb-3">
+             <label for="memphoto"><b>사진업로드</b></label>
+             <input class="form-control" type="file" id="memphoto" name="memphoto">
+              
+            </div>
            <div class="mb-3">
            <label for="email"><b>이메일</b></label>
            <input type="email" class="form-control" id="mememail" name="mememail" placeholder="tikitaka@example.com" required>
@@ -214,7 +219,7 @@
                 <option value="017">017</option>
               </select>
               <div class="invalid-feedback">
-                포지션을 선택해주세요.
+                 전화번호를 입력해주세요.
               </div>
             </div>
           <div class="col-md-3 mb-3">
@@ -246,7 +251,6 @@
             <label for="email"> &nbsp;</label><br>
             <input type="button" class="btn btn-primary"  value="우편번호 찾기" onclick="kakaopost()">
             </div>
-            
             </div>
 
           <div class="mb-3">
@@ -297,7 +301,7 @@
             <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
           </div>
           <div class="mb-4"></div>
-          <button class="btn btn-primary btn-lg btn-block" type="submit" id="logingo" name="logingo" onclick="">가입 완료</button>
+          <button class="btn btn-primary btn-lg btn-block" type="submit" id="meminsert" name="meminsert">가입 완료</button>
         </form>
       </div>
     </div>
