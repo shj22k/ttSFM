@@ -247,7 +247,6 @@ pre {
 form p {
 	font-size: 15px;
 	margin-top: 20px;
-	margin-left: 5px;
 }
 
 /*INPUT*/
@@ -1986,8 +1985,26 @@ form.orderForm .formWrap input:checked {
 	height: 100%;
 }
 
+.container2 {
+    clear: both;
+    margin: 0 auto;
+    width: 60%;
+    zoom: 1;
+    height: 100%;
+    float: left;
+    margin-left: 15px;
+}
+
+.container3 {
+	clear: both;
+	margin: 0 auto;
+	width: 100%;
+	zoom: 1;
+	height: 100%;
+}
+
 .btnWrapF {
-	position: fixed;
+	positi3on: fixed;
 	bottom: 0;
 	padding: 30px 20px;
 	max-width: 480px;
@@ -20683,7 +20700,7 @@ textarea {
 
 .section {
 	margin-bottom: 20px;
-	background-color: #f5f7f6;
+	background-color: #ffffff
 	/* padding: 52px 20px; */
 }
 

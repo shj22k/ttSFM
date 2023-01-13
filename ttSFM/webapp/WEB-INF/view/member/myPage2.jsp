@@ -55,7 +55,6 @@
 		         }).submit();
 		      });
 		});
-    	
 </script>
 </head>
 <body>
@@ -143,31 +142,30 @@
 	 </div>  	
 </div>
 
-<div class="right">
-	<h3 class="list-margin"><b>마이 페이지</b></h3>
+<!--  바뀐점 ㅎㅎ -->
+<div style="height: 875px;" class="right">
+	<h3 class="list-margin"><b>구장예약 목록</b></h3>
 	<br>
-	<div class="row">
-	  <div class="col-4">
-	    <div id="list-example" class="list-group">
-	      <a class="list-group-item list-group-item-action" href="myPage2.sfm?memnum=<%=mvo.getMemnum() %>" style ="font-size:1.5em;"><img class="icon-margin" src="/ttSFM/img/fb/Ball.png" width="30px;">구장 예약 내역</a>
-	      <a class="list-group-item list-group-item-action" href="sfmMemUpdateFormUser.sfm?memnum=<%=mvo.getMemnum() %>" style ="font-size:1.5em;"><img class="icon-margin" src="/ttSFM/img/fb/user2.png" width="30px;">프로필 수정</a>
-	    </div>
-	  </div>
-	</div>
-</div>
-<div class="right1">
-	<h3 class="list-margin"><b>더 보기</b></h3>
-	<br>
-	<div class="row">
-	  <div class="col-4">
-	    <div id="list-example" class="list-group">
-	      <a class="list-group-item list-group-item-action" href="mainIntro.sfm" style ="font-size:1.5em;"><img class="icon-margin" src="/ttSFM/img/fb/about.png" width="30px;">티키타카 소개</a>
-	      <a class="list-group-item list-group-item-action" href="sfmEventSelectAllUser.sfm" style ="font-size:1.5em;"><img class="icon-margin" src="/ttSFM/img/fb/party.png" width="30px;">이벤트</a>
-	      <a class="list-group-item list-group-item-action" href="sfmNoticeSelectAllUI.sfm" style ="font-size:1.5em;"><img class="icon-margin" src="/ttSFM/img/fb/notice.png" width="30px;">공지사항</a>
-	    </div>
-	  </div>
-	</div>
-</div>
+		
+<table class="table border-bottom table-sm">
+<thead>
+	<tr>
+		<th>글번호</th>	
+		<th>제목</th>	
+		<th>예약 날짜</th>
+	</tr>
+</thead>
+	
+<tbody>
+	<tr>
+	 
+		<td style="width:10%">1</td>
+		<td style="width:40%">인천 계양경기장</td>
+		<td style="width:8%">2023/01/05</td>				
+	</tr>	
+</tbody>
+</table>
+
 </div>
 <%
 		}	// end of for
