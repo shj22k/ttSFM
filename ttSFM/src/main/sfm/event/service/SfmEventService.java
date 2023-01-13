@@ -3,6 +3,7 @@ package main.sfm.event.service;
 import java.util.List;
 
 import main.sfm.event.vo.SfmEventVO;
+import main.sfm.member.vo.SfmMemVO;
 
 public interface SfmEventService {
 
@@ -14,7 +15,5 @@ public interface SfmEventService {
 	public List<SfmEventVO> sfmEventSelectCon(SfmEventVO sevo);//조건조회
 	public List<SfmEventVO> sfmEventSelectUser(SfmEventVO sevo);//조건조회-사용자
 	public int sfmEventDelete(SfmEventVO sevo); //삭제
-	
-	
 	
 }

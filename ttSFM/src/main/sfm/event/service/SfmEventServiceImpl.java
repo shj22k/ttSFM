@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import main.sfm.event.dao.SfmEventDAO;
 import main.sfm.event.vo.SfmEventVO;
+import main.sfm.member.vo.SfmMemVO;
 
 
 @Service
@@ -69,5 +70,6 @@ public class SfmEventServiceImpl implements SfmEventService{
 		// TODO Auto-generated method stub
 		return sfmEventDAO.sfmEventDelete(sevo);
 	}
+	
 
 }

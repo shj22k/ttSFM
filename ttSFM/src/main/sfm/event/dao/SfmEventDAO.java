@@ -14,4 +14,5 @@ public interface SfmEventDAO {
 	public List<SfmEventVO> sfmEventSelectCon(SfmEventVO sevo);//조건조회
 	public List<SfmEventVO> sfmEventSelectUser(SfmEventVO sevo);//조건조회-사용자
 	public int sfmEventDelete(SfmEventVO sevo); //삭제
+	
 }

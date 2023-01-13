@@ -97,7 +97,7 @@ td{
 			let deleteURL = "sfmRcommunityDelete.sfm";
 			let method = "POST";
 			let dataParam = {
-				rkcnum: $('#rcnumV').val(rcnumV),				
+				rkcnum: $('#rcnum').val(rcnumV),				
 			};		
 			dataParam = $("#rcommunityForm").serialize();
 			console.log("dataParam >>> : " + dataParam);
@@ -113,7 +113,7 @@ td{
 			function whenSuccess(resData){					
 				console.log("resData >>> : " + resData);				
 				if ("GOOD" == resData){
-					alert("댓글이 삭제되었습니다.");
+					alert("삭제되었습니다.");
 					target.remove();
 				}	
 			}
@@ -259,7 +259,6 @@ td{
 %>
 <div id="rcwriterdiv">
 <form name="rcommunityForm" id="rcommunityForm">
-
 <div class="con">
 <table class="table">
 <tr>

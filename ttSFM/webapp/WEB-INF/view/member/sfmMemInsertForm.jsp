@@ -103,16 +103,39 @@
 			alert("meminsert 보내기 버튼 블럭 진입 >>> : ");			
 			console.log("meminsert 보내기 >>> : ");	
 			
-			var memposition = $("#memposition").val();
-			var memhp = $("#memhp").val();
-			var mempreferredarea = $("#mempreferredarea").val();
-
 			$('#memform').attr({
 				'action':'sfmMemInsert.sfm',
 				'method':'POST',
 				'enctype':'multipart/form-data'
 			}).submit();
 		});
+		
+// 		$(document).ready(function(){
+// 			alert("ready 함수 진입");
+			
+// 			$(document).on("click", "#meminsert", function(){
+// 				alert("회원가입 버튼 클릭 >>> : ");
+				
+// 				let idCheckURL = "sfmMemInsert.sfm";
+// 				let reqType = "POST";
+// 				let formsubmit = $("#memform").serialize();
+				
+// 				$.ajax({
+// 					url: idCheckURL,
+// 					type: reqType,								
+// 					data: formsubmit,	            
+// 					success: whenSuccess,
+// 					error: whenError
+// 				});
+				
+// 				function whenSuccess(resData){	
+// 					alert("회원 가입이 완료되었습니다.");
+// 				}
+// 				function whenError(e){
+// 					alert("e >>> : " + e.responseText);
+// 				}
+// 			});
+// 		});
 	});
 	
 </script>
@@ -301,6 +324,7 @@
             <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
           </div>
           <div class="mb-4"></div>
+          	<input type="hidden" id="memhp" name="memhp" value="" />
           <button class="btn btn-primary btn-lg btn-block" type="submit" id="meminsert" name="meminsert">가입 완료</button>
         </form>
       </div>

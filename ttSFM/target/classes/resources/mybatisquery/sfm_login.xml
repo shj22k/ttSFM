@@ -144,4 +144,16 @@
                                 #{snstype, jdbcType=VARCHAR}, #{snsid, jdbcType=VARCHAR}, #{snsemail, jdbcType=VARCHAR})
 </insert>
 
+<select id="maingo" parameterType="sfmmemvo" resultType="sfmmemvo">
+
+   SELECT
+   		  A.MEMNUM	   MEMNUM
+         ,A.MEMID      MEMID
+         ,A.MEMPW      MEMPW
+   FROM   SFM_MEMBER A
+   WHERE   A.DELETEYN = 'Y'
+   AND      A.MEMNUM = #{memnum, jdbcType=VARCHAR}
+</select>
+
+
 </mapper>

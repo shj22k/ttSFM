@@ -101,7 +101,6 @@
            <option>프로</option>
            <option>프로</option>
          </select>
-         <input type="button" id="search_btn" name="search_btn" value="검색">
        </div>
        &nbsp;
        <div class="input-group date">

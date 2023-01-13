@@ -3158,16 +3158,16 @@ iframe {
   align-items: center;
   padding: 15px;
 
-  background: #9053c7;
-  background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: linear-gradient(-135deg, #458cd3, #bcebbe);
+ 
+
+  background:url("/ttSFM/img/fb/fb16.jpg") no-repeat;
+  background-repeat: no-repeat;
+  background-size: cover;
 
 }
 
 .wrap-login100 {
-  width: 960px;
+  width: 600px;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
@@ -3179,13 +3179,13 @@ iframe {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 177px 130px 33px 95px;
+  padding: 70px 50px 4px 95px;
 }
 
 /*------------------------------------------------------------------
 [  ]*/
 .login100-pic {
-  width: 316px;
+  width: 426px;
 }
 
 .login100-pic img {
@@ -3204,14 +3204,12 @@ iframe {
 .login100-form-title {
   font-family: Poppins-Bold;
   font-weight: bold;
-  font-size: 40px;
+  font-size: 35px;
   color: #212529;
-  line-height: 1.2;
+  line-height: 3.0;
   text-align: center;
-
-  width: 100%;
+  width: 110%;
   display: block;
-  padding-bottom: 54px;
 }
 
 
@@ -3230,11 +3228,11 @@ iframe {
   color: #666666;
 
   display: block;
-  width: 100%;
+  width: 110%;
   background: #e6e6e6;
   height: 50px;
   border-radius: 25px;
-  padding: 0 30px 0 68px;
+  padding: 0 30px 0 70px;
 }
 
 
@@ -3369,7 +3367,9 @@ iframe {
 }
 
 @media (max-width: 768px) {
-  .wrap-login100 {
+  .wrap-
+
+ {
     padding: 100px 80px 33px 80px;
   }
 

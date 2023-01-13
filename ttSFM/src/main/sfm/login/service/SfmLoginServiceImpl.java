@@ -90,4 +90,11 @@ public class SfmLoginServiceImpl implements SfmLoginService {
 	   return sfmLoginDAO.kakaoInsert(mvo);
 	}
 
+	@Override
+	public List<SfmMemVO> maingo(SfmMemVO mvo) {
+	   // TODO Auto-generated method stub
+	   logger.info("maingo 함수 진입 >>> : ");
+	   return sfmLoginDAO.maingo(mvo);
+	}
+
 }

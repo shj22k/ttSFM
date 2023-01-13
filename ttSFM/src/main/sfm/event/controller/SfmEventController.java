@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,6 +21,7 @@ import main.sfm.common.FileUploadUtil;
 import main.sfm.common.chabun.service.SfmChabunService;
 import main.sfm.event.service.SfmEventService;
 import main.sfm.event.vo.SfmEventVO;
+import main.sfm.member.vo.SfmMemVO;
 import main.sfm.notice.vo.SfmNoticeVO;
 
 
@@ -59,9 +61,6 @@ public class SfmEventController {
 		
 		HttpSession session = req.getSession();
 	    String memnum = (String)session.getAttribute("memnum");
-		
-	 
-	    
 	    
 		sevo.setEventnum(eventnum);
 		logger.info("eventnum >>> "+ eventnum);
@@ -103,8 +102,6 @@ public class SfmEventController {
 			model.addAttribute("listAll", listAll);
 			return "event/sfmEventSelectAll";
 		}
-		
-		
 		return "event/sfmEventInsertForm";
 	}
 	//사용자 - 전체조회
@@ -120,12 +117,9 @@ public class SfmEventController {
 			if(nCnt>0) {
 				logger.info("sfmEventSelectAllUser nCnt >>> : "+ nCnt);
 				
-				
 				model.addAttribute("listAll", listAll);
 				return "eventuser/sfmEventSelectAllUser";
 			}
-			
-			
 			return "";
 		}
 	
@@ -136,23 +130,17 @@ public class SfmEventController {
 		String eventnum = req.getParameter("chkbox");
 		sevo.setEventnum(eventnum);
 		
-//		HttpSession session = req.getSession();
-//	    String memnum = (String)session.getAttribute("memnum");
-		
 		List<SfmEventVO> a =  new ArrayList<SfmEventVO>();
-		
 		a = sfmEventService.sfmEventUpdate(sevo);
+		
 		model.addAttribute("a", a);
 		return "event/sfmEventUpdateForm";
-
-		
 	}
 	@RequestMapping(value= "sfmEventUpdate2", method= RequestMethod.POST)
 	public String sfmEventUpdate2(HttpServletRequest req,Model model) {
 		FileUploadUtil fu = new FileUploadUtil( CommonUtils.SFM_IMG_UPLOAD_EVENT_PATH
 												,CommonUtils.SFM_IMG_FILE_SIZE
 												,CommonUtils.SFM_EN_CODE);
-		
 		
 		HttpSession session = req.getSession();
 	    String memnum = (String)session.getAttribute("memnum");
@@ -184,14 +172,11 @@ public class SfmEventController {
 		}
 		
 		return "event/sfmEventUpdateForm";
-
-		
 	}
+	
 	//조건조회
 	@RequestMapping(value= "sfmEventSelectCon", method= RequestMethod.GET)
 	public String sfmEventSelectCon(HttpServletRequest req,Model model,SfmEventVO sevo) {
-		
-		
 		logger.info("sfmEventSelectCon >>> : ");
 		
 		List<SfmEventVO> listAll_1 = sfmEventService.sfmEventSelectCon(sevo);
@@ -200,31 +185,29 @@ public class SfmEventController {
 		if(nCnt>0) {
 			logger.info("sfmEventSelectCon nCnt >>> : "+ nCnt);
 			
-			
 			model.addAttribute("listAll_1", listAll_1);
 			return "event/sfmEventSelectCon";
 		}
 		return "event/sfmEventSelectAll";
 	}
+	
 	//조건조회-사용자
-		@RequestMapping(value= "sfmEventSelectUser", method= RequestMethod.GET)
-		public String sfmEventSelectUser(HttpServletRequest req,Model model,SfmEventVO sevo) {
+	@RequestMapping(value= "sfmEventSelectUser", method= RequestMethod.GET)
+	public String sfmEventSelectUser(HttpServletRequest req,Model model,SfmEventVO sevo) {
+		logger.info("sfmEventSelectUser >>> : ");
+		
+		List<SfmEventVO> listAll_1 = sfmEventService.sfmEventSelectUser(sevo);
+		int nCnt= listAll_1.size();
+		logger.info("sfmEventSelectUser Cnt >>> : "+nCnt);
+		if(nCnt>0) {
+			logger.info("sfmEventSelectUser nCnt sfmEventSelectUser>>> : "+ nCnt);
 			
-			
-			logger.info("sfmEventSelectUser >>> : ");
-			
-			List<SfmEventVO> listAll_1 = sfmEventService.sfmEventSelectUser(sevo);
-			int nCnt= listAll_1.size();
-			logger.info("sfmEventSelectUser Cnt >>> : "+nCnt);
-			if(nCnt>0) {
-				logger.info("sfmEventSelectUser nCnt sfmEventSelectUser>>> : "+ nCnt);
-				
-				
-				model.addAttribute("listAll_1", listAll_1);
-				return "eventuser/sfmEventSelectUser";
-			}
-			return "";
+			model.addAttribute("listAll_1", listAll_1);
+			return "eventuser/sfmEventSelectUser";
 		}
+		return "";
+	}
+		
 	//삭제
 	@RequestMapping(value ="sfmEventDelete" , method = RequestMethod.GET)
 	public String sfmEventDelete(HttpServletRequest req, SfmEventVO sevo,Model model) {

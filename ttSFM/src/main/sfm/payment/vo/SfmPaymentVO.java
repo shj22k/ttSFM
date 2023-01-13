@@ -8,19 +8,22 @@ public class SfmPaymentVO {
 	private String matchnum;
 	private String deleteyn;
 	private String insertdate;
-	
+	private String memnum;
+
 	
 	public SfmPaymentVO() {
 		
 	}
 	
-	public SfmPaymentVO(String paymentnum, String paymentweek, String paymentname, String matchnum, String deleteyn, String insertdate) {
+	public SfmPaymentVO(String paymentnum, String paymentweek, String paymentname, String matchnum, String deleteyn, String insertdate, String memnum) {
 		this.paymentnum = paymentnum;
 		this.paymentweek = paymentweek;
 		this.paymentname = paymentname;
 		this.matchnum = matchnum;
 		this.deleteyn = deleteyn;
 		this.insertdate = insertdate;
+		this.memnum = memnum;
+
 	}
 	
 	public String getPaymentnum() {
@@ -58,6 +61,12 @@ public class SfmPaymentVO {
 	}
 	public void setInsertdate(String insertdate) {
 		this.insertdate = insertdate;
+	}
+	public String getMemnum() {
+		return memnum;
+	}
+	public void setMemnum(String memnum) {
+		this.memnum = memnum;
 	}
 
 	

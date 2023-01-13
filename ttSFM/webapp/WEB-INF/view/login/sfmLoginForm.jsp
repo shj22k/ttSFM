@@ -8,6 +8,7 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet" href="/ttSFM/include/Login.css">
 
+
 <style type="text/css">
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
@@ -19,8 +20,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- 카카오 로그인 api  -->
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 <script type="text/javascript">
@@ -146,9 +146,9 @@
 				<form id="kakaologin" name="kakaologin">
 	               <tr>
 	                  <td>
-	                  <input type="hidden" id="snsid" name="snsid" value="k_id"/>
-	                  <input type="hidden" id="snsemail" name="snsemail" value="k_email"/>
-	                  <input type="hidden" id="snstype" name="snstype" value="01"/>
+		                  <input type="hidden" id="snsid" name="snsid" value="k_id"/>
+		                  <input type="hidden" id="snsemail" name="snsemail" value="k_email"/>
+		                  <input type="hidden" id="snstype" name="snstype" value="01"/>
 	                  </td>
 	               </tr>
 	            </form>

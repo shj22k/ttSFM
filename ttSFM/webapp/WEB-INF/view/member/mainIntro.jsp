@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="org.apache.log4j.LogManager" %>  
+<%@page import="org.apache.log4j.Logger" %> 
+<%@ page import="javax.servlet.http.HttpSession"%>
+<%@ page import="javax.servlet.http.HttpServletRequest"%>
+<%
+	Logger logger = LogManager.getLogger(this.getClass());
+	HttpSession ss = request.getSession();
+    String memnum = (String)ss.getAttribute("memnum");
+	logger.info("memnum >> "+ memnum);
+%> 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,10 +28,18 @@
 		<link rel="stylesheet" href="/ttSFM/include/Login.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type='text/javascript'>
-// submitButton
 
-  
-  
+	$(document).ready(function(){
+// 		location.href="/ttSFM/maingo.sfm?memnum="+ths;
+		$("#maingo").on("click", function(){
+			$("#maindata").attr({
+				"action":"maingo.sfm",
+			    "method":"POST",
+			    'enctype':'application/x-www-form-urlencoded'
+			}).submit();
+		});
+	});
+	
 	window.addEventListener('DOMContentLoaded', event => {
 
     // Navbar shrink function
@@ -34,7 +53,6 @@
         } else {
             navbarCollapsible.classList.add('navbar-shrink')
         }
-
     };
 
     // Shrink the navbar 
@@ -66,9 +84,17 @@
     });
 
 });
+	
+// 	$(document).ready(function(){
+		
+// 		$("#submitButton").on("click", function(){
+// 			alert("submitButton 버튼 클릭");
+			
+// 			$("#")
+// 		})
+// 	})
 
 </script>
-
 </head>
    <body id="page-top">
         <!-- Navigation-->
@@ -224,7 +250,11 @@
 		<br>
 		<br>
 			<h3 align="center">경기목록 보러가기 !</h3>
-			<button class="login100-form-btn" id="submitButton" type="submit" style="margin: 20px auto;margin-left: 305px; width: 298px;">경기목록 보기</button>   		</div>
+			<form id="maindata" name="maindata">
+<%-- 				<input type="hidden" id="memnum" name="memnum" value="<%= memnum %>"/> --%>
+				<button class="login100-form-btn" type="submit" id="maingo" name="maingo" style="margin: 20px auto;margin-left: 305px; width: 298px;">경기목록 보기</button>
+			</form>
+		</div>
         <div class="right">
       		<img src="/ttSFM/img/fb/fb16.jpg" style="width: 957px;height: 540px;">
 		</div>               

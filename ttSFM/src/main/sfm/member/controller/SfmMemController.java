@@ -56,14 +56,13 @@ public class SfmMemController {
 		mvo = new SfmMemVO();
 		
 		// 전화번호
-		String memhp = req.getParameter("memhp");
-		logger.info("memhp >>> : " +memhp );
-		String memhp1 = req.getParameter("memhp1");
-		String memhp2 = req.getParameter("memhp2");
-		memhp = memhp.concat("-" + memhp1).concat("-" + memhp2);
-		logger.info("memhp >>> : " +memhp );
+		String hp = fu.getParameter("memhp");
+		String hp1 = fu.getParameter("memhp1");
+		String hp2 = fu.getParameter("memhp2");
+		hp = hp.concat("-" + hp1).concat("-" + hp2);
 
 		mvo.setMemnum(memnum);
+		logger.info("mvo.getMemnum() >>> : " + mvo.getMemnum());
 		mvo.setMemname(fu.getParameter("memname"));
 		logger.info("mvo.getMemname() >>> : " + mvo.getMemname());
 		mvo.setMemgender(fu.getParameter("memgender"));
@@ -80,7 +79,7 @@ public class SfmMemController {
 		logger.info("mvo.getMememail() >>> : " + mvo.getMememail());
 		mvo.setMemposition(fu.getParameter("memposition"));
 		mvo.setMempreferredarea(fu.getParameter("mempreferredarea"));
-		mvo.setMemhp(memhp);
+		mvo.setMemhp(hp);
 		logger.info("mvo.getMemhp() >>> : " + mvo.getMemhp());
 		mvo.setIsmanager("0");
 		logger.info("mvo.getMemid() >>> : " + mvo.getMemid());
@@ -96,7 +95,7 @@ public class SfmMemController {
 		int insertCnt = sfmMemService.sfmMemInsert(mvo);
 		if(insertCnt > 0) {
 			logger.info("sfmMemService insertCnt >>> : " + insertCnt);
-			return "member/sfmMemInsertForm";//sfmMemUpdate2 ->myPage 로가서 조회시켜줌 
+			return "login/sfmLoginForm";//sfmMemUpdate2 ->myPage 로가서 조회시켜줌 
 		}
 		return "member/sfmMemInsertForm";
 	}
@@ -122,6 +121,7 @@ public class SfmMemController {
 		}
 		return "admin/mainPage";
 	}
+	
 	// myPage - 전체조회느낌
 	@GetMapping("myPage") 
 	public String myPage(HttpServletRequest req,SfmMemVO mvo, Model model) {
@@ -129,9 +129,10 @@ public class SfmMemController {
 		
 		HttpSession session = req.getSession();
 		String memnum = (String)session.getAttribute("memnum");
-		logger.info("ctrl-myPage-memnum() >>> : " + memnum);
-		
+		logger.info("myPage memnum >>> : " + memnum);
 		mvo.setMemnum(memnum);
+		logger.info("myPage  mvo.getMemnum() >>> : " + mvo.getMemnum());
+		
 		// DB에 연결되는 로직이기 때문에, 반드시 서비스를 통해 연결 해야한다.
 		List<SfmMemVO> fileUploadListAll = sfmMemService.myPage(mvo);
 		int nCnt = fileUploadListAll.size();
@@ -353,11 +354,8 @@ public class SfmMemController {
 	@GetMapping("mainIntro")
 	public String mainIntro(HttpServletRequest req, Model model,SfmMemVO mvo) {
 		logger.info("mainIntro 함수 진입 >>> : ");
-
-		
 		return "member/mainIntro";
 	}
-
 	
 
 }

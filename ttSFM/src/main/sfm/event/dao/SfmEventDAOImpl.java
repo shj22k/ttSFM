@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import main.sfm.event.vo.SfmEventVO;
+import main.sfm.member.vo.SfmMemVO;
 import main.sfm.notice.dao.SfmNoticeDAOImpl;
 
 @Repository
@@ -65,7 +66,5 @@ public class SfmEventDAOImpl implements SfmEventDAO {
 		// TODO Auto-generated method stub
 		return (Integer)sqlSession.delete("sfmEventDelete", sevo);
 	}
-
-	
 	
 }

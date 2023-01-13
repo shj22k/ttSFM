@@ -32,12 +32,7 @@
  	String memnum = request.getParameter("memnum");
  	String cnum = request.getParameter("cnum");
  	session.getAttribute(memnum);
- //	session.getAttribute(cnum);
  	session.setAttribute("cnum", cnum);
-//	session.setAttribute("memnum", memnum);
-
-
-	
 %> 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -137,7 +132,6 @@
 			}).submit();
 		});
 	});
-	
 
 </script>
 </head>
@@ -147,12 +141,12 @@
 <div style="padding:0px 400px 0px 400px;">
 <div class="topnav">
 	<a>
-		<img src="/ttSFM/img/fb/tikilogo2.png" width="125px;"><a style="font-size:30px"></a>
+		<img src="/ttSFM/img/fb/tikilogo2.png" width="125px;">
 	</a>
   	
   	<!-- 구장 예약 내역 아이콘 -->
   	<a href="https://www.plabfootball.com/mypage/myplab/">
-  		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/date2.png" width="35px"><a href="https://www.plabfootball.com/mypage/"></a>
+  		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/date2.png" width="35px">
   	</a>
  	<!-- 구장 예약 내역 아이콘 -->
   
@@ -175,7 +169,7 @@
 <div class="input-form-backgroud">
 <div class="input-form col-md-12 mx-auto">
 
-<h3><b>커뮤니티</b></h3>
+<h3><b>티키타카 커뮤니티</b></h3>
 <br>
 <form name="commucon" id="commucon">
 <table class="table">
@@ -190,14 +184,14 @@
 	<tr>
 		
 		<td>이름:<%= cvo.getCname() %></td><td class="td_1"></td>
-		<td class="td_2"> 추천: <%= cvo.getLike_cnt_1() %>&nbsp; 조회:  &nbsp; 작성일자 : <%= cvo.getInsertdate() %></td>
+		<td class="td_2"> 추천: <%= cvo.getLike_cnt_1() %>&nbsp;&nbsp; 작성일자 : <%= cvo.getInsertdate() %></td>
 	</tr>
 	<tr>
 		<td colspan="6" style="text-align:left"> 
 <%-- 				<img src="/ShjSpring/fileupload/product/<%= _kpvo.getKpfile() %>" width="50" height="50"><br> --%>
 		
-			<img src="/ttSFM/fileupload/community_photo" border="1" width="100" height="100" alt="image"><br>
-			<img src="/ttSFM/fileupload/community_photo" border="1" width="200" height="100" alt="image"><br>
+			<img src="/ttSFM/fileupload/community_photo/<%= cvo.getCfile()%>" border="1" width="100" height="100" alt="image"><br>
+			<img src="/ttSFM/fileupload/community_photo/<%= cvo.getCfile()%>" border="1" width="200" height="100" alt="image"><br>
 		</td>
 	</tr>
 	<tr>

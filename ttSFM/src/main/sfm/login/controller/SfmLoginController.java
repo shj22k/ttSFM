@@ -3,6 +3,7 @@ package main.sfm.login.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -41,7 +42,6 @@ public class SfmLoginController {
 	@PostMapping("sfmLogin")
 	public String sfmLogin(HttpServletRequest req, SfmMemVO mvo, Model model) {
 		logger.info("sfmLogin 진입");
-		
 		
 		List<SfmMemVO> listLogin = sfmLoginService.loginCheck(mvo);
 		logger.info("login listLogin.size() >>> : " + listLogin.size());
@@ -89,35 +89,35 @@ public class SfmLoginController {
 		logger.info("IdFindAuthnum 함수 진입 >>> : ");	
 		
 		// 이메일 체크 서비스 호출
-		List<SfmMemVO> emailCnt = sfmLoginService.emailCntCheck(mvo);
-		
-		if (emailCnt.size() == 1) {
-			String authcertification = PasswordUtil.tempPW(6);
-			logger.info("authcertification >>> : " + authcertification );
-			SfmTempAuthVO stvo = null;
-			stvo = new SfmTempAuthVO();
-			stvo.setAuthcertification(authcertification);
-			logger.info("Authcertification >>> : " + stvo.getAuthcertification());
-			stvo.setMememail(mvo.getMememail());	
-			logger.info("mememail >>> : " + stvo.getMememail());
-			// avo.setMemail("jackbomb51@gmail.com");	
-			int nCnt = sfmLoginService.tempAuthInsert(stvo);
-			logger.info("nCnt >>> : " + nCnt);
-			
-			if (nCnt == 1) {
+        List<SfmMemVO> emailCnt = sfmLoginService.emailCntCheck(mvo);
+        
+        if (emailCnt.size() == 1) {
+           String authcertification = PasswordUtil.tempPW(6);
+           
+           SfmTempAuthVO stvo = null;
+           stvo = new SfmTempAuthVO();
+           stvo.setAuthcertification(authcertification);
+           
+           stvo.setMememail(mvo.getMememail());   
+        
+        
+           int nCnt = sfmLoginService.tempAuthInsert(stvo);
+     
+           
+           if (nCnt == 1) {
 
-				String resiveMail = "XXXXXX@gmail.com";
-				String sendMsg = "임시 인증번호 입니다  :::: " + authcertification;			
-				GoogleAuthumMail gam = new GoogleAuthumMail();
-				gam.authumMail(resiveMail, sendMsg);
-				
-				return "login/sfmemailCheck";				
-			}			
-		}
-		
-		return "login/sfmidFind";
-	}
-		
+              String resiveMail = mvo.getMememail();
+              String sendMsg = authcertification;         
+              GoogleAuthumMail gam = new GoogleAuthumMail();
+              gam.authumMail(resiveMail, sendMsg);
+              
+              return "login/sfmemailCheck";            
+           }         
+        }
+        
+        return "login/sfmidFind";
+     }		
+	
 	// 아이디 찾아서 받기  	
 	@GetMapping("idFind")
 	public String IdFind(HttpServletRequest req, SfmMemVO mvo, SfmTempAuthVO stvo, Model model) {
@@ -176,8 +176,8 @@ public class SfmLoginController {
 			
 			if (nCnt == 1) {
 
-				String resiveMail = "XXXXXX@gmail.com";
-				String sendMsg = "임시 비밀번호 입니다  :::: " + pwcertification;			
+				String resiveMail = mvo.getMememail();
+				String sendMsg = pwcertification;			
 				GoogleAuthumMail gam = new GoogleAuthumMail();
 				gam.authumMail(resiveMail, sendMsg);
 				
@@ -255,4 +255,27 @@ public class SfmLoginController {
 		ks.killSession(req);
 		return "login/sfmLogout";
 	}
+	
+	@PostMapping("maingo")
+	public String maingo(HttpServletRequest req, Model model, SfmMemVO mvo) {
+		logger.info("maingo 함수 진입 >>> : ");
+		
+		HttpSession session = req.getSession();
+		String memnum = (String)session.getAttribute("memnum");
+		logger.info("memnum() >>> : " + memnum);
+
+		mvo.setMemnum(memnum);
+		logger.info("mvo.getMemnum() >>> : " +mvo.getMemnum());
+
+	    List<SfmMemVO> listLogin = sfmLoginService.maingo(mvo);
+
+		// 로직 처리하기 
+		if (listLogin.size() == 1) {
+			logger.info("sfmCommunitySelectCon listS.size() >>> : " + listLogin.size());
+			model.addAttribute("listLogin", listLogin);
+			return "main/mainPage";
+		}
+		return "";
+	}
+
 }

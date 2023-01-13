@@ -20,6 +20,8 @@ import main.sfm.common.FileUploadUtil;
 import main.sfm.common.chabun.service.SfmChabunService;
 import main.sfm.community.service.SfmCommunityService;
 import main.sfm.community.vo.SfmCommunityVO;
+import main.sfm.login.service.SfmLoginService;
+import main.sfm.member.vo.SfmMemVO;
 
 @Controller
 public class SfmCommunityController {
@@ -192,6 +194,5 @@ public class SfmCommunityController {
 		}
 		return "";
 	}
-	
 
 }

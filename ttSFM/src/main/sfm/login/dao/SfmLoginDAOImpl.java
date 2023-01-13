@@ -87,4 +87,12 @@ public class SfmLoginDAOImpl implements SfmLoginDAO {
 	   logger.info("kakaoInsert 함수 진입 >>> : ");
 	   return sqlSession.insert("kakaoInsert", mvo);   
 	}
+	
+	@Override
+	public List<SfmMemVO> maingo(SfmMemVO mvo) {
+	   // TODO Auto-generated method stub
+	   logger.info("maingo 함수 진입 >>> : ");
+	   return sqlSession.selectList("maingo", mvo);
+	}
+
 }

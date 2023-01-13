@@ -48,13 +48,17 @@ public class SfmPaymentController {
 		String matchnum = (String)session.getAttribute("matchnum");
 		logger.info("matchnum >>> : " + matchnum);
 		session.setAttribute("paymentnum", paynum);
+		String memnum = (String)session.getAttribute("memnum");
+		logger.info("memnum >>> : " + memnum);
 
 		pvo.setPaymentnum(paynum);
 		pvo.setPaymentname(req.getParameter("paymentname"));
 		pvo.setMatchnum(matchnum);
+		pvo.setMemnum(memnum);
 		logger.info("pvo.getPaymentnum() >>> : " + pvo.getPaymentnum());
 		logger.info("pvo.getPaymentname() >>> : " + pvo.getPaymentname());
 		logger.info("pvo.getMatchnum() >>> :" + pvo.getMatchnum());
+		logger.info("pvo.getMemnum() >>> :" + pvo.getMemnum());
 		
 		int insertCnt = sfmPaymentService.sfmPaymentInsert(pvo);
 		try {
@@ -93,13 +97,17 @@ public class SfmPaymentController {
 		ss = req.getSession();
 		String matchnum = (String)ss.getAttribute("matchnum");
 		String paymentnum = (String)ss.getAttribute("paymentnum");
+		String memnum = (String)ss.getAttribute("memnum");
 		logger.info("paymentnum >> "+ paymentnum);
 	 	logger.info("matchnum >> "+ matchnum);
+	 	logger.info("memnum >> "+ memnum);
 	 	
 	 	pvo.setMatchnum(matchnum);
 	 	pvo.setPaymentnum(paymentnum);
+	 	pvo.setMemnum(memnum);
 		logger.info("pvo.getMatchnum() >> "+ pvo.getMatchnum());
 	 	logger.info("pvo.getPaymentnum() >> "+ pvo.getPaymentnum());
+	 	logger.info("pvo.getMemnum() >> "+ pvo.getMemnum());
 
 		List<SfmPaymentVO> listCom = sfmPaymentService.sfmPaymentComplete(pvo);
 		int nCnt = listCom.size();

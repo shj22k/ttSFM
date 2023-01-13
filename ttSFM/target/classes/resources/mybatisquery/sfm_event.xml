@@ -49,8 +49,7 @@
 				,TO_CHAR(TO_DATE(A.UPDATEDATE), 'YYYY-MM-DD')UPDATEDATE	
 		FROM 	SFM_EVENT A
 		WHERE 	DELETEYN = 'Y' 
-		
-		ORDER BY 1 DESC
+		ORDER BY ENDDATE DESC
 
 </select>
 <select id="sfmEventSelectCon" resultType = "sfmeventvo">

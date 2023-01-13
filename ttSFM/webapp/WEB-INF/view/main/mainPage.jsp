@@ -147,7 +147,7 @@
 </div>
 <!------------------------------ 메뉴 2 ------------->
 
- <!--------------  슬라이드 ---------------------------------------------------------------- -->		
+<!--------------  슬라이드 ---------------------------------------------------------------- -->		
  <div class="carousel--container">
  <div id="demo" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
@@ -196,6 +196,11 @@
 </div>
 
 <!--------------  슬라이드 끝 ---------------------------------------------------------------- -->	
+<div style = "position:fixed;right;10px;bottom:10px;">
+	<a class="active" href="sfmChat.sfm" target='_blank'>
+		<img src = "/ttSFM/img/fb/fb2.png" width="100" height="100"/>
+	</a>
+</div>
 <div class="container">
    <div class="input-form-backgroud row">
      <div class="input-form col-md-12 mx-auto">
@@ -212,7 +217,7 @@
     </div>
   </div>
 </div>	
-    
+
 <!--  하단바~~~~~~~~~~~~~~~~~~~~~ -->
 <div class="topnav">
   <a class="active" href="#home"><img src="/ttSFM/img/fb/tikilogo2.png" width="150px"></a>

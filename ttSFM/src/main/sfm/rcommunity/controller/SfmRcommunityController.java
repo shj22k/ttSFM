@@ -2,6 +2,8 @@ package main.sfm.rcommunity.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,9 +78,9 @@ public class SfmRcommunityController {
 	// 댓글 삭제
 	@PostMapping("sfmRcommunityDelete")
 	@ResponseBody
-	public String sfmRcommunityDelete(SfmRcommunityVO rcvo) {	
-		logger.info("sfmRcommunityDelete rbvo.getRbnum() >>> : " + rcvo.getRcnum());
-							
+	public String sfmRcommunityDelete(SfmRcommunityVO rcvo, HttpServletRequest req) {	
+		logger.info("sfmRcommunityDelete rcvo.getRcnum() >>> : " + rcvo.getRcnum());
+
 		int nCnt = sfmRcommunityService.sfmRcommunityDelete(rcvo);
 		logger.info("sfmRcommunityDelete nCnt >>> : " + nCnt);
 		

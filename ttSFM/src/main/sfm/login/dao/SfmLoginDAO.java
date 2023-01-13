@@ -28,5 +28,7 @@ public interface SfmLoginDAO {
 	// kakao 로그인 
 	public List<SfmMemVO> kakaoLogin(SfmMemVO mvo);
 	public int kakaoInsert(SfmMemVO mvo);
+	// 메인페이지 이동
+	public List<SfmMemVO> maingo(SfmMemVO mvo);
 
 }

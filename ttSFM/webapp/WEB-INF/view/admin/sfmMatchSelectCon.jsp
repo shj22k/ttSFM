@@ -30,9 +30,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
   	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!--vue-->
-<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
-<script src="https://unpkg.com/vue-cookies@1.7.0/vue-cookies.js"></script>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type='text/javascript'>
 
 	function test(ths, thi){
@@ -51,17 +49,6 @@
 	    }
 	  }
 
-	$(function(){
-	    $('.input-group.date').datepicker({
-	    	
-	        calendarWeeks: false,
-	        todayHighlight: true,
-	        autoclose: true,
-	        format: "yyyy/mm/dd",
-	        language: "kr"
-	    });
-	});
-	
 	$(document).ready(function(){
 		
 		$("#toggleMap").click(function(){
@@ -72,6 +59,15 @@
 			$("#matchSelectCon").attr({
 				"method":"GET",
 				"action":"sfmMatchMap.sfm",
+			}).submit();
+		});
+		
+		$("#paymentbtn").click(function(){
+			alert("paymentbtn 버튼 클릭 >>> : ");
+			
+			$("#matchnotice").attr({
+				"method":"GET",
+				"action":"sfmPaymentForm.sfm",
 			}).submit();
 		});
 		
@@ -93,7 +89,7 @@
 <script>
 
 	$('.carousel').carousel({
-	  interval: 2000 //기본 5초
+	  interval: 1600 //기본 4초
 	})
   
 </script>
@@ -219,7 +215,7 @@
 </div>
 
 <div class="middle-right">
-	<form class="validation-form" novalidate>
+	<form class="validation-form" id="matchnotice" name="matchnotice" novalidate>
 	<!-- 매치제목 -->
 	<div>
 		<section class="section">
@@ -237,20 +233,19 @@
 							String month = date.split("-")[1];
 							String day = date.split("-")[2];
 						%>
-							<p class="" style="font-size:20px; font-weight:600"><%= month+"월 "+day+"일 "+ mtvo.getMatchtime() %></p>
-							<p2 class="" style="font-size:18px"><%= mtvo.getMatchstadium() %> </p2>
-							<p3 class="" id="jibun" style="font-size:18px"><%= mtvo.getMatchjibunaddress() %></p3>
+							<p class=""><%= month+"월 "+day+"일 "+ mtvo.getMatchtime() %></p>
+							<p class=""><%= mtvo.getMatchstadium() %></p>
+							<p class="" id="jibun"><%= mtvo.getMatchjibunaddress() %></p>
 								<input type="hidden" id="jibun" name="jibun" value="<%= mtvo.getMatchjibunaddress() %>" />
 								<input type="hidden" id="stadium" name="stadium" value="<%= mtvo.getMatchstadium() %>" />
-							<br><br>
-							<p4 id="copybtn1" style="text-decoration:underline;" title="주소 복사">주소 복사</span></p4>
-							&nbsp;
-							<p5 id="toggleMap" onclick="test('<%= mtvo.getMatchjibunaddress() %>', '<%= mtvo.getMatchstadium() %>');" style="text-decoration:underline;">지도 보기</span></p5>
+							<p id="copybtn1" style="text-decoration:underline;" title="주소 복사">주소 복사</span>
+							<p id="toggleMap" onclick="test('<%= mtvo.getMatchjibunaddress() %>', '<%= mtvo.getMatchstadium() %>');" style="text-decoration:underline;" >지도 보기</span>
 						</div>
 					</li>
 				</ul>
 				<div class="container-login100-form-btn">
-					<button class="login100-form-btn">신청하기</button>
+					<input type="hidden" id="matchnum" name="matchnum" value="<%= mtvo.getMatchnum() %>" />
+					<button class="login100-form-btn" id="paymentbtn" name="paymentbtn">신청하기</button>
 				</div>
 			</div>
 		</section>
@@ -306,8 +301,7 @@
 			<ul><!----> <!----> <!----> <!----> 
 			<li class="info__list"> <div></div></li></ul> <!----></div></div></section>
 		</form>
-<br>
-<br>		
+		
 		      	▶ 구장 특이사항
 <br>
 <br>		      	
@@ -341,8 +335,8 @@
 	</div>
 	</div>
 	</div>
-   <script>
-   
+<script>
+	  
 	function copyToClipboard(val) {
 	    var t = document.createElement("textarea");
 	    document.body.appendChild(t);
@@ -354,14 +348,13 @@
 	
 	    $('#copybtn1').click(function() {
 	      copyToClipboard($("#jibun").text());
-	      alert('주소를 복사하였습니다');
+	      alert('주소가 복사됐어요!');
 	    });
-
-   </script>
-    <footer class="my-3 text-center text-small">
-      <p class="mb-1">&copy; 2022 YD</p>
-    </footer>
-
-    </div>
+	
+</script>
+	<footer class="my-3 text-center text-small">
+	  <p class="mb-1">&copy; 2022 YD</p>
+	</footer>
+	</div>
 </body>
 </html>
