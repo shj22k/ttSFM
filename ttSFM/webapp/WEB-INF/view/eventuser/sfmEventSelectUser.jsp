@@ -1,16 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="javax.servlet.http.HttpSession"%>
+<%@ page import="javax.servlet.http.HttpServletRequest"%>
     
 <%@ page import="org.apache.log4j.LogManager" %>  
 <%@ page import="org.apache.log4j.Logger" %> 
 <%@ page import="java.util.List" %>  
 <%@page import="main.sfm.member.vo.SfmMemVO" %>
 <%@page import="main.sfm.event.vo.SfmEventVO" %>
+<% request.setCharacterEncoding("UTF-8"); %>
 <%
+	Logger logger = LogManager.getLogger(this.getClass());
+	logger.info("CommunityPage.jsp 진입 >>> : ");	
 
-	
 	String eventnum =  request.getParameter("eventnum");	
-		session.setAttribute("eventnum",eventnum);
+	session.setAttribute("eventnum",eventnum);
+	
+	HttpSession ss = request.getSession();
+    String memnum = (String)ss.getAttribute("memnum");
+	logger.info("memnum >> "+ memnum);
 %> 
 
 <!DOCTYPE html>
@@ -32,18 +40,10 @@
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 
 	<link rel="stylesheet" href="/css/jquery-ui.min.css">
-
-
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-
     <script type='text/javascript' src='//code.jquery.com/jquery-1.8.3.js'></script>
-
-
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
-
     <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
-
     <script src="/js/bootstrap-datepicker.kr.js" charset="UTF-8"></script>
     
     <!-- 검색바 -->
@@ -52,22 +52,19 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!-- 검색바 -->
 <script type="text/javascript">
-$(document).ready(function(){
-	
 
-	//전체조회
-	$(document).on("click","#selectBtn",function(){
-		$('#sfmeventList').attr({
-			"action":"sfmEventSelectAllUser.sfm",
-			"method":"GET",
-			"enctype":"application/x-www-form-urlencoded"
-		}).submit();
+	$(document).ready(function(){
+		//전체조회
+		$(document).on("click","#selectBtn",function(){
+			$('#sfmeventList').attr({
+				"action":"sfmEventSelectAllUser.sfm",
+				"method":"GET",
+				"enctype":"application/x-www-form-urlencoded"
+			}).submit();
+		});
 	});
 	
-
-});
 </script>
-
 <style type="text/css">
 	/*
 	div {		 
@@ -291,32 +288,25 @@ body {
 </style>
 </head>
 <body>
-<% request.setCharacterEncoding("UTF-8"); %>
-<%
-	Logger logger = LogManager.getLogger(this.getClass());
-	logger.info("sfmEventSelectAll.jsp >>> :");
-%>
 <!-- 상단바 -->
 
 <div style="padding:0px 400px 0px 400px;">
 <div class="topnav">
-  <a>
-  <img src="/ttSFM/img/fb/tikilogo2.png" width="125px;"><a style="font-size:30px"></a>
-  </a>
+	<a>
+		<img src="/ttSFM/img/fb/tikilogo2.png" width="125px;">
+	</a>
   	
   	<!-- 구장 예약 내역 아이콘 -->
   	<a href="https://www.plabfootball.com/mypage/myplab/">
-  	<img class="icon-margin2" align="right" src="/ttSFM/img/fb/date2.png" width="35px"><a href="https://www.plabfootball.com/mypage/"></a>
+  		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/date2.png" width="35px">
   	</a>
- 	 <!-- 구장 예약 내역 아이콘 -->
-  
+	<!-- 구장 예약 내역 아이콘 -->
   
   	<!-- 마이 페이지 아이콘 -->
-  	<a href="https://www.plabfootball.com/mypage/">
-  	<img class="icon-margin2" align="right" src="/ttSFM/img/fb/user.png" width="35px">
-  	</a>
+	<a href="myPage.sfm?memnum =<%= memnum %>" onfocus="this.blur()">
+		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/user.png" width="35px">
+	</a>
   	<!-- 마이 페이지 아이콘 -->
-  	
   	
       <div align="right" class="search-container">
     <form action="/action_page.php">

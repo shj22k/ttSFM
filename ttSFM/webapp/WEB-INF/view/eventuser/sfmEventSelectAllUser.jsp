@@ -6,7 +6,17 @@
 <%@ page import="java.util.List" %>  
 <%@page import="main.sfm.member.vo.SfmMemVO" %>
 <%@page import="main.sfm.event.vo.SfmEventVO" %>
+<%@ page import="javax.servlet.http.HttpSession"%>
+<%@ page import="javax.servlet.http.HttpServletRequest"%>
 <% request.setCharacterEncoding("UTF-8");%> 
+<%
+	Logger logger = LogManager.getLogger(this.getClass());
+	logger.info("CommunityPage.jsp 진입 >>> : ");	
+
+	HttpSession ss = request.getSession();
+    String memnum = (String)ss.getAttribute("memnum");
+	logger.info("memnum >> "+ memnum);
+%> 
 
 <!DOCTYPE html>
 <html>
@@ -39,32 +49,21 @@
     $(function date(){
 
         $('.input-group.date').datepicker({
-
             calendarWeeks: false,
-
             todayHighlight: true,
-
             autoclose: true,
-
             format: "yyyy/mm/dd",
-
             language: "kr"
         });
     });
     
     function test(ths){
-    	
         location.href="/ttSFM/sfmEventSelectUser.sfm?eventnum="+ths;
      }
 
     </script>
 </head>
 <body>
-<% request.setCharacterEncoding("UTF-8"); %>
-<%
-	Logger logger = LogManager.getLogger(this.getClass());
-	logger.info("sfmEventSelectAllUser.jsp >>> :");
-%>
 <!-- 상단바 -->
 
 <div style="padding:0px 400px 0px 400px;">
@@ -76,9 +75,9 @@
 	<!-- 구장 예약 내역 아이콘 -->
   
   	<!-- 마이 페이지 아이콘 -->
-  	<a href="https://www.plabfootball.com/mypage/">
-  		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/user.png" width="35px">
-  	</a>
+	<a href="myPage.sfm?memnum =<%= memnum %>" onfocus="this.blur()">
+		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/user.png" width="35px">
+	</a>
   	<!-- 마이 페이지 아이콘 -->
   	
   <div align="right" class="search-container">

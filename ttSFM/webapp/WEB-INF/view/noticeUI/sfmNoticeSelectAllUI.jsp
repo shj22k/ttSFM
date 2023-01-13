@@ -16,8 +16,9 @@
 	Logger logger = LogManager.getLogger(this.getClass());
 	logger.info("sfmnoticeUISelectCon.jsp >>> : ");
 	
-// 	String noticenum = request.getParameter("noticenum");
-// 	session.setAttribute("noticenum", noticenum);
+	HttpSession ss = request.getSession();
+    String memnum = (String)ss.getAttribute("memnum");
+	logger.info("세션에 담긴 memnum 값 >>> : " + memnum);
 %> 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -81,9 +82,9 @@
 	if (obj == null){ return; }
 	
 	List<SfmNoticeVO> list = (List<SfmNoticeVO>)obj;
-	String memnum = list.get(0).getMemnum();
+// 	String memnum = list.get(0).getMemnum();
 	System.out.print("memnum >>> : " + memnum);
-	session.setAttribute("memnum", memnum);
+// 	session.setAttribute("memnum", memnum);
 
 	if (list.size() > 0){
 		for (int i=0; i < list.size(); i++){

@@ -33,7 +33,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   
-  <title>티키타카</title>
+  <title>TIKI TAKA</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -86,13 +86,13 @@
   	<a href="calendar.sfm">
   		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/date2.png" width="35px">
   	</a>
- 	 <!-- 구장 예약 내역 아이콘 -->
+ 	<!-- 구장 예약 내역 아이콘 -->
   
   	<!-- 마이 페이지 아이콘 -->
-     <a href="myPage.sfm?memnum =<%= memnum %>" onfocus="this.blur()">
-     	<img class="icon-margin2" align="right" src="/ttSFM/img/fb/user.png" width="35px">
-     </a>
-     <!-- 마이 페이지 아이콘 -->
+	<a href="myPage.sfm?memnum =<%= memnum %>" onfocus="this.blur()">
+		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/user.png" width="35px">
+	</a>
+	<!-- 마이 페이지 아이콘 -->
   	
   <div align="right" class="search-container">
     <form action="/action_page.php">
@@ -107,7 +107,6 @@
 <!-- 전체 양 옆 여백 조절하기 -->
 
 <!-- 상단 로고 -->
-
 <!------------------------------ 메뉴 2 ----------------------------->
 
 <div id="naviarea">
@@ -198,7 +197,7 @@
 <!--------------  슬라이드 끝 ---------------------------------------------------------------- -->	
 <div style = "position:fixed;right;10px;bottom:10px;">
 	<a class="active" href="sfmChat.sfm" target='_blank'>
-		<img src = "/ttSFM/img/fb/fb2.png" width="100" height="100"/>
+		<img src = "/ttSFM/img/fb/123.png" width="100" height="100"/>
 	</a>
 </div>
 <div class="container">

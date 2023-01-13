@@ -5,8 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>티키타카 채팅방</title>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script type="text/javascript">
 
 	$(document).ready(function(){
@@ -27,7 +29,7 @@
 			   			
 			   	// 소켓 이벤트 매핑
 			   	ws.onopen = function (evt) {
-			   		// console.log('서버 연결 성공');
+			   		 console.log('서버 연결 성공');
 			   		print($('#user').val(), '입장했습니다.');
 			   				
 			   		// 현재 사용자가 입장했다고 서버에게 통지(유저명 전달)
@@ -111,6 +113,8 @@
 			}
 		});
 				
+				
+				
 		$('#msg').keydown(function() {
 			if (event.keyCode == 13) {
 						
@@ -121,6 +125,7 @@
 				
 		        $('#msg').val('');
 				$('#msg').focus();
+						
 			}
 		});
 				
@@ -137,26 +142,80 @@
 			$('#msg').val('');
 			$('#msg').attr('disabled', true);
 		});
+
+		
 	});
+	
+	   		
 	
 </script>
 <style type="text/css">
 
-	.container {
-		width: 500px;
+		.chatR {
+	border-radius:0.5rem;
 	}
 	
-	#list {
-		height: 300px;
-		padding: 15px;
-		overflow: auto;
+   .container {
+      width: 430px;
+      
+   }
+   
+   #list {
+      height: 400px;
+      padding: 15px;
+      overflow: auto;
+   }
+	/*채팅 라운드*/ 
+	.chat {
+	border-radius: 1.25rem;
 	}
+	/*메인 배경*/
+	.chat-mainbg {
+		background-color:#e0efff;
+	}
+	
+	/*입력창 배경 */
+	.chat-bg {
+	background-color: #f9f9f9;
+	}
+	
+	/*입력창*/
+	.form-control:disabled, .form-control[readonly] {
+    background-color: #ffffff;
+    opacity: 1;
+	}
+	
+	.form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 1.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+	table{
+    border-radius: 1.25rem;
+}
+
+.btn-light {
+    color: #212529;
+    background-color: #e7e7e7;
+    border-color: #f8f9fa;
 
 </style>
 </head>
 <body>
 <div class="container">
-	<h1 class="page-header">Chat</h1>		
+	<h1 class="page-header">TIKITAKA Chat</h1>		
+	
 	<table class="table table-bordered">
 		<tr>
 			<td><input type="text" name="user" id="user" class="form-control" placeholder="유저명"></td>
@@ -165,10 +224,10 @@
 				<button type="button" class="btn btn-default" id="btnDisconnect" disabled>종료</button>
 			</td>
 		</tr>
-		<tr>
-			<td colspan="2"><div id="list"></div></td>
+		<tr class="chat-mainbg">
+			<td colspan="2"><div id="list"></div></td><img src="/ttSFM/img/fb/tikilogo2.png" width="125px;">
 		</tr>
-		<tr>
+		<tr class="chat-bg">
 			<td colspan="2"><input type="text" name="msg" id="msg" placeholder="대화 내용을 입력하세요." class="form-control" disabled></td>
 		</tr>
 	</table>

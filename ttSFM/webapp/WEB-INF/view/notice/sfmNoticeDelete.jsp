@@ -8,7 +8,6 @@
 </head>
 <body>
 <script>
-	
 	location.href="/ttSFM/sfmNoticeSelectAll.sfm";
 </script>
 </body>

@@ -10,6 +10,8 @@
 	HttpSession ss = request.getSession();
     String matchnum = (String)ss.getAttribute("matchnum");
 	logger.info("세션에 담긴 matchnum 값 >>> : " + matchnum);
+    String memnum = (String)ss.getAttribute("memnum");
+	logger.info("세션에 담긴 memnum 값 >>> : " + memnum);
 %>
 <!DOCTYPE html>
 <html>
@@ -48,7 +50,16 @@
 			}).submit();
 		});
 		
+		$("#maingo").on("click", function(){
+		    $("#maindata").attr({
+		       "action":"maingo.sfm",
+		        "method":"POST",
+		        'enctype':'application/x-www-form-urlencoded'
+		    }).submit();
+		});
+
 	});
+	
 
 </script>	
 </head>
@@ -57,21 +68,18 @@
 <!-- 상단바 -->
 <div style="padding:0px 400px 0px 400px;">
 <div class="topnav">
-  <a>
-  <img src="/ttSFM/img/fb/tikilogo2.png" width="125px;"><a style="font-size:30px"></a>
-  </a>
-  	
-  	<!-- 구장 예약 내역 아이콘 -->
+	<form id="maindata" name="maindata">
+    	<img type="" id="maingo" src="/ttSFM/img/fb/tikilogo2.png" width="125px;">  	<!-- 구장 예약 내역 아이콘 -->
+          
   	<a href="https://www.plabfootball.com/mypage/myplab/">
-  	<img class="icon-margin2" align="right" src="/ttSFM/img/fb/date2.png" width="35px"><a href="https://www.plabfootball.com/mypage/"></a>
+  		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/date2.png" width="35px"><a href="https://www.plabfootball.com/mypage/"></a>
   	</a>
  	 <!-- 구장 예약 내역 아이콘 -->
   
-  
   	<!-- 마이 페이지 아이콘 -->
-  	<a href="https://www.plabfootball.com/mypage/">
-  	<img class="icon-margin2" align="right" src="/ttSFM/img/fb/user.png" width="35px">
-  	</a>
+	<a href="myPage.sfm?memnum =<%= memnum %>" onfocus="this.blur()">
+		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/user.png" width="35px">
+	</a>
   	<!-- 마이 페이지 아이콘 -->
   	
       <div align="right" class="search-container">
@@ -80,7 +88,7 @@
       <button type="submit" style="width:40px; height:40px;"><i class="fa fa-search"></i></button>
     </form>
   </div>
-  
+  </form>
 </div>
 <!-- 상단바 끝-->
 <!-- 라이트 레프트 -->

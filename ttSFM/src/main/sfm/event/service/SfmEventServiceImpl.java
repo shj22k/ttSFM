@@ -12,7 +12,6 @@ import main.sfm.event.dao.SfmEventDAO;
 import main.sfm.event.vo.SfmEventVO;
 import main.sfm.member.vo.SfmMemVO;
 
-
 @Service
 @Transactional
 public class SfmEventServiceImpl implements SfmEventService{
@@ -70,6 +69,11 @@ public class SfmEventServiceImpl implements SfmEventService{
 		// TODO Auto-generated method stub
 		return sfmEventDAO.sfmEventDelete(sevo);
 	}
-	
+	@Override
+	public List<SfmEventVO> myPageCon(SfmEventVO sevo) {
+		// TODO Auto-generated method stub
+		return sfmEventDAO.myPageCon(sevo);
+	}
+
 
 }

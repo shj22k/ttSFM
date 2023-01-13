@@ -10,5 +10,4 @@ public interface SfmPaymentDAO {
 	public List<SfmPaymentVO> sfmPaymentSelect(SfmPaymentVO pvo);
 	public List<SfmPaymentVO> sfmPaymentComplete(SfmPaymentVO pvo);
 
-
 }

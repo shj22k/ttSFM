@@ -11,9 +11,11 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import main.sfm.common.ChabunUtil;
 import main.sfm.common.CommonUtils;
@@ -223,6 +225,34 @@ public class SfmEventController {
 		}
 		return "event/sfmEventDelete";
 	}
+	
+	// myPage - 전체조회느낌
+	@GetMapping("myPageCon") 
+	public String myPage(HttpServletRequest req,SfmEventVO sevo, Model model) {
+		logger.info("myPage 진입");
+		
+		HttpSession session = req.getSession();
+		String memnum = (String)session.getAttribute("memnum");
+		logger.info("myPage memnum >>> : " + memnum);
+		logger.info("myPage  mvo.getMemnum() >>> : " + sevo.getMemnum());
+		
+		// DB에 연결되는 로직이기 때문에, 반드시 서비스를 통해 연결 해야한다.
+		List<SfmEventVO> fileUploadListAll = sfmEventService.myPageCon(sevo);
+		int nCnt = fileUploadListAll.size();
+		
+		try {
+			if(nCnt > 0) {
+				logger.info("myPage nCnt >>> : " + nCnt);
+				
+				model.addAttribute("fileUploadListAll", fileUploadListAll);		
+				return "member/myPage";	// 내정보 보기
+			}
+		}catch(Exception e) {
+			logger.info("에러가 >>> :" + e.getMessage());
+		}
+		return "";
+	}
+
 
 
 }

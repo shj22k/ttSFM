@@ -14,6 +14,10 @@
 	
 	List<SfmPaymentVO> list = (List<SfmPaymentVO>)obj;
 	SfmPaymentVO pvo = list.get(0);
+	
+	HttpSession ss = request.getSession();
+    String memnum = (String)ss.getAttribute("memnum");
+	logger.info("세션에 담긴 memnum 값 >>> : " + memnum);
 %>
 
 <!DOCTYPE html>
@@ -106,9 +110,9 @@
   
   
   	<!-- 마이 페이지 아이콘 -->
-  	<a href="https://www.plabfootball.com/mypage/">
-  		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/user.png" width="35px">
-  	</a>
+	<a href="myPage.sfm?memnum =<%= memnum %>" onfocus="this.blur()">
+		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/user.png" width="35px">
+	</a>
   	<!-- 마이 페이지 아이콘 -->
   	
 	<div align="right" class="search-container">

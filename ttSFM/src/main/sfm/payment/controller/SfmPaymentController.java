@@ -121,5 +121,5 @@ public class SfmPaymentController {
 		}catch(Exception e) { System.out.println("에러가 발생" + e); }
 		return "";
 	}
-
+	
 }

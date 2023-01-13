@@ -14,6 +14,7 @@ import javax.websocket.server.ServerEndpoint;
 
 @ServerEndpoint("/chatserver")
 public class SfmChatServer {
+
 	
 	// 현재 채팅 서버에 접속한 클라이언트(WebSocket Session) 목록
 	// static 붙여야함!!
@@ -49,6 +50,7 @@ public class SfmChatServer {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
+					
 				}
 			}
 			
@@ -62,7 +64,9 @@ public class SfmChatServer {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
+					
 				}
+				
 			} 
 		} else if (no.equals("3")) {
 			// 누군가 접속 > 3#아무개
@@ -75,10 +79,14 @@ public class SfmChatServer {
 						e.printStackTrace();
 					}
 				}
+				
 			}
 			list.remove(session);
 		}
+		
 	}
+	
+	
 	
 	@OnClose
 	public void handleClose() {

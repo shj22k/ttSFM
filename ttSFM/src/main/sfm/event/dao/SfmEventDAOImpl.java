@@ -66,5 +66,10 @@ public class SfmEventDAOImpl implements SfmEventDAO {
 		// TODO Auto-generated method stub
 		return (Integer)sqlSession.delete("sfmEventDelete", sevo);
 	}
-	
+	@Override
+	public List<SfmEventVO> myPageCon(SfmEventVO sevo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("myPageCon", sevo);
+	}
+
 }

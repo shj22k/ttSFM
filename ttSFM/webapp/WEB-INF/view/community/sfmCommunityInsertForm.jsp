@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="javax.servlet.http.HttpSession"%>
-<%@page import="javax.servlet.http.HttpServletRequest"%>
 
 <%@page import="java.util.List"%> 
 <%@page import="main.sfm.member.vo.SfmMemVO" %>
 <%@page import="org.apache.log4j.LogManager" %>
 <%@page import="org.apache.log4j.Logger" %>
+<%@page import="javax.servlet.http.HttpSession"%>
+<%@page import="javax.servlet.http.HttpServletRequest"%>
 <%
 	Logger logger = LogManager.getLogger(this.getClass());
 	logger.info("CommunityPage.jsp 진입 >>> : ");	
@@ -82,7 +82,6 @@
   		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/date2.png" width="35px">
   	</a>
  	<!-- 구장 예약 내역 아이콘 -->
-  
   
   	<!-- 마이 페이지 아이콘 -->
   	<a href="https://www.plabfootball.com/mypage/">

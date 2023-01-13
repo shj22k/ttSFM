@@ -35,5 +35,5 @@ public class SfmPaymentDAOImpl implements SfmPaymentDAO {
 		logger.info("SfmPaymentDAOImpl sfmPaymentComplete 진입");
 		return sqlSession.selectList("sfmPaymentComplete", pvo);
 	}
-
+	
 }

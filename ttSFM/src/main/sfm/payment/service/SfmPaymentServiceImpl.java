@@ -36,5 +36,5 @@ public class SfmPaymentServiceImpl implements SfmPaymentService {
 		logger.info("SfmPaymentServiceImpl sfmPaymentComplete 진입");
 		return sfmPaymentDAO.sfmPaymentComplete(pvo);
 	}
-
+	
 }
