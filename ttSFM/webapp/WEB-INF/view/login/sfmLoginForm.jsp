@@ -87,13 +87,12 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-pic js-tilt" data-tilt>
-					<img src="/ttSFM/img/img/img_tt/LoginBall_1.jpg" style="width:450px; height:380px" alt="IMG">
+					<img src="/ttSFM/img/fb/tikilogo2.png" style="width:450px; height:200px" alt="IMG">
 				</div>
 
 				<form class="login100-form validate-form" id="Login">
 					<span class="login100-form-title">
-					
-					<img src="/ttSFM/img/img/img_tt/tg.jpg" style="width:60px">TIKI TAKA Login
+					Login
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
@@ -138,7 +137,7 @@
 
 					<div class="text-center p-t-136">
 						<a class="txt2" href="sfmMemInsertForm.sfm">
-							Create your Account
+							회원가입
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
 					</div>

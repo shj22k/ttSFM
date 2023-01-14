@@ -10,8 +10,6 @@
 EMAIL CHECK
 <hr>
 <%
-	// Object obj = request.getAttribute("authnum");
-	// String authnum = obj.toString();
 	String pwcertification = "메일을 확인 하시고 임시 비빌번호를 를 입력 하시오 ~~ !!";
 	System.out.println("pwcertification >>> : " + pwcertification);
 %>

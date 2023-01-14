@@ -5,7 +5,6 @@
 <%@page import="main.sfm.member.vo.SfmMemVO" %>
 <%@ page import="org.apache.log4j.LogManager" %>
 <%@ page import="org.apache.log4j.Logger" %>
-
 <%
 	Logger logger = LogManager.getLogger(this.getClass());
 	logger.info("kosmoNoticePage.jsp 진입 >>> : ");	
@@ -37,17 +36,13 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 <link rel="stylesheet" type="text/css" href="/ttSFM/include/sfmNoticeInsertForm.css">
-
 </head>
-
-
-
 <script type="text/javascript">
 
 	$(document).ready(function(){
 		
 		$(document).on('click','#noticebtn', function(){
-			alert("작성했습니다. >>> ");
+			alert("작성했습니다.");
 			//리터럴객체
 			$('#noticeinsertForm').attr({
 				"action":"sfmNoticeInsert.sfm",
@@ -56,8 +51,7 @@
 		});
 		
 		$(document).on('click','#noticeselbtn', function(){
-		      alert("전체조회중. >>> ");
-		      //리터럴객체
+			
 		      $('#noticeinsertForm').attr({
 		         "action":"sfmNoticeSelectAll.sfm",
 		         "method":"GET",
@@ -74,17 +68,16 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="//mugifly.github.io/jquery-simple-datetimepicker/jquery.simple-dtpicker.js"></script>
 
-
 <!-- 상단바 -->
 <div style="padding:0px 400px 0px 400px;">
 <div class="topnav">
 	<a>
-		<img src="/ttSFM/img/fb/tikilogo2.png" width="125px;"><a style="font-size:30px"></a>
+		<img src="/ttSFM/img/fb/tikilogo2.png" width="125px;">
 	</a>
   	
   	<!-- 구장 예약 내역 아이콘 -->
   	<a href="https://www.plabfootball.com/mypage/myplab/">
-		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/date2.png" width="35px"><a href="https://www.plabfootball.com/mypage/"></a>
+		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/date2.png" width="35px">
   	</a>
  	 <!-- 구장 예약 내역 아이콘 -->
   
@@ -140,8 +133,8 @@
 			<button type="reset">리셋</button>
 			<button class="btn btn-primary btn-lg btn-block" type="submit" id="noticeselbtn" name="noticeselbtn">공지사항 목록 조회</button>
           </div>
+          </form>
           </div>
-		  </form>
       </div>
 </body>
 </html>

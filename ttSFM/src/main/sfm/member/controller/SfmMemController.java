@@ -150,6 +150,35 @@ public class SfmMemController {
 		return "admin/mainPage";
 	}
 	
+	// myPage - 전체조회느낌
+	@GetMapping("myPage2") 
+	public String myPage2(HttpServletRequest req,SfmMemVO mvo, Model model) {
+		logger.info("myPage2 진입");
+		
+		HttpSession session = req.getSession();
+		String memnum = (String)session.getAttribute("memnum");
+		logger.info("myPage memnum >>> : " + memnum);
+		mvo.setMemnum(memnum);
+		logger.info("myPage  mvo.getMemnum() >>> : " + mvo.getMemnum());
+		mvo.setReservedate(mvo.getInsertdate());
+		// DB에 연결되는 로직이기 때문에, 반드시 서비스를 통해 연결 해야한다.
+		List<SfmMemVO> fileUploadListAll = sfmMemService.myPage2(mvo);
+		int nCnt = fileUploadListAll.size();
+		
+		try {
+			if(nCnt > 0) {
+				logger.info("myPage nCnt >>> : " + nCnt);
+				
+				model.addAttribute("fileUploadListAll", fileUploadListAll);		
+				return "member/myPage2";	// 내정보 보기
+			}
+		}catch(Exception e) {
+			logger.info("에러가 >>> :" + e.getMessage());
+		}
+		return "admin/mainPage";
+	}
+
+	
 	//관리자페이지에서 수정 폼으로 이동  -그냥 업뎃 -리스트 관리자용
 	@GetMapping("sfmMemUpdateForm")
 	public String sfmMemUpdateForm(HttpServletRequest req, Model model,SfmMemVO mvo) throws Exception{

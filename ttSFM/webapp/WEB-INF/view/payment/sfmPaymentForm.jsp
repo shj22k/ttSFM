@@ -39,10 +39,8 @@
 <script type="text/javascript">
 
 	$(document).ready(function(){
-		alert("ready 함수 시작");
 		
 		$('#paymentbtn').on('click', function(){
-			alert("selectAllbtn버튼 클릭 ");
 			
 			$('#stadiuminsertform').attr({
 				"action":"sfmPaymentInsert.sfm",
@@ -71,7 +69,7 @@
     	<img type="" id="maingo" src="/ttSFM/img/fb/tikilogo2.png" width="125px;">  	<!-- 구장 예약 내역 아이콘 -->
           
   	<a href="https://www.plabfootball.com/mypage/myplab/">
-  		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/date2.png" width="35px"><a href="https://www.plabfootball.com/mypage/"></a>
+  		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/date2.png" width="35px">
   	</a>
  	 <!-- 구장 예약 내역 아이콘 -->
   

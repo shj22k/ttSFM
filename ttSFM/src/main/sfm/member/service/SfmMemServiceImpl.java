@@ -86,4 +86,10 @@ public class SfmMemServiceImpl implements SfmMemService{
 		return sfmMemDAO.myPage(mvo);
 	}
 	
+	@Override
+	public List<SfmMemVO> myPage2(SfmMemVO mvo) {
+		// TODO Auto-generated method stub
+		return sfmMemDAO.myPage2(mvo);
+	}
+
 }

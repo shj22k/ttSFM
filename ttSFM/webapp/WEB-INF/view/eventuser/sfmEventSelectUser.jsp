@@ -62,6 +62,15 @@
 				"enctype":"application/x-www-form-urlencoded"
 			}).submit();
 		});
+		
+		$("#maingo").on("click", function(){
+		    $("#maindata").attr({
+		       "action":"maingo.sfm",
+		        "method":"POST",
+		        'enctype':'application/x-www-form-urlencoded'
+		    }).submit();
+		});
+
 	});
 	
 </script>
@@ -166,9 +175,6 @@
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     z-index: -1;
 }
-
-
-
 
 .input-form {
       max-width: 1120px;
@@ -292,9 +298,8 @@ body {
 
 <div style="padding:0px 400px 0px 400px;">
 <div class="topnav">
-	<a>
-		<img src="/ttSFM/img/fb/tikilogo2.png" width="125px;">
-	</a>
+	<form id="maindata" name="maindata">
+          <img type="" id="maingo" src="/ttSFM/img/fb/tikilogo2.png" width="125px;">	<!-- 구장 예약 내역 아이콘 -->
   	
   	<!-- 구장 예약 내역 아이콘 -->
   	<a href="https://www.plabfootball.com/mypage/myplab/">
@@ -314,6 +319,7 @@ body {
       <button type="submit" style="width:40px; height:40px;"><i class="fa fa-search"></i></button>
     </form>
   </div>
+  </form>
   
 </div>
 <!-- 상단바 끝-->

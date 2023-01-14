@@ -14,8 +14,6 @@ $(document).ready(function(){
 	
 	// 로그인 하러 가기 
 	$(document).on("click", "#login", function(e){
-		alert("login 버튼 블럭 진입 >>> : ");			
-		console.log("login >>> : ");	
 		e.preventDefault();
 	
 		$('#idFindForm').attr({
@@ -27,8 +25,6 @@ $(document).ready(function(){
 	
 	// 비밀번호 찾으러 가기 
 	$(document).on("click", "#pwFine", function(e){
-		alert("pwFine 버튼 블럭 진입 >>> : ");			
-		console.log("pwFine >>> : ");	
 		e.preventDefault();	
 		
 		$('#idFindForm').attr({
@@ -36,9 +32,9 @@ $(document).ready(function(){
 			'method':'GET',
 			'enctype':'application/x-www-form-urlencoded'
 		}).submit();
-	
 	});		
 });
+
 </script>
 </head>
 <body>

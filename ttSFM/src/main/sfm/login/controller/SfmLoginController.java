@@ -50,15 +50,15 @@ public class SfmLoginController {
 		logger.info("mpw : " + mpw);
 
 		if(listLogin.size() == 1) {
-			K_Session ks = K_Session.getInstance();
-			String mID = ks.getSession(req);
 
-			if(mID !=null && mID.equals(listLogin.get(0).getMemid())) {
-				logger.info("SfmLoginController login >>> : 로그인 중 >>> : 다른 페이지로 이동 하기 >>> : " + mID);
+
+			if(req.getParameter("memid").equals(listLogin.get(0).getMemid())) {
+				
+				K_Session ks = K_Session.getInstance();
 				ks.setSession(req, mvo.getMemnum());
 
 				// 관리자 로그인
-				if(mID.equals("admin1234") && req.getParameter("mempw").equals("admin1234") ) {
+				if("M202212230001".equals(listLogin.get(0).getMemnum())) {
 					model.addAttribute("listLogin", listLogin);
 					return "admin/sfmAdminPage";
 				}
@@ -66,6 +66,7 @@ public class SfmLoginController {
 				model.addAttribute("listLogin", listLogin);
 				return "main/mainPage";
 			}else {
+				K_Session ks = K_Session.getInstance();
 				ks.setSession(req, mvo.getMemid());
 				logger.info("SfmLoginController login >>> : 세션부여 하기  >>> : " + mvo.getMemid());
 				

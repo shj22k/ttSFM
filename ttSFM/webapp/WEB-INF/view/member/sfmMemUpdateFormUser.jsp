@@ -11,70 +11,47 @@
 	String mid = "";
 	String memnum =  "";
 	
+	Object obj = request.getAttribute("updateForm");
+	if(obj == null) {return;}
 	
-	//Object obj = request.getAttribute("listLogin");
+	List<SfmMemVO> list = (List<SfmMemVO>)obj;
+	memnum = list.get(0).getMemnum();
+	System.out.print("memnum >>> : " + memnum);
 	
-	/*
-	if (obj !=null) {
-		List<SfmMemVO> list = (List<SfmMemVO>)obj;
-
-		int nCnt = list.size();	
-		
-		logger.info("nCnt"+nCnt);
-		if (nCnt == 1) {
-			memnum = list.get(0).getMemnum();
-			logger.info("memnum"+memnum);
-		}
-		
-	}
-		*/
-		Object obj = request.getAttribute("updateForm");
-		if(obj == null) {return;}
-		
-		List<SfmMemVO> list = (List<SfmMemVO>)obj;
-		memnum = list.get(0).getMemnum();
-		System.out.print("memnum >>> : " + memnum);
-
-		session.setAttribute("memnum", memnum);
-		
-		//session.getAttribute(memnum);
-		//session.setAttribute("memnum", memnum);
-		logger.info("memnum > "+memnum);
+	session.setAttribute("memnum", memnum);
+	logger.info("memnum > "+memnum);
 %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>회원가입 화면 샘플 - Bootstrap</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회원가입 화면 샘플 - Bootstrap</title>
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	
-   <!-- 우편번호 찾기 다음api -->
-   
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<!-- 우편번호 찾기 다음api -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script src="//mugifly.github.io/jquery-simple-datetimepicker/jquery.simple-dtpicker.js"></script>
 <script>
 
-function kakaopost(){
-	   new daum.Postcode({
-	      oncomplete: function(data) {
-	          document.querySelector("#memzonecode").value = data.zonecode;
-	          document.querySelector("#memjibunaddress").value =  data.address
-	        }
-	 }).open();
-};	
+	function kakaopost(){
+		   new daum.Postcode({
+		      oncomplete: function(data) {
+		          document.querySelector("#memzonecode").value = data.zonecode;
+		          document.querySelector("#memjibunaddress").value =  data.address
+		        }
+		 }).open();
+	};	
 
 </script>
-
-	
 <style>
   
     body {
@@ -104,25 +81,22 @@ function kakaopost(){
 </style>
 </head>
 <script type="text/javascript">
-$(document).ready(function(){
-	alert("ready() 했습니다. >>> ");
-
-	$(document).on('click','#updatebtn', function(){
-		alert("수정했습니다. >>> ");
-		//리터럴객체
-		$('#memberinsertform').attr({
-			"action":"sfmMemUpdate2.sfm",
-			"method":"POST",
-			"enctype":"multipart/form-data"
-			
-		}).submit();
+	$(document).ready(function(){
+	
+		$(document).on('click','#updatebtn', function(){
+			alert("수정했습니다.");
+			//리터럴객체
+			$('#memberinsertform').attr({
+				"action":"sfmMemUpdate2.sfm",
+				"method":"POST",
+				"enctype":"multipart/form-data"
+				
+			}).submit();
+		});
 	});
-});
 </script>
 <body>
 <%
-		
-	
 	if( list != null && list.size() != 0){
 		SfmMemVO mvo = list.get(0); 
 %>
@@ -283,7 +257,7 @@ $(document).ready(function(){
           <button class="btn btn-primary btn-lg btn-block" type="submit" id="updatebtn" name = "updatebtn" >수정 완료</button>
           <input type="hidden" id="memnum" name="memnum" value="<%= memnum %>">
           </div>
-      <%
+<%
 	}	
 %>         
         </form>

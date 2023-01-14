@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ page import="java.util.List" %>  
+<%@page import="main.sfm.payment.vo.SfmPaymentVO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,20 +89,40 @@
        			</div>
 
   			</div> 
-  			
-  			<div class="font1 row1">
-       			<div>
-       				<a style=fon-size:20px><b>HM풋살파크 안산 고잔점 B구장</b></a><br>
-       			</div>
-       			<div>
-       				<a style=fon-size:20px><b>2023-01-13</b></a><br>
-       			</div>
-       			<div>
-       				<a style=fon-size:20px><b>19:00 ~ 21:00</b></a><br>
-       			</div>
-       			<div>
-       				<a style=fon-size:20px><b>6vs6 남녀모두 매치</b></a><br>
-       			</div>
+<%
+
+   Object obj = request.getAttribute("listCom");
+   if (obj == null){ return; }
+   
+   List<SfmPaymentVO> list = (List<SfmPaymentVO>)obj;
+   String memnum = list.get(0).getMemnum();
+   System.out.print("memnum >>> : " + memnum);
+   session.setAttribute("memnum", memnum);
+
+   if (list.size() > 0){
+      for (int i=0; i < list.size(); i++){
+         SfmPaymentVO pvo = list.get(i);
+%>
+           
+           <div class="font1 row1">
+           <tr>
+                <div>
+                   <a style=fon-size:20px><td><%= pvo.getMatchstadium() %></td></a><br>
+                </div>
+                <div>
+                   <a style=fon-size:20px><td><%= pvo.getMatchkickoff() %></td></a><br>
+                </div>
+                <div>
+                   <a style=fon-size:20px><td><%= pvo.getMatchtime() %></td></a><br>
+                </div>
+                <div>
+                   <a style=fon-size:20px><td><%= pvo.getMatchpersonnel() %></td></a><br>
+                </div>
+             </tr>
+<%
+      } // end of for
+   }//end of if
+%>  			
 
   			</div>            
       	</div>

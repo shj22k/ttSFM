@@ -14,15 +14,6 @@
     String paymentnum = (String)ss.getAttribute("paymentnum");
 	logger.info("paymentnum >> "+ paymentnum);
  	logger.info("matchnum >> "+ matchnum);
- 	
-// 	Object obj = request.getAttribute("listAll");
-// 	if(obj == null) return;
-	
-// 	List<SfmPaymentVO> list = (List<SfmPaymentVO>)obj;
-	
-// 	SfmPaymentVO pvo = list.get(0);
-// 	String paymentnum = pvo.getPaymentnum();
-//  	logger.info("paymentnum >> "+ paymentnum);
 %> 
     
 <!DOCTYPE html>

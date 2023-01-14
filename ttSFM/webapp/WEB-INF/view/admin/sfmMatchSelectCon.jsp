@@ -35,8 +35,26 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
   	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://www.gstatic.com/charts/loader.js"></script>
 <script type='text/javascript'>
+
+	function drawChart(){
+		var a = $.ajax({
+			url: "googlePieChartPos.sfm",
+			dataType: "json",
+			async: !1
+		}).resposeText,
+		t = new google.visualization.DataTable(a);
+		
+		new google.visualization.PieChart(document.getElementById("column_chart_div1")).draw(t, {
+			width: 500,
+			height: 450,
+			is3D: !0,
+			title: "포지션 신청 현황",
+			titlePosition: "out"
+		})
+	}
 
 	function test(ths, thi){
 		location.href="/ttSFM/sfmMatchMap.sfm?jibun="+ths+"&stadium="+thi;
@@ -99,9 +117,6 @@
 </head>
 <!-- ------------------css 선언 끝 -------------------------------------------- -->
 <body>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-  crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
   integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
   crossorigin="anonymous"></script>
@@ -121,11 +136,11 @@
 <div class="topnav">
 
 	<form id="maindata" name="maindata">
-        <img type="" id="maingo" src="/ttSFM/img/fb/tikilogo2.png" width="125px;">
+        <img id="maingo" src="/ttSFM/img/fb/tikilogo2.png" width="125px;">
 
 	<!-- 구장 예약 내역 아이콘 -->
 	<a href="https://www.plabfootball.com/mypage/myplab/">
-		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/date2.png" width="35px"><a href="https://www.plabfootball.com/mypage/"></a>
+		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/date2.png" width="35px">
 	</a>
 	<!-- 구장 예약 내역 아이콘 -->
 	
@@ -207,6 +222,9 @@
 <div id="mnRule" class="info__list__wrapper double">
 <ul>
 	<li class="info__list">
+		<button type="button" id="btn" onclick="drawChart()">버튼</button>
+		<div id="column_chart_div1" style="width:900px; height:500px;"></div>
+	
 		<img src="https://plab-football.s3.amazonaws.com/static/img/ic_info_level.svg" class="icon">
 		<div>
 			<p class=""><%= mtvo.getMatchlv() %></p>
@@ -282,7 +300,6 @@
 	</div>
 	</div>
 </div>
-
 
 </div>
 </div>

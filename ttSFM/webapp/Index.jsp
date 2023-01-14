@@ -16,8 +16,8 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
 	<link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
 	<!-- Core theme CSS (includes Bootstrap)-->
-	<link rel="stylesheet" type="text/css" href="/ttSFM/include/mainIntroducepage.css">
-	<link rel="stylesheet" href="/ttSFM/include/Login.css">
+       <link rel="stylesheet" type="text/css" href="/ttSFM/include/mainIntroducepage.css">
+		<link rel="stylesheet" href="/ttSFM/include/Login.css">
 	
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type='text/javascript'>
@@ -100,7 +100,7 @@
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
                 <!-- Masthead Avatar Image-->
-                <img class="masthead-avatar mb-5" src="/ttSFM/img/fb/fb13.jpg" alt="..." />
+                <img class="masthead-avatar mb-5" src="/ttSFM/img/fb/tikiIntro.png" alt="..." />
                 <!-- Masthead Heading-->
                 <br>
                 <br>
@@ -226,12 +226,12 @@
 <!-- 		 <h3 align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;지금 가입하고  즐기자 !</h3> -->
 <!--   		Submit Button -->
 <!--   		<button class="btn btn-primary btn-xl disabled" id="submitButton" type="button" style="margin: 20px auto;margin-left: 313px;">회원가입</button> -->
-		<br>
-		<br>
-			<h3 align="center">로그인하기 !</h3>
+
+		  	<img src="/ttSFM/img/fb/intro12.png" style="width: 534px;margin-left: 214px;margin-top: -184px;margin-bottom: -148px;">
 			<form id="maindata" name="maindata">
 <%-- 				<input type="hidden" id="memnum" name="memnum" value="<%= memnum %>"/> --%>
-				<button class="login100-form-btn" type="submit" id="login" name="login" style="margin: 20px auto;margin-left: 305px; width: 298px;">로그인하러 가기</button>
+					
+					<button class="login100-form-btn" type="submit" id="login" name="login" style="margin: 20px auto;margin-left: 321px; width: 298px;">로그인</button>
 			</form>
 		</div>
         <div class="right">

@@ -26,6 +26,11 @@ public class SfmMemVO {
 	private String snsid;
 	private String snsemail;
 	
+	private String matchstadium;
+	private String paymentnum;
+	private String reservedate;
+
+	
 	public SfmMemVO() {
 		
 	}
@@ -33,7 +38,8 @@ public class SfmMemVO {
 	public SfmMemVO(String memnum, String memname, String memid, String mempw, String memgender, String memphoto,
 			String memhp, String memzonecode, String memjibunaddress, String memjibunaddressdetail, String mememail,
 			String memposition, String mempreferredarea, String memlv, String ismanager, String deleteyn,
-			String insertdate, String updatedate, String snstype, String snsid, String snsemail) {
+			String insertdate, String updatedate, String snstype, String snsid, String snsemail, String matchstadium,
+			String paymentnum, String reservedate) {
 		
 		this.memnum = memnum;
 		this.memname = memname;
@@ -56,6 +62,9 @@ public class SfmMemVO {
 		this.snstype = snstype;
 		this.snsid = snsid;
 		this.snsemail = snsemail;
+		this.matchstadium = matchstadium;
+		this.paymentnum = paymentnum;
+		this.reservedate = reservedate;
 	}
 
 	public String getMemnum() {
@@ -224,6 +233,30 @@ public class SfmMemVO {
 
 	public void setSnsemail(String snsemail) {
 		this.snsemail = snsemail;
+	}
+
+	public String getMatchstadium() {
+		return matchstadium;
+	}
+
+	public void setMatchstadium(String matchstadium) {
+		this.matchstadium = matchstadium;
+	}
+
+	public String getPaymentnum() {
+		return paymentnum;
+	}
+
+	public void setPaymentnum(String paymentnum) {
+		this.paymentnum = paymentnum;
+	}
+
+	public String getReservedate() {
+		return reservedate;
+	}
+
+	public void setReservedate(String reservedate) {
+		this.reservedate = reservedate;
 	}
 	
 	

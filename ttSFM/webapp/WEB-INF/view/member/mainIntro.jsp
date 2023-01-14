@@ -30,7 +30,6 @@
 <script type='text/javascript'>
 
 	$(document).ready(function(){
-// 		location.href="/ttSFM/maingo.sfm?memnum="+ths;
 		$("#maingo").on("click", function(){
 			$("#maindata").attr({
 				"action":"maingo.sfm",
@@ -57,7 +56,6 @@
 
     // Shrink the navbar 
     navbarShrink();
-
     // Shrink the navbar when page is scrolled
     document.addEventListener('scroll', navbarShrink);
 
@@ -85,15 +83,6 @@
 
 });
 	
-// 	$(document).ready(function(){
-		
-// 		$("#submitButton").on("click", function(){
-// 			alert("submitButton 버튼 클릭");
-			
-// 			$("#")
-// 		})
-// 	})
-
 </script>
 </head>
    <body id="page-top">

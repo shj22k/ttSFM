@@ -81,6 +81,37 @@
 	ORDER BY 1 DESC  
 
 </select>
+
+<select id="myPage2" resultType ="sfmmemvo">
+	
+	SELECT 		B.PAYMENTNUM 		PAYMENTNUM
+			   ,TO_CHAR(TO_DATE(B.INSERTDATE), 'YYYY-MM-DD')INSERTDATE	
+			   ,A.MEMNUM			MEMNUM
+			   ,A.MEMNAME			MEMNAME
+			   ,A.MEMID				MEMID
+			   ,A.MEMPW				MEMPW
+			   ,A.MEMGENDER			MEMGENDER
+			   ,A.MEMHP				MEMHP
+	   		   ,A.MEMZONECODE		MEMZONECODE
+	   		   ,A.MEMJIBUNADDRESS			MEMJIBUNADDRESS
+	   		   ,A.MEMJIBUNADDRESSDETAIL		MEMJIBUNADDRESSDETAIL
+	   		   ,A.MEMPOSITION		MEMPOSITION
+	   		   ,A.MEMPREFERREDAREA	MEMPREFERREDAREA
+	   		   ,A.MEMEMAIL			MEMEMAIL
+	   		   ,A.MEMLV				MEMLV
+               ,C.MATCHSTADIUM      MATCHSTADIUM
+	FROM 		SFM_MEMBER A,
+				SFM_PAYMENT B,
+				SFM_MATCH C
+	WHERE 		A.DELETEYN = 'Y'
+	AND			B.DELETEYN = 'Y'
+	AND			C.DELETEYN = 'Y'
+	AND			B.MEMNUM = #{memnum}
+	AND			A.MEMNUM = B.MEMNUM(+)
+	AND			B.MATCHNUM = C.MATCHNUM(+)
+	
+</select>
+
 <select id="sfmMemSelect" resultType="sfmmemvo">
 
 	SELECT	A.MEMNUM			MEMNUM
@@ -223,5 +254,7 @@
    WHERE    DELETEYN = 'Y' 
    AND      MEMID = #{memid}
 </update>
+
+
 
 </mapper>

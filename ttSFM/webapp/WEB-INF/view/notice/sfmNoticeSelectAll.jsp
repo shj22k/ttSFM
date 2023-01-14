@@ -7,7 +7,6 @@
 <%@page import="main.sfm.notice.vo.SfmNoticeVO" %>
 
 <% request.setCharacterEncoding("UTF-8");%> 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,12 +17,7 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-  
 <script type="text/javascript" src="/ttSFM/js/common.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-
-<!-- 달력 -->
-
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 
 <link rel="stylesheet" href="/css/jquery-ui.min.css">
@@ -47,7 +41,6 @@
 		$(document).on("click","#chkAll",function(){
 			if($(this).prop('checked')){
 				$('chkAll').prop('checked',false);
-				//$(this).prop('checked',true);
 			}
 		});
 		
@@ -80,9 +73,9 @@
 				"enctype":"application/x-www-form-urlencoded"
 			}).submit();
 		});
-
 	});
-    $(function date(){
+  
+    function date(){
 
         $('.input-group.date').datepicker({
 
@@ -110,16 +103,15 @@
 %>
 <form name="sfmNoticeList" id="sfmNoticeList">
 <!-- 상단바 -->
-
 <div style="padding:0px 400px 0px 400px;">
 <div class="topnav">
-  <a>
-  <img src="/ttSFM/img/fb/tikilogo2.png" width="150px"><a style="font-size:30px"><b>관리자페이지<b></a>
-  </a>
+	<a>
+		<img src="/ttSFM/img/fb/tikilogo2.png" width="150px">
+	</a>
   	
   	<!-- 구장 예약 내역 아이콘 -->
   	<a href="https://www.plabfootball.com/mypage/myplab/">
-  	<img class="icon-margin2" align="right" src="/ttSFM/img/fb/date2.png" width="35px"><a href="https://www.plabfootball.com/mypage/"></a>
+  		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/date2.png" width="35px">
   	</a>
  	 <!-- 구장 예약 내역 아이콘 -->
   
@@ -140,7 +132,6 @@
   
 </div>
 <!-- 상단바 끝-->
-
 <div class="container">
     <div class="input-form-backgroud">
     <div class="input-form col-md-12 mx-auto">
@@ -150,10 +141,9 @@
 	<h3><b>공지사항</b></h3>
 	<br>
 	<br>
-	</div>
+</div>
 <table class="table border-bottom table-sm">
 <thead>
-
 <tr>
 	<th><input type="checkbox" name="chkAll" id="chkAll"></th>
 	<th>공지번호</th>
@@ -162,7 +152,6 @@
 	<th>공지내용</th>
 	<th>등록일</th>
 	<th>수정일</th>
-
 </tr>
 </thead>
 <%
@@ -207,7 +196,6 @@
 		<button type="button" class="btn btn-primary btn-sm" id="deleteBtn">글삭제</button> 									
 	</td>
 </tr>	
-
 </tbody>	
 </table>
 </form>	

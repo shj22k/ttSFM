@@ -35,8 +35,6 @@
 		
 		// 폼태그 데이터 콘트롤러에 보내기 
 		$(document).on("click", "#idbtn", function(){
-			alert("idbtn 버튼 블럭 진입 >>> : ");			
-			console.log("idbtn >>> : ");	
 							
 			$('#idForm').attr({
 				'action':'idFind.sfm',

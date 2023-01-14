@@ -338,7 +338,7 @@
 .p-t-133 {padding-top: 133px;}
 .p-t-134 {padding-top: 134px;}
 .p-t-135 {padding-top: 135px;}
-.p-t-136 {padding-top: 136px;}
+.p-t-136 {padding-top: 22px;}
 .p-t-137 {padding-top: 137px;}
 .p-t-138 {padding-top: 138px;}
 .p-t-139 {padding-top: 139px;}
@@ -2224,7 +2224,7 @@
 ///////////////////////////////////////////////////////////
 */
 /* ------------------------------------ */
-.text-white {color: white;}
+.text-white {color: black;}
 .text-black {color: black;}
 
 .text-hov-white:hover {color: white;}
@@ -3167,19 +3167,18 @@ iframe {
 }
 
 .wrap-login100 {
-  width: 600px;
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 70px 50px 4px 95px;
+    width: 600px;
+    background: #fff;
+    border-radius: 35px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 70px 50px 4px 95px;
 }
 
 /*------------------------------------------------------------------
@@ -3324,7 +3323,7 @@ iframe {
 
   width: 100%;
   height: 50px;
-  border-radius: 25px;
+  border-radius: 18px;
   background: #57b846;
   display: -webkit-box;
   display: -webkit-flex;

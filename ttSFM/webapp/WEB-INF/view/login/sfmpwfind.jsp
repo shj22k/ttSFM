@@ -12,7 +12,6 @@ $(document).ready(function(){
 	alert(">>> : ");
 	
 	$("#emailbtn").click(function(){
-		alert("emailbtn >>> : ");
 		
 		let url = "pwFindAuthnum.sfm";			
 		let memidVal = $("#memid").val();			
@@ -21,7 +20,6 @@ $(document).ready(function(){
 		$.get(url
 			 ,{"memid": memidVal, "mememail": mememailVal}
 			 ,function(data){	
-				// alert(data);
 				var sVal = $(data).find("result").text();	
 				alert(sVal);
 				
@@ -32,8 +30,6 @@ $(document).ready(function(){
 	
 	// 폼태그 데이터 콘트롤러에 보내기 
 	$(document).on("click", "#pwbtn", function(){
-		alert("pwbtn 버튼 블럭 진입 >>> : ");			
-		console.log("pwbtn >>> : ");	
 						
 		$('#pwForm').attr({
 			'action':'pwFindAuthnum.sfm',

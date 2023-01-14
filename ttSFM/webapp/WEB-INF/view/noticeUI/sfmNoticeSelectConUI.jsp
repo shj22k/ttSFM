@@ -21,27 +21,7 @@
 <script type="text/javascript">
 
 	$(document).ready(function(){
-		alert("ready 함수 진입");
 		
-// 		// 목록으로 이동
-// 		$('#selectBtn').on('click', function(){
-// 			alert("selectAllbtn버튼 클릭  >>> ");
-// 			//리터럴객체
-// 			$('#commucon').attr({
-// 				"action":"sfmCommunitySelectAll.sfm",
-// 				"method":"GET",
-// 			}).submit();
-// 		});
-		
-// 		// 수정하기
-// 		$("#updateBtn").on("click",function(){
-// 			alert("updateBtn버튼 클릭  >>> ");
-
-// 			$('#commucon').attr({
-// 				"action":"sfmCommunityUpdateForm.sfm",
-// 				"method":"GET",
-// 			}).submit();
-// 		});
 	});
 	
 </script>

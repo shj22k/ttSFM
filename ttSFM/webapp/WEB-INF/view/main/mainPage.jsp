@@ -75,12 +75,20 @@
 	})
   
 </script>
-  
-<div style="padding:0px 400px 0px 400px;">
-<div class="container"></div>
+  <!-- 채팅 창 -->
+<div style = "position:fixed; right:40px; bottom:40px;float:right;">
+   <a class="active" href="sfmChat.sfm" target='_blank'>
+      <img src = "/ttSFM/img/fb/chatbot.png" width="100" height="100"/>
+   </a>
+</div>
+<!-- 채팅 창 -->
 <!-- 상단바 -->
+
+<div style="padding:0px 400px 0px 400px;">
 <div class="topnav">
-  <img src="/ttSFM/img/fb/tikilogo2.png" width="150px">
+  <a>
+  <img src="/ttSFM/img/fb/tikilogo2.png" width="125px;"><a style="font-size:30px"></a>
+  </a>
   	
   	<!-- 구장 예약 내역 아이콘 -->
   	<a href="calendar.sfm">
@@ -88,16 +96,18 @@
   	</a>
  	<!-- 구장 예약 내역 아이콘 -->
   
+  
   	<!-- 마이 페이지 아이콘 -->
 	<a href="myPage.sfm?memnum =<%= memnum %>" onfocus="this.blur()">
 		<img class="icon-margin2" align="right" src="/ttSFM/img/fb/user.png" width="35px">
 	</a>
-	<!-- 마이 페이지 아이콘 -->
+  	<!-- 마이 페이지 아이콘 -->
   	
-  <div align="right" class="search-container">
+  	
+      <div align="right" class="search-container">
     <form action="/action_page.php">
-      <input type="text" style="width:400px;" placeholder="Search.." name="search">
-      <button type="submit" style="width:50px;"><i class="fa fa-search"></i></button>
+      <input type="text" style="width:250px; height:40px" placeholder="Search.." name="search">
+      <button type="submit" style="width:40px; height:40px;"><i class="fa fa-search"></i></button>
     </form>
   </div>
   
@@ -154,21 +164,17 @@
       <div class="carousel-item active">
         <!--가로-->
         <img class="d-block w-100" 
-          src="/ttSFM/img/fb/fb1.jpg"
+          src="/ttSFM/img/fb/main.png"
           alt="First slide">
-          <div class="carousel-caption d-none d-md-block">
-              <h5>TEST</h5>
-              <p>구장 사진</p>
-        </div>
       </div>
       <div class="carousel-item">
         <img class="d-block w-100"
-          src="/ttSFM/img/fb/fb2.jpg"
+          src="/ttSFM/img/fb/intro.png"
           alt="Second slide">
       </div>
       <div class="carousel-item">
         <img class="d-block w-100"
-          src="/ttSFM/img/fb/fb3.jpg"
+          src="/ttSFM/img/fb/event.png"
           alt="Third slide">
       </div>
 
@@ -195,11 +201,6 @@
 </div>
 
 <!--------------  슬라이드 끝 ---------------------------------------------------------------- -->	
-<div style = "position:fixed;right;10px;bottom:10px;">
-	<a class="active" href="sfmChat.sfm" target='_blank'>
-		<img src = "/ttSFM/img/fb/123.png" width="100" height="100"/>
-	</a>
-</div>
 <div class="container">
    <div class="input-form-backgroud row">
      <div class="input-form col-md-12 mx-auto">

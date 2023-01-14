@@ -9,10 +9,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3>조회러가 가는중,,,,</h3>
+<h3>조회하는중</h3>
 <hr>
 <script>
-	
 	location.href="/ttSFM/sfmNoticeSelectAll.sfm";
 </script>
 </body>

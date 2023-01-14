@@ -1,5 +1,9 @@
 package main.sfm.match.controller;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -285,6 +291,99 @@ public class SfmMatchController {
 		}catch(Exception e) { System.out.println("에러가 발생" + e); }
 		
 		return "commons/sfmMatchMap";
+	}
+	
+	@GetMapping(value="googlePieChartPos", produces="text/json; charset=UTF-8")
+	@ResponseBody
+	public String googlePieChartPos() {
+		logger.info("googlePieChartPos 진입---");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rsRs = null;
+		JSONObject col_1 = null;
+		JSONObject col_2 = null;
+		JSONObject category = null;
+		JSONObject count = null;
+		JSONObject jsonData = null;
+		JSONArray body = null;
+		JSONArray jsonArrayTitle = null;
+		String sql = null;
+		StringBuffer sb = null;
+		
+		col_1 = new JSONObject();
+		col_2 = new JSONObject();
+		jsonArrayTitle = new JSONArray();
+		
+		col_1.put("label", "Category");
+		col_1.put("type", "string");
+		col_2.put("label", "count");
+		col_2.put("type", "number");
+		jsonArrayTitle.add(col_1);
+		jsonArrayTitle.add(col_2);
+		
+		jsonData = new JSONObject();
+		jsonData.put("cols", jsonArrayTitle);
+		logger.info("컬럼 >>> :" + jsonData);
+		
+		String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";	
+		String JDBC_URL = "jdbc:oracle:thin:@localhost:1521:orclSHJ00";
+		String JDBC_USER = "scott";
+		String JDBC_PASS = "tiger";
+		
+		try {
+			Class.forName(JDBC_DRIVER);
+			
+			conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASS);
+			logger.info("conn >>> : " + conn);
+			
+			sb = new StringBuffer();
+			sb.append("SELECT	A.MEMPOSITION,	        ");
+			sb.append("         COUNT(A.MEMPOSITION)    ");
+			sb.append("FROM		SFM_MEMBER A,           ");
+			sb.append("         SFM_PAYMENT B          ");
+			sb.append("WHERE    A.MEMNUM(+) = B.MEMNUM  ");
+			sb.append("GROUP BY A.MEMPOSITION           ");
+			sql = sb.toString();
+			
+			pstmt = conn.prepareStatement(sql);
+			logger.info(pstmt);
+			rsRs = pstmt.executeQuery();
+			logger.info(rsRs);
+			
+			if(rsRs !=null) {
+				body = new JSONArray();
+			}
+			
+			while(rsRs.next()) {
+				logger.info("카테고리 >>> : " + rsRs.getString(1));
+				logger.info("카운트 >>> : " + rsRs.getString(2));
+				category = new JSONObject();
+				count = new JSONObject();
+				category.put("v", rsRs.getString(1));
+				count.put("v", Integer.parseInt(rsRs.getString(2)));
+				
+				JSONArray row = new JSONArray();
+				row.add(category);
+				row.add(count);
+				
+				JSONObject c = new JSONObject();
+				c.put("c", row);
+				
+				body.add(c);
+			}
+			jsonData.put("rows", body);
+			
+			rsRs.close();
+			pstmt.close();
+			conn.close();
+			
+		}catch(Exception e) {
+			logger.info("예외 처리 발생 >>> :" + e.getMessage());
+		}
+		logger.info(jsonData);
+		
+		return jsonData.toJSONString();
 	}
 	
 }

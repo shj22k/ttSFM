@@ -29,11 +29,7 @@
 	};	
 	
 	$(document).ready(function(){
-		alert("ready 함수 진입");
-		
 		$(document).on("click", "#idCheck", function(){
-			alert("idCheck 버튼 클릭 >>> : ");
-			
 			// idCheck.sfm 은 따로 jsp파일이 존재하지 않고, @ResponseBody로서 컨트롤러에 존재한다.
 			// memid: $("#memid").val() -> input text의 memid에 값이 들어온 것이 전달된다.
 			let idCheckURL = "sfmIdCheck.sfm";
@@ -49,7 +45,6 @@
 			});
 			
 			function whenSuccess(resData){	
-				alert("resData >>> : " + resData);
 				
 				var id = $("#memid").val();
 				if ("ID_YES" == resData){
@@ -74,7 +69,6 @@
 			
 		// 비밀번호 체크
 		$("#pwCheck").click(function(){
-			alert("pwCheck 버튼 클릭 >>> : ");
 			console.log("pwCheck >>> : ");
 
 			var pw = $("#mempw").val();
@@ -100,9 +94,6 @@
 		});
 		
 		$('#meminsert').on('click', function(){
-			alert("meminsert 보내기 버튼 블럭 진입 >>> : ");			
-			console.log("meminsert 보내기 >>> : ");	
-			
 			$('#memform').attr({
 				'action':'sfmMemInsert.sfm',
 				'method':'POST',
@@ -110,32 +101,6 @@
 			}).submit();
 		});
 		
-// 		$(document).ready(function(){
-// 			alert("ready 함수 진입");
-			
-// 			$(document).on("click", "#meminsert", function(){
-// 				alert("회원가입 버튼 클릭 >>> : ");
-				
-// 				let idCheckURL = "sfmMemInsert.sfm";
-// 				let reqType = "POST";
-// 				let formsubmit = $("#memform").serialize();
-				
-// 				$.ajax({
-// 					url: idCheckURL,
-// 					type: reqType,								
-// 					data: formsubmit,	            
-// 					success: whenSuccess,
-// 					error: whenError
-// 				});
-				
-// 				function whenSuccess(resData){	
-// 					alert("회원 가입이 완료되었습니다.");
-// 				}
-// 				function whenError(e){
-// 					alert("e >>> : " + e.responseText);
-// 				}
-// 			});
-// 		});
 	});
 	
 </script>

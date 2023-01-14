@@ -83,5 +83,12 @@ public class SfmMemDAOImpl implements SfmMemDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("myPage",mvo);
 	}
+	
+	@Override
+	public List<SfmMemVO> myPage2(SfmMemVO mvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("myPage2",mvo);
+	}
+
 
 }

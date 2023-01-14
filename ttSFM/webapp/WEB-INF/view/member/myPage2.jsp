@@ -20,9 +20,7 @@
 <title>마이페이지</title>
 <%
  	String memnum = request.getParameter("memnum");
- 	String cnum = request.getParameter("cnum");
  	session.getAttribute(memnum);
- 	session.setAttribute("cnum", cnum);
 %> 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -46,25 +44,25 @@
 <link rel="stylesheet" type="text/css" href="/ttSFM/include/myPage.css">
 <script type='text/javascript'>
 
-    	$(document).ready(function(){
-		      $("#maingo").on("click", function(){
-		         $("#maindata").attr({
-		            "action":"maingo.sfm",
-		             "method":"POST",
-		             'enctype':'application/x-www-form-urlencoded'
-		         }).submit();
-		      });
-		});
+   	$(document).ready(function(){
+	      $("#maingo").on("click", function(){
+	         $("#maindata").attr({
+	            "action":"maingo.sfm",
+	             "method":"POST",
+	             'enctype':'application/x-www-form-urlencoded'
+	         }).submit();
+	      });
+	});
+   	
 </script>
 </head>
 <body>
-
-<!-- 상단바 -->
 <div style="padding:0px 400px 0px 400px;">
+<!-- 상단바 -->
 <div class="topnav">
 	
 	<form id="maindata" name="maindata">
-        <img type="" id="maingo" src="/ttSFM/img/fb/tikilogo2.png" width="125px;">
+        <img id="maingo" src="/ttSFM/img/fb/tikilogo2.png" width="125px;">
   	
   	<!-- 구장 예약 내역 아이콘 -->
   	<a href="https://www.plabfootball.com/mypage/myplab/">
@@ -90,9 +88,8 @@
 <!-- 상단바 끝-->
 <!-- 라이트 레프트 -->
 <%
-	if (list.size() == 1){
-		for(int i=0; i < list.size(); i++){
-			SfmMemVO mvo = list.get(i);
+	if (list.size() >= 1){
+		SfmMemVO mvo = list.get(0);
 %>	
 <div class="left">
 <div class="title-name">
@@ -143,7 +140,7 @@
 </div>
 
 <!--  바뀐점 ㅎㅎ -->
-<div style="height: 875px;" class="right">
+<div style="height: 837px;" class="right">
 	<h3 class="list-margin"><b>구장예약 목록</b></h3>
 	<br>
 		
@@ -155,20 +152,25 @@
 		<th>예약 날짜</th>
 	</tr>
 </thead>
-	
 <tbody>
+<%
+	for(int i=0; i < list.size(); i++){
+		 mvo = list.get(i);
+%>
 	<tr>
-	 
-		<td style="width:10%">1</td>
-		<td style="width:40%">인천 계양경기장</td>
-		<td style="width:8%">2023/01/05</td>				
+		<td style="width:10%"><%= mvo.getPaymentnum() %></td>
+		<td style="width:40%"><%= mvo.getMatchstadium() %></td>
+		<td style="width:12%"><%= mvo.getInsertdate() %></td>				
 	</tr>	
+<%
+	}	// end of for
+%>
 </tbody>
 </table>
 
 </div>
+</div>
 <%
-		}	// end of for
 	} //end of if
 %>
 </body>

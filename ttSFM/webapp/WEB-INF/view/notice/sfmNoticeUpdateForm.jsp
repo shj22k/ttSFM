@@ -16,7 +16,6 @@
 	logger.info("memnum > "+memnum);
 %> 
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,24 +24,21 @@
 </head>
 <!-- 디바이스에 최적화된 크기로 출력됨 --------------------------->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <!-- jQuery CDN 불러오기-------------------------------- -->
 <script src = "http://code.jquery.com/jquery-latest.min.js"></script>
-
 <script type="text/javascript">
-$(document).ready(function(){
-	
 
-	$('#noticeinsertForm').on('click','#noticebtn', function(){
-		alert("수정했습니다. >>> ");
-		//리터럴객체
-		$('#noticeinsertForm').attr({
-			"action":"sfmNoticeUpdate2.sfm",
-			"method":"GET",
-			
-		}).submit();
+	$(document).ready(function(){
+		$('#noticeinsertForm').on('click','#noticebtn', function(){
+			alert("수정되었습니다.");
+			//리터럴객체
+			$('#noticeinsertForm').attr({
+				"action":"sfmNoticeUpdate2.sfm",
+				"method":"GET",
+			}).submit();
+		});
 	});
-});
+	
 </script>
 <body>
 <% 
@@ -53,13 +49,7 @@ Object obj = request.getAttribute("a");
 	if( list != null && list.size() != 0){
 		SfmNoticeVO snvo = list.get(0); 
 %>	
-
-
-<h3 style = "color:blue">
-
-공지사항
-
-</h3>
+<h3 style = "color:blue">공지사항</h3>
 <hr>
 <form name = "noticeinsertForm" id = "noticeinsertForm">
 <table border="1">
@@ -83,16 +73,14 @@ Object obj = request.getAttribute("a");
 	</tr>
 	
 	<tr>
-		<td0>공지내용</td>
+		<td>공지내용</td>
 		<td>
 			<textarea class = "noticecontent" name = "noticecontent" id="noticecontent" rows="5" cols="50" ><%= snvo.getNoticecontent() %>
 			</textarea>
 		</td>
 	</tr>
-
 	<tr>
 		<td colspan = "2">
-	
 			<button type="button" id="noticebtn">수정보내기</button>		
 			<input type="hidden" id="memnum" name="memnum" value="">
 			<button type="reset">다시 </button>

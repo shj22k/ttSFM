@@ -46,15 +46,15 @@
 <link rel="stylesheet" type="text/css" href="/ttSFM/include/myPage.css">
 <script type='text/javascript'>
 
-    	$(document).ready(function(){
-		      $("#maingo").on("click", function(){
-		         $("#maindata").attr({
-		            "action":"maingo.sfm",
-		             "method":"POST",
-		             'enctype':'application/x-www-form-urlencoded'
-		         }).submit();
-		      });
-		});
+   	$(document).ready(function(){
+	      $("#maingo").on("click", function(){
+	         $("#maindata").attr({
+	            "action":"maingo.sfm",
+	             "method":"POST",
+	             'enctype':'application/x-www-form-urlencoded'
+	         }).submit();
+	      });
+	});
     	
 </script>
 </head>

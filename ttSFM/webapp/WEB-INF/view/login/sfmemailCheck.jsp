@@ -10,8 +10,6 @@
 EMAIL CHECK
 <hr>
 <%
-	// Object obj = request.getAttribute("authnum");
-	// String authnum = obj.toString();
 	String authnumStr = "메일을 확인 하시고 인증번호를 입력 하시오 ~~ !!";
 	System.out.println("emailCheck >>> : " + authnumStr);
 %>

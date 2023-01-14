@@ -9,6 +9,7 @@ public interface SfmMemService {
 	public int sfmMemInsert(SfmMemVO mvo);
 	public List<SfmMemVO> sfmMemSelectAll(SfmMemVO mvo);
 	public List<SfmMemVO> myPage(SfmMemVO mvo);
+	public List<SfmMemVO> myPage2(SfmMemVO mvo);
 	public List<SfmMemVO> sfmMemSelect(SfmMemVO mvo);
 	public List<SfmMemVO> sfmMemUpdateForm(SfmMemVO mvo);
 	public List<SfmMemVO> sfmMemUpdateFormUser(SfmMemVO mvo);

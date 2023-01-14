@@ -11,22 +11,18 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 
-$(document).ready(function(){
-	alert(">>> : ");
-	
-	
-	// 폼태그 데이터 콘트롤러에 보내기 
-	$(document).on("click", "#btn", function(){
-		alert("btn 버튼 블럭 진입 >>> : ");
-		console.log("btn >>> : ");	
-					
-		$('#pwUpdateForm').attr({
-			'action':'pwUpdateForm.sfm',
-			'method':'GET',
-			'enctype':'application/x-www-form-urlencoded'
-		}).submit();
-	});		
-});
+	$(document).ready(function(){
+		
+		// 폼태그 데이터 콘트롤러에 보내기 
+		$(document).on("click", "#btn", function(){
+						
+			$('#pwUpdateForm').attr({
+				'action':'pwUpdateForm.sfm',
+				'method':'GET',
+				'enctype':'application/x-www-form-urlencoded'
+			}).submit();
+		});		
+	});
 
 </script>
 </head>

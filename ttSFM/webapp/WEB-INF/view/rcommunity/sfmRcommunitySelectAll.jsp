@@ -70,7 +70,6 @@ td{
 			});
 			
 			function whenSuccess(resData){	
-				alert("resData >>> : " + resData);	
 				if ("GOOD" == resData){
 					// 입력데이터 초기화 함수호출 
 					rcommunityFormData();
@@ -90,7 +89,6 @@ td{
 			console.log("D >>> : ");
 			
 			var rcnumV = $(this).parents("li").attr("dataNum");
-			alert("rcnumV >>> : " + rcnumV);
 			var target = $(this).parents(".rcmemoItem");
 			console.log("target >>> : " + target);
 			
