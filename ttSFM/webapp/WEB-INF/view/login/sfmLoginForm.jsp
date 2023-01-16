@@ -83,7 +83,7 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-pic js-tilt" data-tilt>
-					<img src="/ttSFM/img/fb/tikilogo2.png" style="width:450px; height:200px" alt="IMG">
+					<img src="/ttSFM/img/fb/tikilogo2.png" style="width:370px; height:170px" alt="IMG">
 				</div>
 
 				<form class="login100-form validate-form" id="Login">
@@ -120,17 +120,17 @@
 				   </div>
 					
 					<div class="text-center p-t-12">
-						<span class="txt1">
-							Forgot
-						</span>
+						
 						<a class="txt2" href="sfmidfind.sfm">
-							Username
+							아이디 찾기
 						</a>
+						<span class="txt1">
+							/
+						</span>
 						<a class="txt3" href="sfmpwfind.sfm">
-							Password
+							비밀번호 찾기
 						</a>
 					</div>
-
 					<div class="text-center p-t-136">
 						<a class="txt2" href="sfmMemInsertForm.sfm">
 							회원가입

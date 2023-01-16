@@ -99,7 +99,10 @@
 	   		   ,A.MEMPREFERREDAREA	MEMPREFERREDAREA
 	   		   ,A.MEMEMAIL			MEMEMAIL
 	   		   ,A.MEMLV				MEMLV
+	   		   ,C.MATCHNUM      	MATCHNUM
                ,C.MATCHSTADIUM      MATCHSTADIUM
+               ,C.MATCHKICKOFF      MATCHKICKOFF
+               ,C.MATCHTIME      	MATCHTIME
 	FROM 		SFM_MEMBER A,
 				SFM_PAYMENT B,
 				SFM_MATCH C
@@ -109,7 +112,7 @@
 	AND			B.MEMNUM = #{memnum}
 	AND			A.MEMNUM = B.MEMNUM(+)
 	AND			B.MATCHNUM = C.MATCHNUM(+)
-	
+	ORDER BY B.INSERTDATE DESC
 </select>
 
 <select id="sfmMemSelect" resultType="sfmmemvo">

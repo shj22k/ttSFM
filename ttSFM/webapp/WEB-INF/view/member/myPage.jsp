@@ -137,10 +137,10 @@
      	 <a><b><%= mvo.getMemjibunaddressdetail() %></b></a>
 	</div> 
 	 
-	 <div class="center2">
-     <h5><b>이벤트 글 배너 오는곳</b></h5>
-     	 <h3><b>뭐 넣징 ㅎㅎ</b></h3>
-	 </div>  	
+<!-- 	 <div class="center2"> -->
+<!--      <h5><b>이벤트 글 배너 오는곳</b></h5> -->
+<!--      	 <h3><b>뭐 넣징 ㅎㅎ</b></h3> -->
+<!-- 	 </div>  	 -->
 </div>
 
 <div class="right">

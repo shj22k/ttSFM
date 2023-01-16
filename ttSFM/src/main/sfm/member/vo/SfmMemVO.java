@@ -26,11 +26,13 @@ public class SfmMemVO {
 	private String snsid;
 	private String snsemail;
 	
+	private String matchnum;
 	private String matchstadium;
 	private String paymentnum;
 	private String reservedate;
+	private String matchkickoff;
+	private String matchtime;
 
-	
 	public SfmMemVO() {
 		
 	}
@@ -38,9 +40,9 @@ public class SfmMemVO {
 	public SfmMemVO(String memnum, String memname, String memid, String mempw, String memgender, String memphoto,
 			String memhp, String memzonecode, String memjibunaddress, String memjibunaddressdetail, String mememail,
 			String memposition, String mempreferredarea, String memlv, String ismanager, String deleteyn,
-			String insertdate, String updatedate, String snstype, String snsid, String snsemail, String matchstadium,
-			String paymentnum, String reservedate) {
-		
+			String insertdate, String updatedate, String snstype, String snsid, String snsemail, String matchnum,
+			String matchstadium, String paymentnum, String reservedate, String matchkickoff, String matchtime) {
+		super();
 		this.memnum = memnum;
 		this.memname = memname;
 		this.memid = memid;
@@ -62,9 +64,12 @@ public class SfmMemVO {
 		this.snstype = snstype;
 		this.snsid = snsid;
 		this.snsemail = snsemail;
+		this.matchnum = matchnum;
 		this.matchstadium = matchstadium;
 		this.paymentnum = paymentnum;
 		this.reservedate = reservedate;
+		this.matchkickoff = matchkickoff;
+		this.matchtime = matchtime;
 	}
 
 	public String getMemnum() {
@@ -258,7 +263,25 @@ public class SfmMemVO {
 	public void setReservedate(String reservedate) {
 		this.reservedate = reservedate;
 	}
-	
+	public String getMatchnum() {
+		return matchnum;
+	}
+	public void setMatchnum(String matchnum) {
+		this.matchnum = matchnum;
+	}
+	public String getMatchkickoff() {
+		return matchkickoff;
+	}
+	public void setMatchkickoff(String matchkickoff) {
+		this.matchkickoff = matchkickoff;
+	}
+	public String getMatchtime() {
+		return matchtime;
+	}
+	public void setMatchtime(String matchtime) {
+		this.matchtime = matchtime;
+	}
+
 	
 	
 

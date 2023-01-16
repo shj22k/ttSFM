@@ -21,6 +21,11 @@
 	session.setAttribute("memnum", memnum);
 	logger.info("memnum > "+memnum);
 %> 
+<%
+	if( list != null && list.size() != 0){
+		SfmMemVO mvo = list.get(0); 
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,23 +88,25 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 	
+		$(function() {
+			  $("#memhp").val("<%= mvo.getMemhp().split("-")[0] %>");
+			  $("#mempreferredarea").val("<%= mvo.getMempreferredarea() %>");
+			  $("#memposition").val("<%= mvo.getMemposition() %>");
+		});
+
 		$(document).on('click','#updatebtn', function(){
-			alert("수정했습니다.");
+			alert("수정되었습니다!");
 			//리터럴객체
 			$('#memberinsertform').attr({
 				"action":"sfmMemUpdate2.sfm",
 				"method":"POST",
 				"enctype":"multipart/form-data"
-				
 			}).submit();
+			
 		});
 	});
 </script>
 <body>
-<%
-	if( list != null && list.size() != 0){
-		SfmMemVO mvo = list.get(0); 
-%>
   <div class="container">
     <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
@@ -176,14 +183,14 @@
             </div>
           <div class="col-md-3 mb-3">
           <label for="root"><b>&nbsp;</b></label>
-           <input type="text" class="form-control" id="memhp1" name="memhp1"value="<%=mvo.getMemhp()%>" placeholder="1111" maxlangth="4" required>
+           <input type="text" class="form-control" id="memhp1" name="memhp1" value="<%=mvo.getMemhp().split("-")[1] %>" placeholder="1111" maxlangth="4" required>
            <div class="invalid-feedback">
                  전화번호를 입력해주세요.
           </div>
           </div>
           <div class="col-md-3 mb-3">
           <label for="root"><b>&nbsp;</b></label>
-           <input type="text" class="form-control" id="memhp2" name="memhp2" placeholder="2222" required>
+           <input type="text" class="form-control" id="memhp2" name="memhp2" value="<%=mvo.getMemhp().split("-")[2] %>" placeholder="2222" required>
            <div class="invalid-feedback">
                  전화번호를 입력해주세요.
           </div>
@@ -199,12 +206,10 @@
             </div>
             </div>
             <div class="col-md-6 mb-3">
-            <label for="memzonecode"> &nbsp;</label><br>
-            <input type="button" class="btn btn-primary"  value="우편번호 찾기" onclick="kakaopost()">
+	            <label for="memzonecode"> &nbsp;</label><br>
+	            <input type="button" class="btn btn-primary"  value="우편번호 찾기" onclick="kakaopost()">
             </div>
-            
             </div>
-          
 
           <div class="mb-3">
             <label for="memjibunaddress"><b>주소</b></label>
@@ -215,15 +220,15 @@
           </div>
 
           <div class="mb-3">
-            <label for="memjibunaddressdetail"><b>상세 주소</b><span class="text-muted">&nbsp;(필수 아님)</span></label>
-            <input type="text" class="form-control" id="memjibunaddressdetail"name= "memjibunaddressdetail" value ="<%= mvo.getMemjibunaddressdetail() %>">
+	          <label for="memjibunaddressdetail"><b>상세 주소</b><span class="text-muted">&nbsp;(필수 아님)</span></label>
+	          <input type="text" class="form-control" id="memjibunaddressdetail"name= "memjibunaddressdetail" value ="<%= mvo.getMemjibunaddressdetail() %>">
           </div>
 
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="root"><b>선호 포지션</b></label>
-              <select class="custom-select d-block w-100" id="memposition" name = "memposition">
-                <option value="<%=mvo.getMemposition() %>"></option>
+              <select class="custom-select d-block w-100" id="memposition" name ="memposition">
+                <option value="<%=mvo.getMemposition() %>" selected></option>
                 <option>공격수</option>
                 <option>미드필더</option>
                 <option>수비수</option>
@@ -236,8 +241,8 @@
             </div>
             <div class="col-md-6 mb-3">
               <label for="root"><b>선호 지역</b></label>
-              <select class="custom-select d-block w-100" id="mempreferredarea" name = "mempreferredarea" >
-                <option value=""></option>
+              <select class="custom-select d-block w-100" id="mempreferredarea" name="mempreferredarea" >
+                <option value="<%=mvo.getMempreferredarea() %>"></option>
                 <option>서울</option>
                 <option>경기</option>
                 <option>인천</option>
@@ -250,12 +255,12 @@
             
           <hr class="mb-4">
           <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="aggrement" required>
-            <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
+	          <input type="checkbox" class="custom-control-input" id="aggrement" required>
+	          <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
           </div>
           <div class="mb-4">
-          <button class="btn btn-primary btn-lg btn-block" type="submit" id="updatebtn" name = "updatebtn" >수정 완료</button>
-          <input type="hidden" id="memnum" name="memnum" value="<%= memnum %>">
+	          <button class="btn btn-primary btn-lg btn-block" type="submit" id="updatebtn" name = "updatebtn" >수정 완료</button>
+	          <input type="hidden" id="memnum" name="memnum" value="<%= memnum %>">
           </div>
 <%
 	}	

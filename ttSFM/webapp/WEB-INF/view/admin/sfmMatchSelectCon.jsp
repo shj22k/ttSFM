@@ -39,22 +39,48 @@
 <script src="https://www.gstatic.com/charts/loader.js"></script>
 <script type='text/javascript'>
 
-// 	function drawChart(){
-// 		var a = $.ajax({
-// 			url: "googlePieChartPos.sfm",
-// 			dataType: "json",
-// 			async: !1
-// 		}).resposeText,
-// 		t = new google.visualization.DataTable(a);
+	/*차트*/
+	google.charts.load('current', {packages: ['corechart']});
+	google.charts.setOnLoadCallback(drawChart);
+	google.charts.setOnLoadCallback(drawChart1);
+
+	function drawChart(){
+		var a = $.ajax({
+			url: "googlePieChartPos.sfm",
+			dataType: "json",
+			async: !1
+		}).responseText,
+		t = new google.visualization.DataTable(a);
+		console.log("a >>> : " + a);
 		
-// 		new google.visualization.PieChart(document.getElementById("column_chart_div1")).draw(t, {
-// 			width: 500,
-// 			height: 450,
-// 			is3D: !0,
-// 			title: "포지션 신청 현황",
-// 			titlePosition: "out"
-// 		})
-// 	}
+		var chart = new google.visualization.PieChart(document.getElementById("column_chart_div1")).draw(t, {
+			width: 500,
+			height: 450,
+			is3D: false,
+			title: "포지션 신청 현황",
+			titlePosition: "out"
+		});
+	}
+	
+	function drawChart1(){
+		var b = $.ajax({
+			url: "googlePieChartLv.sfm",
+			dataType: "json",
+			async: !1
+		}).responseText,
+		y = new google.visualization.DataTable(b);
+		console.log("b >>> : " + b);
+		
+		var chart = new google.visualization.PieChart(document.getElementById("column_chart_div2")).draw(y, {
+			width: 500,
+			height: 450,
+			is3D: false,
+			title: "레벨 신청 현황",
+			titlePosition: "out"
+		});
+	}	
+	
+	/*차트*/
 
 	function test(ths, thi){
 		location.href="/ttSFM/sfmMatchMap.sfm?jibun="+ths+"&stadium="+thi;
@@ -292,9 +318,27 @@
 	</div>
 	</div>
 </div>
+</div>
+</div>
+
+<!-- 그래프 -->
+<div class="container2 ">
+    <div class="input-form2-backgroud row">
+      <div class="input-form2">
+<div class="section__header">
+	<div style="margin-left: 34px" class="section__title">
+		<h3>매치 정보</h3>
+	</div>
+</div>
+
+        <div id="column_chart_div1" style="width:900px; height:500px;"></div>
+        <div id="column_chart_div2" style="width:900px; height:500px;"></div>
 
 </div>
 </div>
+
+<!-- 위에가 그래프 -->
+
 
 <div class="container2">
     <div class="input-form2-backgroud row">

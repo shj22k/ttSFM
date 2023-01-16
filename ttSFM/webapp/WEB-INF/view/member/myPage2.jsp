@@ -44,6 +44,10 @@
 <link rel="stylesheet" type="text/css" href="/ttSFM/include/myPage.css">
 <script type='text/javascript'>
 
+	function test(ths){
+		location.href="/ttSFM/sfmMatchSelectCon.sfm?matchnum="+ths;
+	}
+
    	$(document).ready(function(){
 	      $("#maingo").on("click", function(){
 	         $("#maindata").attr({
@@ -133,10 +137,10 @@
      	 <a><b><%= mvo.getMemjibunaddressdetail() %></b></a>
 	</div> 
 	 
-	 <div class="center2">
-     <h5><b>이벤트 글 배너 오는곳</b></h5>
-     	 <h3><b>뭐 넣징 ㅎㅎ</b></h3>
-	 </div>  	
+<!-- 	 <div class="center2"> -->
+<!--      <h5><b>이벤트 글 배너 오는곳</b></h5> -->
+<!--      	 <h3><b>뭐 넣징 ㅎㅎ</b></h3> -->
+<!-- 	 </div>  	 -->
 </div>
 
 <!--  바뀐점 ㅎㅎ -->
@@ -149,18 +153,24 @@
 	<tr>
 		<th>글번호</th>	
 		<th>제목</th>	
-		<th>예약 날짜</th>
+		<th>경기 시간</th>
+		<th>신청 날짜</th>
 	</tr>
 </thead>
 <tbody>
 <%
 	for(int i=0; i < list.size(); i++){
 		 mvo = list.get(i);
+		 String month = mvo.getMatchkickoff().split("-")[1];
+		 String day = mvo.getMatchkickoff().split("-")[2];
+		 String time = mvo.getInsertdate().replace("2023-", "");
+
 %>
 	<tr>
-		<td style="width:10%"><%= mvo.getPaymentnum() %></td>
-		<td style="width:40%"><%= mvo.getMatchstadium() %></td>
-		<td style="width:12%"><%= mvo.getInsertdate() %></td>				
+		<td style="width:10%"><%= i+1 %></td>
+		<td style="width:40%"><a href="#" onclick="test('<%= mvo.getMatchnum() %>');"><%= mvo.getMatchstadium() %></a></td>
+		<td style="width:12%"><%= month+"월"+day+"일"+" "+ mvo.getMatchtime() %></td>				
+		<td style="width:12%"><%= time %></td>				
 	</tr>	
 <%
 	}	// end of for
