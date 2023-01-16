@@ -27,7 +27,6 @@
 <%
 	Logger logger = LogManager.getLogger(this.getClass());
 	logger.info("sfmCommunitySelectCon.jsp >>> : ");
-	
  	
  	String memnum = request.getParameter("memnum");
  	String cnum = request.getParameter("cnum");
@@ -52,12 +51,9 @@
 <script type='text/javascript'>
   
 	$(document).ready(function(){
-		alert("ready 함수 진입");
 			
 		// like_1 버튼 
 		$(document).on("click", "#like_1", function(e){
-			alert("like_1 버튼 클릭 >>> : ");
-			
 			let sfmLikeURL = "like_cnt_1.sfm";
 			let reqType = "GET";
 			let dataParam = {
@@ -76,16 +72,13 @@
 			});
 			
 			function whenSuccess(resData){
-				alert("resData >>> : " + resData);
 				console.log("resData >>> : " + resData);			
 				$("#disp_cnt_recom").text(resData).val();				
 			}	
-			
 		});
 		
 		// like_2 버튼 
 		$(document).on("click", "#like_2", function(e){
-			alert("like_2 버튼 클릭 >>> : ");
 			
 			let sfmLikeURL = "like_cnt_2.sfm";
 			let reqType = "GET";
@@ -105,7 +98,6 @@
 			});
 			
 			function whenSuccess(resData){
-				alert("resData >>> : " + resData);
 				console.log("resData >>> : " + resData);			
 				$("#disp_cnt_stop").text(resData).val();				
 			}	
@@ -114,7 +106,6 @@
 		
 		// 목록으로 이동
 		$('#selectBtn').on('click', function(){
-			alert("selectAllbtn버튼 클릭  >>> ");
 			//리터럴객체
 			$('#commucon').attr({
 				"action":"sfmCommunitySelectAll.sfm",
@@ -144,6 +135,15 @@
 	});
 
 </script>
+<style>
+.container {
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+</style>
 </head>
 <body>
 
@@ -176,11 +176,11 @@
 </div>
 
 <!-- 상단바 끝-->
-<div class="container">
+<div class="container" style="padding-right: 0px; padding-left: 0px;">
 <div class="input-form-backgroud">
 <div class="input-form col-md-12 mx-auto">
 
-<h3><b>티키타카 커뮤니티</b></h3>
+<h3><b>커뮤니티</b></h3>
 <br>
 <form name="commucon" id="commucon">
 <table class="table">
@@ -212,20 +212,20 @@
 		</td>
 	</tr>
 	<tr>
-		<td colspan="6" style="text-align:center">
-			<button type="button" class="btn btn-light" name="like_1" id="like_1">추천
+		<td colspan="6" style="align:center">
+			<button style="text-align:center; margin-right:423px " type="button" class="btn btn-light" name="like_1" id="like_1">추천
 			<p>
-				<img src='/ttSFM/img/img_board/heart.png' style='width:12px; margin:3px 3px 0 0;'>
+				<img src='/ttSFM/img/img_board/heart.png' style='width:12px; margin:3px 3px 0 0;'>	
 				<span id="disp_cnt_recom"><%= cvo.getLike_cnt_1() %></span>
 			</p>
 		</button>
-		<button type="button" class="btn btn-light" name="like_2" id="like_2">반대
+		<button style="text-align:center" type="button" class="btn btn-light" name="like_2" id="like_2">반대
 			<p>
 				<img src='/ttSFM/img/img_board/thumb_rev.png' style='width:12px; margin:3px 3px 0 0;'>
 				<span id="disp_cnt_stop"><%= cvo.getLike_cnt_2() %></span>
 			</p>
 		</button>
-		<button type="button" class="btn btn-light" name="like_3" id="like_3">신고
+		<button style="text-align:center" type="button" class="btn btn-light" name="like_3" id="like_3">신고
 			<p>
 				<img src='/ttSFM/img/img_board/alarm.png' style='width:18px; margin-top:1px; '>
 			</p>
@@ -233,9 +233,9 @@
 	</td>
 	</tr>
 	<tr>
-		<td colspan="9" align="right">	
-			<button type="button" class="btn btn-dark" id="selectBtn">목록으로 이동</button> 												
-			<button type="button" class="btn btn-warning" id="updateBtn">수정하기</button>		
+		<td colspan="9" style="text-align:center">	
+			<button style="margin-right:420px" type="button" class="btn btn-primary btn-sm" id="selectBtn">목록으로 이동</button> 												
+			<button style="margin-right:1px" "type="button" class="btn btn-primary btn-sm" id="updateBtn">수정하기</button>	
 		</td>
 	</tr>	
 </table>

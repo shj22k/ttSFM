@@ -274,8 +274,8 @@ public class SfmMatchController {
 		
 		//sfmMatchMap
 		mtvo.setMatchjibunaddress(req.getParameter("jibun"));
+		mtvo.setMatchstadium(req.getParameter("stdium"));
 		logger.info("mtvo.getMatchjibunaddress() >>> : " + mtvo.getMatchjibunaddress());
-		mtvo.setMatchstadium(req.getParameter("jibun"));
 		logger.info("mtvo.getMatchstadium() >>> : " + mtvo.getMatchstadium());
 
 		List<SfmMatchVO> map = sfmMatchService.sfmMatchMap(mtvo);
@@ -292,6 +292,7 @@ public class SfmMatchController {
 		
 		return "commons/sfmMatchMap";
 	}
+	
 	//sfmChartForm
 	@GetMapping("sfmChartForm")
 	public String sfmChartForm() {

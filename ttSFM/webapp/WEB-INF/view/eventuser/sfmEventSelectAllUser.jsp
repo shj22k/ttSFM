@@ -22,7 +22,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>이벤트 목록</title>
+<title>티키타카</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
@@ -104,7 +104,7 @@
     	<div class="input-form-backgroud">
 <form name="sfmeventList" id="sfmeventList">
 <div align="center">
-	<h3><b>이벤트 목록</b></h3>
+	<h3><b>이벤트</b></h3>
 	<br>
 	<br>
 	</div>

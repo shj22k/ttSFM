@@ -14,6 +14,13 @@
 	
 	String stadium = request.getParameter("stadium");
 	logger.info("stadium >>> : " + stadium);
+	
+// 	Object obj = request.getAttribute("map");
+// 	if (obj == null){ return; }
+	
+// 	List<SfmMatchVO> list = (List<SfmMatchVO>)obj;
+// 	list.get(0);
+
 
 %>
 <!DOCTYPE html>

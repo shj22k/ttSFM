@@ -14,11 +14,12 @@ import javax.websocket.server.ServerEndpoint;
 
 @ServerEndpoint("/chatserver")
 public class SfmChatServer {
-
 	
 	// 현재 채팅 서버에 접속한 클라이언트(WebSocket Session) 목록
 	// static 붙여야함!!
 	private static List<Session> list = new ArrayList<Session>();
+	private static List<Session> gest = new ArrayList<Session>();
+	private static List<Session> in = new ArrayList<Session>();
 	
 	private void print(String msg) {
 		System.out.printf("[%tT] %s\n", Calendar.getInstance(), msg);
@@ -28,6 +29,8 @@ public class SfmChatServer {
 	public void handleOpen(Session session) {
 		print("클라이언트 연결");
 		list.add(session); // 접속자 관리(****)
+		gest.add(session); // 접속자 관리(****)
+		in.add(session); // 접속자 관리(****)
 	}
 	
 	@OnMessage
@@ -38,6 +41,7 @@ public class SfmChatServer {
 		int index = msg.indexOf("#", 2);
 		String no = msg.substring(0, 1); 
 		String user = msg.substring(2, index);
+		String user1 = msg.substring(2, index);
 		String txt = msg.substring(index + 1);
 		
 		if (no.equals("1")) {
@@ -54,8 +58,11 @@ public class SfmChatServer {
 				}
 			}
 			
-		} else if (no.equals("2")) {
+		}
+		else if (no.equals("2")) {
 			// 누군가 메세지를 전송
+			//함수 하나더 있음
+			
 			for (Session s : list) {
 				
 				if (s != session) { // 현재 접속자가 아닌 나머지 사람들
@@ -64,10 +71,8 @@ public class SfmChatServer {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					
 				}
-				
-			} 
+			}
 		} else if (no.equals("3")) {
 			// 누군가 접속 > 3#아무개
 			for (Session s : list) {
@@ -85,8 +90,6 @@ public class SfmChatServer {
 		}
 		
 	}
-	
-	
 	
 	@OnClose
 	public void handleClose() {

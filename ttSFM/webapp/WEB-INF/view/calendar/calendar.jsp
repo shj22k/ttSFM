@@ -7,7 +7,6 @@
    String memid = (String)session.getAttribute("memid");
    System.out.println("memid >>> : " + memid);
 %>
-    
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,7 +62,7 @@ body {
 
 .panel-default>.panel-heading {
     color: #333;
-    background-color: #dbf5e5;
+    background-color: #ffffff;
     border-color: #ddd;
 }
 

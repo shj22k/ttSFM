@@ -15,5 +15,4 @@ public class SfmChatController {
 		return "chat/sfmChat";
 	}
 	
-	
 }

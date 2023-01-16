@@ -53,6 +53,10 @@
 	        language: "kr"
 	    });
 	};
+	
+	   function Open(){
+		      window.open("sfmChat.sfm", "채팅", "top=100px, left=800px, height=700px, width=500px");
+		   }
 
 </script>
 </head>
@@ -77,12 +81,11 @@
 </script>
   <!-- 채팅 창 -->
 <div style = "position:fixed; right:40px; bottom:40px;float:right;">
-   <a class="active" href="sfmChat.sfm" target='_blank'>
+   <a class="active" target='_blank' onclick="Open()">
       <img src = "/ttSFM/img/fb/chatbot.png" width="100" height="100"/>
    </a>
 </div>
-<!-- 채팅 창 -->
-<!-- 상단바 -->
+<!-- 채팅 창 --><!-- 상단바 -->
 
 <div style="padding:0px 400px 0px 400px;">
 <div class="topnav">

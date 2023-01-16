@@ -224,6 +224,7 @@ body {
 	
 	.left {
       width:400px; 
+      height: 818px;
       border:1px solid white;
       float:left;
       box-shadow: 0 8px 20px 0 rgb(0 0 0 / 15%);

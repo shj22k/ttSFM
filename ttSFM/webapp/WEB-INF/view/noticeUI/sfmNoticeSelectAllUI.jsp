@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>티키타카</title>
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
 	Logger logger = LogManager.getLogger(this.getClass());

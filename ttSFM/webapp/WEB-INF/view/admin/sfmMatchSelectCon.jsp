@@ -24,6 +24,9 @@
 	
 	List<SfmMatchVO> list = (List<SfmMatchVO>)obj;
 	SfmMatchVO mtvo = list.get(0);
+	logger.info(mtvo.getMatchjibunaddress());
+	logger.info(mtvo.getMatchstadium());
+
 %>
 
 <%
@@ -54,11 +57,13 @@
 		console.log("a >>> : " + a);
 		
 		var chart = new google.visualization.PieChart(document.getElementById("column_chart_div1")).draw(t, {
-			width: 500,
-			height: 450,
+			width: 340,
+			height: 340,
 			is3D: false,
 			title: "포지션 신청 현황",
-			titlePosition: "out"
+			fontSize: 15,
+			legend: {position: 'none'},
+			titlePosition: "out",
 		});
 	}
 	
@@ -72,10 +77,12 @@
 		console.log("b >>> : " + b);
 		
 		var chart = new google.visualization.PieChart(document.getElementById("column_chart_div2")).draw(y, {
-			width: 500,
-			height: 450,
+			width: 340,
+			height: 340,
 			is3D: false,
 			title: "레벨 신청 현황",
+			fontSize: 15,
+			legend: {position: 'none'},
 			titlePosition: "out"
 		});
 	}	
@@ -103,8 +110,7 @@
 		$("#toggleMap").click(function(){
 			
 			$("#jibun").text();
-			
-			$("#matchSelectCon").attr({
+			$("#matchnotice").attr({
 				"method":"GET",
 				"action":"sfmMatchMap.sfm",
 			}).submit();
@@ -137,6 +143,8 @@
 	.info__list__wrapper .info__list .no {
 	    opacity: 10.4;
 	}
+	
+	
 </style>
 </head>
 <!-- ------------------css 선언 끝 -------------------------------------------- -->
@@ -233,7 +241,7 @@
 <form id="matchSelectCon" name="matchSelectCon" class="validation-form" novalidate>
 <!-- 매치제목 -->
 
-<section style="height:250px" class="section">
+<section style="height:270px" class="section">
 <div class="section__header">
 	<div class="section__title">
 		<h3>매치 포인트</h3>
@@ -324,16 +332,17 @@
 <!-- 그래프 -->
 <div class="container2 ">
     <div class="input-form2-backgroud row">
-      <div class="input-form2">
-<div class="section__header">
-	<div style="margin-left: 34px" class="section__title">
-		<h3>매치 정보</h3>
+      <div style="width:800px; padding:0px"class="input-form2">
+	<div class="section__header">
+		<div style="margin-left: 91px; padding-top:70px" class="section__title">
+			<h3>매치 정보</h3>
+		</div>
 	</div>
+	<div style="display: inline-block" id="column_chart_div1" ></div>
+	<div style="display: inline-block" id="column_chart_div2" ></div>
+<br>
+<br>
 </div>
-
-        <div id="column_chart_div1" style="width:900px; height:500px;"></div>
-        <div id="column_chart_div2" style="width:900px; height:500px;"></div>
-
 </div>
 </div>
 
@@ -346,8 +355,7 @@
 		
 		<form class="validation-form" novalidate>
         <!-- 매치제목 -->
-        
-			<section style="width: 455px;" class="section">
+			<section style="width:357px;" class="section">
 				<div class="section__header">
 				<div class="section__title">
 					<h3>경기장 정보</h3>
@@ -479,10 +487,6 @@
 	    });
 
    </script>
-    <footer class="my-3 text-center text-small">
-      <p class="mb-1">&copy; 2022 YD</p>
-    </footer>
-
 </div>
 </div>
 

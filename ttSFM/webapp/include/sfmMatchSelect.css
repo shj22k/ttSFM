@@ -301,7 +301,7 @@ body {
     }
     
      .input-form5 {
-      max-width: 1100px;
+      max-width: 386px;
       margin-top: -44px;
       padding: 32px;
       background: #fff;
@@ -314,6 +314,7 @@ body {
       z-index: 1;
       margin-left: 80px;
       margin-right: 3px;
+	  position:fixed;
     }
     
     
