@@ -78,11 +78,11 @@
 		//U - 수정버튼
 		$(document).on("click","#updateBtn",function(){
 
-				$('#sfmeventList').attr({
-					"action":"sfmEventUpdate.sfm",
-					"method":"GET",
-					
-				}).submit();
+			$('#sfmeventList').attr({
+				"action":"sfmEventUpdate.sfm",
+				"method":"GET",
+				
+			}).submit();
 			
 		});
 		//D- 삭제합시다

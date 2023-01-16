@@ -3,9 +3,9 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-	HttpSession bpSession = request.getSession();
-	String memid = (String)session.getAttribute("memid");
-	System.out.println("memid >>> : " + memid);
+   HttpSession bpSession = request.getSession();
+   String memid = (String)session.getAttribute("memid");
+   System.out.println("memid >>> : " + memid);
 %>
     
 <!DOCTYPE html>
@@ -21,7 +21,54 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="/ttSFM/calendar/css/main.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+  crossorigin="anonymous"></script>
 </head>
+<style>
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #dbf5e5;
+}
+
+/*오늘 칸 색깔 */
+.fc-unthemed td.fc-today {
+    background: #eeffec;
+}
+
+.fc-center h2 {
+    text-transform: uppercase;
+    font-size: 40px;
+    font-weight: 600;
+    color: #505363;
+    line-height: 32px;
+}
+
+/*배경색*/
+
+.fc-scroller {
+    -webkit-overflow-scrolling: touch;
+     background-color: #ffffff;
+}
+
+.fc .fc-toolbar>*>* {
+    float: left;
+    margin-left: 0.75em;
+    margin-bottom: 25px;
+}
+
+.panel-default>.panel-heading {
+    color: #333;
+    background-color: #dbf5e5;
+    border-color: #ddd;
+}
+
+</style>
+
 <body>
     <div class="container">
 
@@ -60,7 +107,7 @@
                                 <label><input class='allDayNewEvent' name="edit-allDay" id="edit-allDay" type="checkbox"></label>
                             </div>
                         </div>
-						
+                  
                         <div class="row">
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-title">일정명</label>

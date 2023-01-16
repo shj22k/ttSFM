@@ -2,41 +2,41 @@
     pageEncoding="UTF-8"%>
 <%@page import="org.apache.log4j.LogManager" %>  
 <%@page import="org.apache.log4j.Logger" %> 
-<%@ page import="javax.servlet.http.HttpSession"%>
-<%@ page import="javax.servlet.http.HttpServletRequest"%>
-<%
-	Logger logger = LogManager.getLogger(this.getClass());
-	HttpSession ss = request.getSession();
-    String memnum = (String)ss.getAttribute("memnum");
-	logger.info("memnum >> "+ memnum);
-%> 
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>티키타카 소개</title>
-  <!-- Favicon-->
-       <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-       <!-- Font Awesome icons (free version)-->
-       <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-       <!-- Google fonts-->
-       <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-       <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-       <!-- Core theme CSS (includes Bootstrap)-->
+<title>TIKI TAKA</title>
+	<!-- Favicon-->
+	<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+	<!-- Font Awesome icons (free version)-->
+	<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+	<!-- Google fonts-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+	<!-- Core theme CSS (includes Bootstrap)-->
        <link rel="stylesheet" type="text/css" href="/ttSFM/include/mainIntroducepage.css">
 		<link rel="stylesheet" href="/ttSFM/include/Login.css">
+	
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type='text/javascript'>
-
+	
 	$(document).ready(function(){
-		$("#maingo").on("click", function(){
+		$("#login").on("click", function(){
 			$("#maindata").attr({
-				"action":"maingo.sfm",
-			    "method":"POST",
-			    'enctype':'application/x-www-form-urlencoded'
+				"action":"sfmLoginForm.sfm",
+			    "method":"GET",
 			}).submit();
 		});
+		$("#maingo").on("click", function(){
+		    $("#maindata").attr({
+		       "action":"maingo.sfm",
+		        "method":"POST",
+		        'enctype':'application/x-www-form-urlencoded'
+		    }).submit();
+		});
+
 	});
 	
 	window.addEventListener('DOMContentLoaded', event => {
@@ -56,6 +56,7 @@
 
     // Shrink the navbar 
     navbarShrink();
+
     // Shrink the navbar when page is scrolled
     document.addEventListener('scroll', navbarShrink);
 
@@ -80,9 +81,8 @@
             }
         });
     });
-
 });
-	
+
 </script>
 </head>
    <body id="page-top">
@@ -108,7 +108,7 @@
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
                 <!-- Masthead Avatar Image-->
-                <img class="masthead-avatar mb-5" src="/ttSFM/img/fb/fb13.jpg" alt="..." />
+                <img class="masthead-avatar mb-5" src="/ttSFM/img/fb/tikiIntro.png" alt="..." />
                 <!-- Masthead Heading-->
                 <br>
                 <br>
@@ -193,7 +193,6 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                           
                         </div>
                     </div>
                 </div>
@@ -220,7 +219,6 @@
                 	<p align="center"><b>다양한 사람들과 내가 원하는 시간, 장소에서 풋살하자 !!!</b></p></div>
                 </div>
                 <!-- About Section Button-->
-
             </div>
         </section>
         <!-- Contact Section-->
@@ -236,12 +234,11 @@
 <!-- 		 <h3 align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;지금 가입하고  즐기자 !</h3> -->
 <!--   		Submit Button -->
 <!--   		<button class="btn btn-primary btn-xl disabled" id="submitButton" type="button" style="margin: 20px auto;margin-left: 313px;">회원가입</button> -->
-		<br>
-		<br>
-			<h3 align="center">경기목록 보러가기 !</h3>
+
+		  	<img src="/ttSFM/img/fb/intro12.png" style="width: 534px;margin-left: 214px;margin-top: -184px;margin-bottom: -148px;">
 			<form id="maindata" name="maindata">
 <%-- 				<input type="hidden" id="memnum" name="memnum" value="<%= memnum %>"/> --%>
-				<button class="login100-form-btn" type="submit" id="maingo" name="maingo" style="margin: 20px auto;margin-left: 305px; width: 298px;">경기목록 보기</button>
+					<button class="login100-form-btn" type="submit" id="maingo" name="maingo" style="margin: 20px auto;margin-left: 305px; width: 298px;">경기목록 보기</button>
 			</form>
 		</div>
         <div class="right">

@@ -62,8 +62,6 @@
 	
 	   
 	$(document).ready(function(){
-		alert("ready 함수 시작");
-		
 		$("#maingo").on("click", function(){
 		    $("#maindata").attr({
 		       "action":"maingo.sfm",
@@ -116,7 +114,7 @@
 <div class="row">
 <tr>
 	
-	<th>이벤트번호</th>
+<!-- 	<th>이벤트번호</th> -->
 	<th>이벤트진행여부</th>
 	<th>이벤트제목</th>
 	<th>마감일</th>	
@@ -136,19 +134,16 @@
 %>
 <tbody>
 <tr>
-	
-	<td class="tt" style="width:10%"><%= sevo.getEventnum() %> </td>
+<%-- 	<td class="tt" style="width:10%"><%= sevo.getEventnum() %> </td> --%>
 	<td class="tt" style="width:10%"><%= sevo.getEvent() %> </td>		
 	<td class="tt" style="width:10%"><a href="#" onclick="test('<%= sevo.getEventnum() %>');"><%= sevo.getEventtitle() %></a></td>
 	<td class="tt" style="width:10%"><%= sevo.getEnddate() %></td>
 	<td class="tt" style="width:10%"><%= sevo.getInsertdate() %></td>
-	
 </tr>	
 <%
 		} // end of for
 	}//end of if
 %>
-
 </tbody>		
 </table>
 </form>	

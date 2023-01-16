@@ -29,6 +29,13 @@
 			    "method":"GET",
 			}).submit();
 		});
+		$("#chart").on("click", function(){
+			$("#maindata").attr({
+				"action":"sfmChartForm.sfm",
+			    "method":"GET",
+			}).submit();
+		});
+
 	});
 	
 	window.addEventListener('DOMContentLoaded', event => {
@@ -230,7 +237,7 @@
 		  	<img src="/ttSFM/img/fb/intro12.png" style="width: 534px;margin-left: 214px;margin-top: -184px;margin-bottom: -148px;">
 			<form id="maindata" name="maindata">
 <%-- 				<input type="hidden" id="memnum" name="memnum" value="<%= memnum %>"/> --%>
-					
+					<button class="login100-form-btn" type="submit" id="chart" name="chart" style="margin: 20px auto;margin-left: 321px; width: 298px;">차트</button>
 					<button class="login100-form-btn" type="submit" id="login" name="login" style="margin: 20px auto;margin-left: 321px; width: 298px;">로그인</button>
 			</form>
 		</div>

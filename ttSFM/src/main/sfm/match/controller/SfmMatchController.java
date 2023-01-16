@@ -292,7 +292,13 @@ public class SfmMatchController {
 		
 		return "commons/sfmMatchMap";
 	}
-	
+	//sfmChartForm
+	@GetMapping("sfmChartForm")
+	public String sfmChartForm() {
+		logger.info("sfmChartForm sfmChartForm 진입");
+		return "admin/sfmChartForm";
+	}
+
 	@GetMapping(value="googlePieChartPos", produces="text/json; charset=UTF-8")
 	@ResponseBody
 	public String googlePieChartPos() {
@@ -303,7 +309,7 @@ public class SfmMatchController {
 		ResultSet rsRs = null;
 		JSONObject col_1 = null;
 		JSONObject col_2 = null;
-		JSONObject category = null;
+		JSONObject position = null;
 		JSONObject count = null;
 		JSONObject jsonData = null;
 		JSONArray body = null;
@@ -315,9 +321,9 @@ public class SfmMatchController {
 		col_2 = new JSONObject();
 		jsonArrayTitle = new JSONArray();
 		
-		col_1.put("label", "Category");
+		col_1.put("label", "Position");
 		col_1.put("type", "string");
-		col_2.put("label", "count");
+		col_2.put("label", "Count");
 		col_2.put("type", "number");
 		jsonArrayTitle.add(col_1);
 		jsonArrayTitle.add(col_2);
@@ -338,9 +344,9 @@ public class SfmMatchController {
 			logger.info("conn >>> : " + conn);
 			
 			sb = new StringBuffer();
-			sb.append("SELECT	A.MEMPOSITION,	        ");
-			sb.append("         COUNT(A.MEMPOSITION)    ");
-			sb.append("FROM		SFM_MEMBER A,           ");
+			sb.append("SELECT	A.MEMPOSITION	       position ");
+			sb.append("        ,COUNT(A.MEMPOSITION)   cnt ");
+			sb.append("from		SFM_MEMBER A,           ");
 			sb.append("         SFM_PAYMENT B          ");
 			sb.append("WHERE    A.MEMNUM(+) = B.MEMNUM  ");
 			sb.append("GROUP BY A.MEMPOSITION           ");
@@ -358,13 +364,106 @@ public class SfmMatchController {
 			while(rsRs.next()) {
 				logger.info("카테고리 >>> : " + rsRs.getString(1));
 				logger.info("카운트 >>> : " + rsRs.getString(2));
-				category = new JSONObject();
+				position = new JSONObject();
 				count = new JSONObject();
-				category.put("v", rsRs.getString(1));
+				position.put("v", rsRs.getString(1));
 				count.put("v", Integer.parseInt(rsRs.getString(2)));
 				
 				JSONArray row = new JSONArray();
-				row.add(category);
+				row.add(position);
+				row.add(count);
+				
+				JSONObject c = new JSONObject();
+				c.put("c", row);
+				
+				body.add(c);
+			}
+			jsonData.put("rows", body);
+			
+			rsRs.close();
+			pstmt.close();
+			conn.close();
+			
+		}catch(Exception e) {
+			logger.info("예외 처리 발생 >>> :" + e.getMessage());
+		}
+		logger.info(jsonData);
+		
+		return jsonData.toJSONString();
+	}
+	
+	@GetMapping(value="googlePieChartLv", produces="text/json; charset=UTF-8")
+	@ResponseBody
+	public String googlePieChartLv() {
+		logger.info("googlePieChartLv 진입---");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rsRs = null;
+		JSONObject col_1 = null;
+		JSONObject col_2 = null;
+		JSONObject level = null;
+		JSONObject count = null;
+		JSONObject jsonData = null;
+		JSONArray body = null;
+		JSONArray jsonArrayTitle = null;
+		String sql = null;
+		StringBuffer sb = null;
+		
+		col_1 = new JSONObject();
+		col_2 = new JSONObject();
+		jsonArrayTitle = new JSONArray();
+		
+		col_1.put("label", "Level");
+		col_1.put("type", "string");
+		col_2.put("label", "Count");
+		col_2.put("type", "number");
+		jsonArrayTitle.add(col_1);
+		jsonArrayTitle.add(col_2);
+		
+		jsonData = new JSONObject();
+		jsonData.put("cols", jsonArrayTitle);
+		logger.info("컬럼 >>> :" + jsonData);
+		
+		String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";	
+		String JDBC_URL = "jdbc:oracle:thin:@localhost:1521:orclSHJ00";
+		String JDBC_USER = "scott";
+		String JDBC_PASS = "tiger";
+		
+		try {
+			Class.forName(JDBC_DRIVER);
+			
+			conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASS);
+			logger.info("conn >>> : " + conn);
+			
+			sb = new StringBuffer();
+			sb.append("SELECT	A.MEMLV	       lvl ");
+			sb.append("        ,COUNT(A.MEMLV)   cnt ");
+			sb.append("from		SFM_MEMBER A,           ");
+			sb.append("         SFM_PAYMENT B          ");
+			sb.append("WHERE    A.MEMNUM(+) = B.MEMNUM  ");
+			sb.append("GROUP BY A.MEMLV           ");
+			sql = sb.toString();
+			
+			pstmt = conn.prepareStatement(sql);
+			logger.info(pstmt);
+			rsRs = pstmt.executeQuery();
+			logger.info(rsRs);
+			
+			if(rsRs !=null) {
+				body = new JSONArray();
+			}
+			
+			while(rsRs.next()) {
+				logger.info("카테고리 >>> : " + rsRs.getString(1));
+				logger.info("카운트 >>> : " + rsRs.getString(2));
+				level = new JSONObject();
+				count = new JSONObject();
+				level.put("v", rsRs.getString(1));
+				count.put("v", Integer.parseInt(rsRs.getString(2)));
+				
+				JSONArray row = new JSONArray();
+				row.add(level);
 				row.add(count);
 				
 				JSONObject c = new JSONObject();

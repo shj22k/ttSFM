@@ -39,22 +39,22 @@
 <script src="https://www.gstatic.com/charts/loader.js"></script>
 <script type='text/javascript'>
 
-	function drawChart(){
-		var a = $.ajax({
-			url: "googlePieChartPos.sfm",
-			dataType: "json",
-			async: !1
-		}).resposeText,
-		t = new google.visualization.DataTable(a);
+// 	function drawChart(){
+// 		var a = $.ajax({
+// 			url: "googlePieChartPos.sfm",
+// 			dataType: "json",
+// 			async: !1
+// 		}).resposeText,
+// 		t = new google.visualization.DataTable(a);
 		
-		new google.visualization.PieChart(document.getElementById("column_chart_div1")).draw(t, {
-			width: 500,
-			height: 450,
-			is3D: !0,
-			title: "포지션 신청 현황",
-			titlePosition: "out"
-		})
-	}
+// 		new google.visualization.PieChart(document.getElementById("column_chart_div1")).draw(t, {
+// 			width: 500,
+// 			height: 450,
+// 			is3D: !0,
+// 			title: "포지션 신청 현황",
+// 			titlePosition: "out"
+// 		})
+// 	}
 
 	function test(ths, thi){
 		location.href="/ttSFM/sfmMatchMap.sfm?jibun="+ths+"&stadium="+thi;
@@ -75,7 +75,6 @@
 	$(document).ready(function(){
 		
 		$("#toggleMap").click(function(){
-			alert("search_btn 버튼 클릭 >>> : ");
 			
 			$("#jibun").text();
 			
@@ -86,7 +85,6 @@
 		});
 		
 		$("#paymentbtn").click(function(){
-			alert("paymentbtn 버튼 클릭 >>> : ");
 			
 			$("#matchnotice").attr({
 				"method":"GET",
@@ -130,11 +128,9 @@
 	})
   
 </script>
-  
 <div style="padding:0px 400px 0px 405px;">
 <div class="container"></div>
 <div class="topnav">
-
 	<form id="maindata" name="maindata">
         <img id="maingo" src="/ttSFM/img/fb/tikilogo2.png" width="125px;">
 
@@ -158,7 +154,6 @@
 </div>
 </form>
 </div>
- 
 <!-- ---------------------------시작-------------------------------------------------------------- -->
 <!-- 전체 양 옆 여백 조절하기 -->
 <!-- 상단 로고 -->
@@ -206,7 +201,6 @@
 </div>
 </div>
 <!--------------  슬라이드 끝 ---------------------------------------------------------------- -->	
-
 <div class="input-form6">
 <div style="margin-left: 34px;"class="middle">
 <div class="middle-left">
@@ -222,8 +216,6 @@
 <div id="mnRule" class="info__list__wrapper double">
 <ul>
 	<li class="info__list">
-		<button type="button" id="btn" onclick="drawChart()">버튼</button>
-		<div id="column_chart_div1" style="width:900px; height:500px;"></div>
 	
 		<img src="https://plab-football.s3.amazonaws.com/static/img/ic_info_level.svg" class="icon">
 		<div>
@@ -349,6 +341,7 @@
 			<ul><!----> <!----> <!----> <!----> 
 			<li class="info__list"> <div></div></li></ul> <!----></div></div></section>
 		</form>
+		
 <br>
 <br>		
 		      	▶ 구장 특이사항
@@ -448,7 +441,6 @@
 
 </div>
 </div>
-
 
 </body>
 </html>

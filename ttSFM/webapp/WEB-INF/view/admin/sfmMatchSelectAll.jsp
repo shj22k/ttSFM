@@ -43,10 +43,8 @@
 	}
 	
 	$(document).ready(function(){
-		alert("jQuery ready() 함수 블럭 진입 >>> : ")
 
 		$("#search_btn").click(function(){
-			alert("search_btn 버튼 클릭 >>> : ");
 			
 			$("#boardList").attr({
 				"method":"GET",

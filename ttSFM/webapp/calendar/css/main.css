@@ -1,3 +1,5 @@
+/*따로국밥*/
+
 body {
   font-family: 'Open Sans', Arial, Helvetica, sans-serif;
   padding: 30px;
@@ -125,9 +127,9 @@ body {
   -o-transition: all 0.2s linear;
   transition: all 0.2s linear;
 }
-
+/*눌렀을 때 색 변함*/
 .fc-day:hover {
-  background: #EEF7FF;
+  background: #daf3d7;
   cursor: pointer;
   -webkit-transition: all 0.2s linear;
   -o-transition: all 0.2s linear;
@@ -214,7 +216,7 @@ body {
 .fc-unthemed td,
 .fc-unthemed th,
 .fc-unthemed thead {
-  border-color: #DADFEA;
+  border-color: #c7dbcf;
 }
 
 .fc-ltr .fc-h-event .fc-end-resizer,

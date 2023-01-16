@@ -28,7 +28,6 @@
 	//카카오 로그인 ===================================================================================
 	window.Kakao.init('237cf63d102ae9906251cdddc198259f'); // 사용하려는 앱의 JavaScript 키 입력
 	function kakaoLoginApi() {
-	   alert("kakaoLoginApi >>> : ");
 	   window.Kakao.Auth.login({
 	      success: function(authObj){
 	         // console.log( "authObj >>> : " + JSON.stringify(authObj));   
@@ -54,7 +53,6 @@
 	}
 	
 	function kakaoLogin(k_id, k_email) {
-		   alert("kakaoLogin >>> : " + k_id + " : " + k_email);
 		   
 		   $("#kakaologin").attr({
 			      "action":"kakaoLogin.sfm",
@@ -65,12 +63,10 @@
 	//카카오 로그인 ===================================================================================
 
 	$(document).ready(function(){
-		alert("sfmLoginForm.jsp ready 함수 시작 ===");
 		$("#memid").attr('placeholder', '아이디 ');
 		$("#mempw").attr('placeholder', '비밀번호 ');
 		
 		$(document).on("click", "#loginbtn", function(){
-			alert("springLoginForm.jsp 로그인 버튼 클릭");
 			
 			$("#Login").attr({
 				"action":"sfmLogin.sfm",
