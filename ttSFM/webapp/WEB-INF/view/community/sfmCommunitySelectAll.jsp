@@ -56,8 +56,6 @@
 		
 		//I
 		$(document).on("click","#insertbtn",function(){
-			alert("insertbtn 버튼클릭");
-			
 			$('#sfmCommunityList').attr({
 				"action":"sfmCommunityInsertForm.sfm",
 				"method":"GET",

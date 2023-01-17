@@ -55,7 +55,7 @@
 	};
 	
 	   function Open(){
-		      window.open("sfmChat.sfm", "채팅", "top=100px, left=800px, height=700px, width=500px");
+		      window.open("sfmChat.sfm", "채팅", "top=100px, right=100px, height=700px, width=500px");
 		   }
 
 </script>
